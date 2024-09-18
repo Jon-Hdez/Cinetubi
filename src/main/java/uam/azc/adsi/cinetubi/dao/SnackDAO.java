@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import uam.azc.adsi.cinetubi.modelo.Snack;
+import uam.azc.adsi.cinetubi.model.Snack;
 
 
 /**

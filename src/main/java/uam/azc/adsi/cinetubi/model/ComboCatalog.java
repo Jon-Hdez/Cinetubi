@@ -1,4 +1,4 @@
-package uam.azc.adsi.cinetubi.modelo;
+package uam.azc.adsi.cinetubi.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

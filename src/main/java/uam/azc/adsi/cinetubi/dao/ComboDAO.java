@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import uam.azc.adsi.cinetubi.exceptions.SnackNotFoundException;
-import uam.azc.adsi.cinetubi.modelo.Combo;
-import uam.azc.adsi.cinetubi.modelo.Snack;
-import uam.azc.adsi.cinetubi.modelo.SnackCatalog;
+import uam.azc.adsi.cinetubi.model.Combo;
+import uam.azc.adsi.cinetubi.model.Snack;
+import uam.azc.adsi.cinetubi.model.SnackCatalog;
 
 /**
  *

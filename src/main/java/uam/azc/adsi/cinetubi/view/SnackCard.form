@@ -71,7 +71,7 @@
     <Component class="javax.swing.JLabel" name="snackIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/main/java/com/cinetubi/view/graphics/popcornSmall.png"/>
+          <Image iconType="3" name="/uam/azc/adsi/cinetubi/view/graphics/popcornSmall.png"/>
         </Property>
       </Properties>
     </Component>

@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import uam.azc.adsi.cinetubi.modelo.Snack;
+import uam.azc.adsi.cinetubi.model.Snack;
 
 /**
  *
@@ -61,7 +61,7 @@ public class SnackCard extends javax.swing.JPanel {
 
     snackNombre.setText("Palomitas Chicas");
 
-    snackIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/com/cinetubi/view/graphics/popcornSmall.png"))); // NOI18N
+    snackIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/azc/adsi/cinetubi/view/graphics/popcornSmall.png"))); // NOI18N
 
     decreaseQuantButton.setText("-");
     decreaseQuantButton.addActionListener(new java.awt.event.ActionListener() {

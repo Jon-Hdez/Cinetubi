@@ -1,4 +1,4 @@
-package uam.azc.adsi.cinetubi.modelo;
+package uam.azc.adsi.cinetubi.model;
 
 import java.math.BigDecimal;
 

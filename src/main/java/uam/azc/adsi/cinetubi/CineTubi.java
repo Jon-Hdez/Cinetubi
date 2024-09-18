@@ -3,9 +3,9 @@
  */
 package uam.azc.adsi.cinetubi;
 
-import uam.azc.adsi.cinetubi.modelo.Combo;
-import uam.azc.adsi.cinetubi.modelo.ComboCatalog;
-import uam.azc.adsi.cinetubi.modelo.SnackCatalog;
+import uam.azc.adsi.cinetubi.model.Combo;
+import uam.azc.adsi.cinetubi.model.ComboCatalog;
+import uam.azc.adsi.cinetubi.model.SnackCatalog;
 
 /**
  *
