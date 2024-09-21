@@ -7,12 +7,15 @@ package uam.azc.adsi.cinetubi.view;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import uam.azc.adsi.cinetubi.controller.DulceriaController;
 
 /**
  *
  * @author aldai
  */
 public class ProductsPanel extends javax.swing.JPanel {
+
+  private DulceriaController dulceriaController;
 
   /**
    * Creates new form SnacksPanel
@@ -29,12 +32,12 @@ public class ProductsPanel extends javax.swing.JPanel {
     this.productsGridPanel = productsGridPanel;
   }
 
-  public JScrollPane getScrollerProducts() {
-    return scrollerProducts;
+  public JScrollPane getProductsScrollerPane() {
+    return productsScrollerPane;
   }
 
-  public void setScrollerProducts(JScrollPane scrollerProducts) {
-    this.scrollerProducts = scrollerProducts;
+  public void setProductsScrollerPane(JScrollPane productsScrollerPane) {
+    this.productsScrollerPane = productsScrollerPane;
   }
 
   public JLabel getTitleLabel() {
@@ -67,7 +70,7 @@ public class ProductsPanel extends javax.swing.JPanel {
 
     titlePanel = new javax.swing.JPanel();
     titleLabel = new javax.swing.JLabel();
-    scrollerProducts = new javax.swing.JScrollPane();
+    productsScrollerPane = new javax.swing.JScrollPane();
     productsGridPanel = new javax.swing.JPanel();
 
     titlePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -93,21 +96,21 @@ public class ProductsPanel extends javax.swing.JPanel {
     );
 
     productsGridPanel.setLayout(new java.awt.GridLayout(6, 3, 10, 5));
-    scrollerProducts.setViewportView(productsGridPanel);
+    productsScrollerPane.setViewportView(productsGridPanel);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-      .addComponent(scrollerProducts)
+      .addComponent(productsScrollerPane)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(scrollerProducts, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+        .addComponent(productsScrollerPane, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
         .addContainerGap())
     );
   }// </editor-fold>//GEN-END:initComponents
@@ -117,8 +120,12 @@ public class ProductsPanel extends javax.swing.JPanel {
   
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JPanel productsGridPanel;
-  private javax.swing.JScrollPane scrollerProducts;
+  private javax.swing.JScrollPane productsScrollerPane;
   private javax.swing.JLabel titleLabel;
   private javax.swing.JPanel titlePanel;
   // End of variables declaration//GEN-END:variables
+
+  void setController(DulceriaController dCon) {
+    this.dulceriaController = dCon;
+  }
 }

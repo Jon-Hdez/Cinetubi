@@ -26,30 +26,30 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    TitlePanel = new javax.swing.JPanel();
+    titlePanel = new javax.swing.JPanel();
     titleLabel = new javax.swing.JLabel();
     contentPanel = new javax.swing.JPanel();
     contentHeaderPanel = new javax.swing.JPanel();
     contentHeaderLabel = new javax.swing.JLabel();
-    LineSalePanel = new javax.swing.JPanel();
+    lineSalePanel = new javax.swing.JPanel();
     totalPanel = new javax.swing.JPanel();
     totalTextLabel = new javax.swing.JLabel();
     totalPriceLabel = new javax.swing.JLabel();
 
-    TitlePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+    titlePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
     titleLabel.setBackground(new java.awt.Color(204, 255, 204));
     titleLabel.setText("Lista de Venta");
     titleLabel.setOpaque(true);
 
-    javax.swing.GroupLayout TitlePanelLayout = new javax.swing.GroupLayout(TitlePanel);
-    TitlePanel.setLayout(TitlePanelLayout);
-    TitlePanelLayout.setHorizontalGroup(
-      TitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
+    titlePanel.setLayout(titlePanelLayout);
+    titlePanelLayout.setHorizontalGroup(
+      titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
-    TitlePanelLayout.setVerticalGroup(
-      TitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    titlePanelLayout.setVerticalGroup(
+      titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
     );
 
@@ -70,14 +70,14 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
         .addGap(0, 0, Short.MAX_VALUE))
     );
 
-    javax.swing.GroupLayout LineSalePanelLayout = new javax.swing.GroupLayout(LineSalePanel);
-    LineSalePanel.setLayout(LineSalePanelLayout);
-    LineSalePanelLayout.setHorizontalGroup(
-      LineSalePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    javax.swing.GroupLayout lineSalePanelLayout = new javax.swing.GroupLayout(lineSalePanel);
+    lineSalePanel.setLayout(lineSalePanelLayout);
+    lineSalePanelLayout.setHorizontalGroup(
+      lineSalePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGap(0, 0, Short.MAX_VALUE)
     );
-    LineSalePanelLayout.setVerticalGroup(
-      LineSalePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    lineSalePanelLayout.setVerticalGroup(
+      lineSalePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGap(0, 190, Short.MAX_VALUE)
     );
 
@@ -114,7 +114,7 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
       .addGroup(contentPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(LineSalePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(lineSalePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(totalPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(contentHeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addContainerGap())
@@ -125,7 +125,7 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
         .addContainerGap()
         .addComponent(contentHeaderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(78, 78, 78)
-        .addComponent(LineSalePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(lineSalePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(totalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap(35, Short.MAX_VALUE))
@@ -135,13 +135,13 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(TitlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addComponent(TitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
@@ -149,12 +149,12 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JPanel LineSalePanel;
-  private javax.swing.JPanel TitlePanel;
   private javax.swing.JLabel contentHeaderLabel;
   private javax.swing.JPanel contentHeaderPanel;
   private javax.swing.JPanel contentPanel;
+  private javax.swing.JPanel lineSalePanel;
   private javax.swing.JLabel titleLabel;
+  private javax.swing.JPanel titlePanel;
   private javax.swing.JPanel totalPanel;
   private javax.swing.JLabel totalPriceLabel;
   private javax.swing.JLabel totalTextLabel;

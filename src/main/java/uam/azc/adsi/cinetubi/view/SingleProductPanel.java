@@ -16,8 +16,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import uam.azc.adsi.cinetubi.model.Product;
-import uam.azc.adsi.cinetubi.model.Snack;
+
 
 /**
  *
@@ -25,26 +24,36 @@ import uam.azc.adsi.cinetubi.model.Snack;
  */
 public class SingleProductPanel extends javax.swing.JPanel {
 
+  private NumberFormat formatter;
+  private int id;
+  private String name;
+  private BigDecimal price;
+  
   /**
    * Creates new form SnackCard
-   * @param s instance of Snack 
+   *
+   * @param id
+   * @param price
+   * @param name
    */
-  public SingleProductPanel(Snack s) {
+  public SingleProductPanel(int id, String name, BigDecimal price) {
+    formatter = NumberFormat.getCurrencyInstance(Locale.US);
+    this.id = id;
+    this.name = name;
+    this.price = price;
     initComponents();
-    initCardContent(s);
+    initCardContent();
   }
-  
-  private void initCardContent(Product p){
-    NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
-    snackPriceLabel.setText(formatter.format(p.getPrice()));
-    productTitle.setText(p.getName());
-//    productIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popcornSmall.png")));
-  };
 
-  
-  public void scaleImage(){
-    
+  private void initCardContent() {
+    productPriceLabel.setText(formatter.format(price));
+    productTitle.setText(name);
+//    productIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popcornSmall.png")));
   }
+
+  public void scaleImage() {
+  }
+
   /**
    * This method is called from within the constructor to initialize the form.
    * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,7 +69,7 @@ public class SingleProductPanel extends javax.swing.JPanel {
     decreaseQtyButton = new javax.swing.JButton();
     qtyLabel = new javax.swing.JLabel();
     increaseQtyButton = new javax.swing.JButton();
-    snackPriceLabel = new javax.swing.JLabel();
+    productPriceLabel = new javax.swing.JLabel();
 
     setBackground(new java.awt.Color(204, 255, 204));
 
@@ -89,7 +98,7 @@ public class SingleProductPanel extends javax.swing.JPanel {
       }
     });
 
-    snackPriceLabel.setText("$100.00");
+    productPriceLabel.setText("$100.00");
 
     javax.swing.GroupLayout productControlsPanelLayout = new javax.swing.GroupLayout(productControlsPanel);
     productControlsPanel.setLayout(productControlsPanelLayout);
@@ -106,7 +115,7 @@ public class SingleProductPanel extends javax.swing.JPanel {
             .addComponent(increaseQtyButton)
             .addGap(28, 28, 28))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productControlsPanelLayout.createSequentialGroup()
-            .addComponent(snackPriceLabel)
+            .addComponent(productPriceLabel)
             .addGap(48, 48, 48))))
     );
     productControlsPanelLayout.setVerticalGroup(
@@ -118,7 +127,7 @@ public class SingleProductPanel extends javax.swing.JPanel {
           .addComponent(decreaseQtyButton)
           .addComponent(increaseQtyButton))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(snackPriceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(productPriceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -152,7 +161,7 @@ public class SingleProductPanel extends javax.swing.JPanel {
   }//GEN-LAST:event_decreaseQtyButtonActionPerformed
 
   private void increaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseQtyButtonActionPerformed
-    
+
   }//GEN-LAST:event_increaseQtyButtonActionPerformed
 
 
@@ -161,8 +170,8 @@ public class SingleProductPanel extends javax.swing.JPanel {
   private javax.swing.JButton increaseQtyButton;
   private javax.swing.JPanel productControlsPanel;
   private javax.swing.JLabel productIcon;
+  private javax.swing.JLabel productPriceLabel;
   private javax.swing.JLabel productTitle;
   private javax.swing.JLabel qtyLabel;
-  private javax.swing.JLabel snackPriceLabel;
   // End of variables declaration//GEN-END:variables
 }

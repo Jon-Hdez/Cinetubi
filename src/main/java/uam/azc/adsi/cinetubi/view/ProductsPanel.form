@@ -17,7 +17,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="titlePanel" alignment="0" max="32767" attributes="0"/>
-          <Component id="scrollerProducts" alignment="0" max="32767" attributes="0"/>
+          <Component id="productsScrollerPane" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -25,7 +25,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="titlePanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrollerProducts" pref="331" max="32767" attributes="0"/>
+              <Component id="productsScrollerPane" pref="331" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -74,7 +74,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="scrollerProducts">
+    <Container class="javax.swing.JScrollPane" name="productsScrollerPane">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>

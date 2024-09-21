@@ -23,7 +23,8 @@ public class DulceriaController {
   public List<SingleProductPanel> createSnackPanels() {
     List<SingleProductPanel> snackPanels = new ArrayList<>();
     for (Snack s : snackCatalog.getCatalog()) {
-      snackPanels.add(new SingleProductPanel(s));
+      SingleProductPanel mySnackPanel = new SingleProductPanel(s.getId(),s.getName(), s.getPrice());
+      snackPanels.add(mySnackPanel);
     }
     return snackPanels;
   }

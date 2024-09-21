@@ -80,7 +80,7 @@
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="snackPriceLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="productPriceLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -97,7 +97,7 @@
                       <Component id="increaseQtyButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="snackPriceLabel" max="32767" attributes="0"/>
+                  <Component id="productPriceLabel" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -125,7 +125,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="increaseQtyButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="snackPriceLabel">
+        <Component class="javax.swing.JLabel" name="productPriceLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="$100.00"/>
           </Properties>

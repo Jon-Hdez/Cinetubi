@@ -16,14 +16,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="TitlePanel" alignment="0" max="32767" attributes="0"/>
+          <Component id="titlePanel" alignment="0" max="32767" attributes="0"/>
           <Component id="contentPanel" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="TitlePanel" min="-2" max="-2" attributes="0"/>
+              <Component id="titlePanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="contentPanel" max="32767" attributes="0"/>
           </Group>
@@ -31,7 +31,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="TitlePanel">
+    <Container class="javax.swing.JPanel" name="titlePanel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -79,7 +79,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="LineSalePanel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lineSalePanel" alignment="0" max="32767" attributes="0"/>
                       <Component id="totalPanel" alignment="1" max="32767" attributes="0"/>
                       <Component id="contentHeaderPanel" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -93,7 +93,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="contentHeaderPanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                  <Component id="LineSalePanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="lineSalePanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="totalPanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="35" max="32767" attributes="0"/>
@@ -127,7 +127,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="LineSalePanel">
+        <Container class="javax.swing.JPanel" name="lineSalePanel">
 
           <Layout>
             <DimensionLayout dim="0">

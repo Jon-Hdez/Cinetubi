@@ -31,12 +31,13 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   public VentaDulceriaView(DulceriaController dCon) {
     this.dulceriaController = dCon;
     initComponents();
+    productsPanel.setController(dCon);
     initProductsPanel();
   }
 
   private void initProductsPanel() {
     JPanel gridPanelItems = productsPanel.getProductsGridPanel();
-    JScrollPane scrollPaneItems = productsPanel.getScrollerProducts();
+    JScrollPane scrollPaneItems = productsPanel.getProductsScrollerPane();
     for (SingleProductPanel sp : dulceriaController.createSnackPanels()) {
       gridPanelItems.add(sp);
     }
@@ -58,20 +59,20 @@ public class VentaDulceriaView extends javax.swing.JFrame {
 
     productsPanel = new uam.azc.adsi.cinetubi.view.ProductsPanel();
     listaVentaDulceriaPanel = new uam.azc.adsi.cinetubi.view.ListaVentaDulceriaPanel();
-    jButton1 = new javax.swing.JButton();
-    jButton2 = new javax.swing.JButton();
+    cancelButton = new javax.swing.JButton();
+    payButton = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Dulceria");
 
-    jButton1.setText("Cancelar");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
+    cancelButton.setText("Cancelar");
+    cancelButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+        cancelButtonActionPerformed(evt);
       }
     });
 
-    jButton2.setText("Pagar");
+    payButton.setText("Pagar");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -84,9 +85,9 @@ public class VentaDulceriaView extends javax.swing.JFrame {
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
           .addComponent(listaVentaDulceriaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton2)))
+            .addComponent(payButton)))
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -98,8 +99,8 @@ public class VentaDulceriaView extends javax.swing.JFrame {
             .addComponent(listaVentaDulceriaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-              .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-              .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+              .addComponent(payButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+              .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGap(0, 0, Short.MAX_VALUE))
           .addComponent(productsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addContainerGap())
@@ -108,9 +109,9 @@ public class VentaDulceriaView extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
     // TODO add your handling code here:
-  }//GEN-LAST:event_jButton1ActionPerformed
+  }//GEN-LAST:event_cancelButtonActionPerformed
 
 //  /**
 //   * @param args the command line arguments
@@ -149,9 +150,9 @@ public class VentaDulceriaView extends javax.swing.JFrame {
 //  }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton2;
+  private javax.swing.JButton cancelButton;
   private uam.azc.adsi.cinetubi.view.ListaVentaDulceriaPanel listaVentaDulceriaPanel;
+  private javax.swing.JButton payButton;
   private uam.azc.adsi.cinetubi.view.ProductsPanel productsPanel;
   // End of variables declaration//GEN-END:variables
 }
