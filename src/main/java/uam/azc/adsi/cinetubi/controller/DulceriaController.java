@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import uam.azc.adsi.cinetubi.model.Snack;
 import uam.azc.adsi.cinetubi.model.SnackCatalog;
-import uam.azc.adsi.cinetubi.view.SnackPanel;
+import uam.azc.adsi.cinetubi.view.SingleProductPanel;
 import uam.azc.adsi.cinetubi.view.VentaDulceriaView;
 
 /**
@@ -20,10 +20,10 @@ public class DulceriaController {
     this.snackCatalog = snackCatalog;
   }
 
-  public List<SnackPanel> createSnackPanels() {
-    List<SnackPanel> snackPanels = new ArrayList<>();
+  public List<SingleProductPanel> createSnackPanels() {
+    List<SingleProductPanel> snackPanels = new ArrayList<>();
     for (Snack s : snackCatalog.getCatalog()) {
-      snackPanels.add(new SnackPanel(s));
+      snackPanels.add(new SingleProductPanel(s));
     }
     return snackPanels;
   }

@@ -7,6 +7,7 @@ package uam.azc.adsi.cinetubi.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.ScrollPane;
 import java.math.BigDecimal;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -30,20 +31,13 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   public VentaDulceriaView(DulceriaController dCon) {
     this.dulceriaController = dCon;
     initComponents();
-    this.setContentPane(buildContentPane());
+    initProductsPanel();
   }
 
-  private JPanel buildContentPane() {
-    JPanel panel = new JPanel(new BorderLayout());
-
-    int totalItems = dulceriaController.getSnackCatalog().getCatalog().size();
-    
-    int gridColumns = 3;
-    int gridRows = totalItems / gridColumns;
-    System.out.println("totalItmes: " + totalItems + " gridCOlums: " + gridColumns + " gridRows: " + gridRows);
-
-    gridPanelItems.setLayout(new GridLayout(gridRows, gridColumns, 20, 18));
-    for (SnackPanel sp : dulceriaController.createSnackPanels()) {
+  private void initProductsPanel() {
+    JPanel gridPanelItems = productsPanel.getProductsGridPanel();
+    JScrollPane scrollPaneItems = productsPanel.getScrollerProducts();
+    for (SingleProductPanel sp : dulceriaController.createSnackPanels()) {
       gridPanelItems.add(sp);
     }
 
@@ -51,9 +45,6 @@ public class VentaDulceriaView extends javax.swing.JFrame {
     scrollPaneItems.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     scrollPaneItems.setPreferredSize(new Dimension(400, 200));
     scrollPaneItems.getVerticalScrollBar().setUnitIncrement(16);
-
-    panel.add(scrollPaneItems, BorderLayout.CENTER);
-    return panel;
   }
 
   /**
@@ -65,44 +56,61 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    scrollPaneItems = new javax.swing.JScrollPane();
-    gridPanelItems = new javax.swing.JPanel();
+    productsPanel = new uam.azc.adsi.cinetubi.view.ProductsPanel();
+    listaVentaDulceriaPanel = new uam.azc.adsi.cinetubi.view.ListaVentaDulceriaPanel();
+    jButton1 = new javax.swing.JButton();
+    jButton2 = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Dulceria");
 
-    javax.swing.GroupLayout gridPanelItemsLayout = new javax.swing.GroupLayout(gridPanelItems);
-    gridPanelItems.setLayout(gridPanelItemsLayout);
-    gridPanelItemsLayout.setHorizontalGroup(
-      gridPanelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 210, Short.MAX_VALUE)
-    );
-    gridPanelItemsLayout.setVerticalGroup(
-      gridPanelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 160, Short.MAX_VALUE)
-    );
+    jButton1.setText("Cancelar");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1ActionPerformed(evt);
+      }
+    });
 
-    scrollPaneItems.setViewportView(gridPanelItems);
+    jButton2.setText("Pagar");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
-        .addGap(195, 195, 195)
-        .addComponent(scrollPaneItems, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(133, Short.MAX_VALUE))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(productsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addComponent(listaVentaDulceriaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addGroup(layout.createSequentialGroup()
+            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton2)))
+        .addContainerGap())
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(127, 127, 127)
-        .addComponent(scrollPaneItems, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(76, Short.MAX_VALUE))
+        .addContainerGap()
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addComponent(listaVentaDulceriaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+              .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE))
+          .addComponent(productsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addContainerGap())
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
+
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_jButton1ActionPerformed
 
 //  /**
 //   * @param args the command line arguments
@@ -141,7 +149,9 @@ public class VentaDulceriaView extends javax.swing.JFrame {
 //  }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JPanel gridPanelItems;
-  private javax.swing.JScrollPane scrollPaneItems;
+  private javax.swing.JButton jButton1;
+  private javax.swing.JButton jButton2;
+  private uam.azc.adsi.cinetubi.view.ListaVentaDulceriaPanel listaVentaDulceriaPanel;
+  private uam.azc.adsi.cinetubi.view.ProductsPanel productsPanel;
   // End of variables declaration//GEN-END:variables
 }
