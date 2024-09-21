@@ -1,13 +1,11 @@
 package uam.azc.adsi.cinetubi.model;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.dao.SnackDAO;
 import uam.azc.adsi.cinetubi.exceptions.SnackNotFoundException;
-import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 
 /**
  *
@@ -16,22 +14,20 @@ import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 public class SnackCatalog {
 
   private List<Snack> catalog;
+  private SnackDAO sDAO; 
 
-  public SnackCatalog() {
-    this.catalog = new ArrayList<>();
+  public SnackCatalog(SnackDAO sDAO) {
+    this.sDAO = sDAO;
+    this.catalog = createCatalog();
   }
 
-  public SnackCatalog(ArrayList<Snack> catalog) {
-    this.catalog = catalog;
-  }
-
-  public void fillCatalog() {
+  private List<Snack> createCatalog() {
     try {
-      SnackDAO sDAO = new SnackDAO(DatabaseConnection.getInstance().getConnection());
       catalog = sDAO.getAllSnacks();
     } catch (SQLException ex) {
       Logger.getLogger(SnackCatalog.class.getName()).log(Level.SEVERE, null, ex);
     }
+    return catalog;
   }
   
   public Snack findSnack(int idSnack) throws SnackNotFoundException{
