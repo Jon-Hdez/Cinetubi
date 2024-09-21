@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -21,13 +22,13 @@ import uam.azc.adsi.cinetubi.model.Snack;
  *
  * @author aldai
  */
-public class SnackCard extends javax.swing.JPanel {
+public class SnackPanel extends javax.swing.JPanel {
 
   /**
    * Creates new form SnackCard
    * @param s instance of Snack 
    */
-  public SnackCard(Snack s) {
+  public SnackPanel(Snack s) {
     initComponents();
     initCardContent(s);
   }
@@ -40,8 +41,7 @@ public class SnackCard extends javax.swing.JPanel {
 
   
   public void scaleImage(){
-    ImageIcon icon = new ImageIcon("graphics/popcornSmall.png");
-    snackIcon.setIcon(icon);
+    
   }
   /**
    * This method is called from within the constructor to initialize the form.
@@ -53,15 +53,17 @@ public class SnackCard extends javax.swing.JPanel {
   private void initComponents() {
 
     snackNombre = new javax.swing.JLabel();
-    snackIcon = new javax.swing.JLabel();
     decreaseQuantButton = new javax.swing.JButton();
     increaseQuantButton = new javax.swing.JButton();
     currentQuant = new javax.swing.JLabel();
     snackPrice = new javax.swing.JLabel();
+    jLabel1 = new javax.swing.JLabel();
+
+    setBackground(new java.awt.Color(255, 255, 102));
+    setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
     snackNombre.setText("Palomitas Chicas");
-
-    snackIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/azc/adsi/cinetubi/view/graphics/popcornSmall.png"))); // NOI18N
+    add(snackNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
     decreaseQuantButton.setText("-");
     decreaseQuantButton.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +71,7 @@ public class SnackCard extends javax.swing.JPanel {
         decreaseQuantButtonActionPerformed(evt);
       }
     });
+    add(decreaseQuantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 134, -1, -1));
 
     increaseQuantButton.setText("+");
     increaseQuantButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,51 +79,17 @@ public class SnackCard extends javax.swing.JPanel {
         increaseQuantButtonActionPerformed(evt);
       }
     });
+    add(increaseQuantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 134, -1, -1));
 
     currentQuant.setText("0");
+    add(currentQuant, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 139, 9, -1));
 
     snackPrice.setText("$100.00");
+    add(snackPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 179, -1, -1));
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-    this.setLayout(layout);
-    layout.setHorizontalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
-        .addGap(15, 15, 15)
-        .addComponent(snackNombre)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addComponent(snackIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addComponent(decreaseQuantButton)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(currentQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(increaseQuantButton)))
-        .addContainerGap())
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(snackPrice)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-    layout.setVerticalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
-        .addContainerGap()
-        .addComponent(snackNombre)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(snackIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(decreaseQuantButton)
-          .addComponent(increaseQuantButton)
-          .addComponent(currentQuant))
-        .addGap(18, 18, 18)
-        .addComponent(snackPrice)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
+    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popcornSmall.png"))); // NOI18N
+    jLabel1.setText("jLabel1");
+    add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, 70));
   }// </editor-fold>//GEN-END:initComponents
 
   private void decreaseQuantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseQuantButtonActionPerformed
@@ -136,7 +105,7 @@ public class SnackCard extends javax.swing.JPanel {
   private javax.swing.JLabel currentQuant;
   private javax.swing.JButton decreaseQuantButton;
   private javax.swing.JButton increaseQuantButton;
-  private javax.swing.JLabel snackIcon;
+  private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel snackNombre;
   private javax.swing.JLabel snackPrice;
   // End of variables declaration//GEN-END:variables

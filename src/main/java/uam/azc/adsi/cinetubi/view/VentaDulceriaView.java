@@ -4,7 +4,15 @@
  */
 package uam.azc.adsi.cinetubi.view;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.math.BigDecimal;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import uam.azc.adsi.cinetubi.controller.DulceriaController;
 
 /**
  *
@@ -12,16 +20,40 @@ import java.math.BigDecimal;
  */
 public class VentaDulceriaView extends javax.swing.JFrame {
 
+  private DulceriaController dulceriaController;
+
   /**
    * Creates new form VentaDulceriaView
+   *
+   * @param dCon
    */
-  public VentaDulceriaView() {
+  public VentaDulceriaView(DulceriaController dCon) {
+    this.dulceriaController = dCon;
     initComponents();
-    createCard();
+    this.setContentPane(buildContentPane());
   }
 
-  private void createCard() {
+  private JPanel buildContentPane() {
+    JPanel panel = new JPanel(new BorderLayout());
+
+    int totalItems = dulceriaController.getSnackCatalog().getCatalog().size();
     
+    int gridColumns = 3;
+    int gridRows = totalItems / gridColumns;
+    System.out.println("totalItmes: " + totalItems + " gridCOlums: " + gridColumns + " gridRows: " + gridRows);
+
+    gridPanelItems.setLayout(new GridLayout(gridRows, gridColumns, 20, 18));
+    for (SnackPanel sp : dulceriaController.createSnackPanels()) {
+      gridPanelItems.add(sp);
+    }
+
+    scrollPaneItems.setViewportView(gridPanelItems);
+    scrollPaneItems.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    scrollPaneItems.setPreferredSize(new Dimension(400, 200));
+    scrollPaneItems.getVerticalScrollBar().setUnitIncrement(16);
+
+    panel.add(scrollPaneItems, BorderLayout.CENTER);
+    return panel;
   }
 
   /**
@@ -33,77 +65,83 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    jScrollPane1 = new javax.swing.JScrollPane();
-    jList1 = new javax.swing.JList<>();
+    scrollPaneItems = new javax.swing.JScrollPane();
+    gridPanelItems = new javax.swing.JPanel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Dulceria");
 
-    jList1.setModel(new javax.swing.AbstractListModel<String>() {
-      String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-      public int getSize() { return strings.length; }
-      public String getElementAt(int i) { return strings[i]; }
-    });
-    jScrollPane1.setViewportView(jList1);
+    javax.swing.GroupLayout gridPanelItemsLayout = new javax.swing.GroupLayout(gridPanelItems);
+    gridPanelItems.setLayout(gridPanelItemsLayout);
+    gridPanelItemsLayout.setHorizontalGroup(
+      gridPanelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 210, Short.MAX_VALUE)
+    );
+    gridPanelItemsLayout.setVerticalGroup(
+      gridPanelItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 160, Short.MAX_VALUE)
+    );
+
+    scrollPaneItems.setViewportView(gridPanelItems);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(387, 387, 387)
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGap(195, 195, 195)
+        .addComponent(scrollPaneItems, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(133, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(49, 49, 49)
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(101, Short.MAX_VALUE))
+        .addGap(127, 127, 127)
+        .addComponent(scrollPaneItems, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(76, Short.MAX_VALUE))
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  /**
-   * @param args the command line arguments
-   */
-  public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-        if ("Nimbus".equals(info.getName())) {
-          javax.swing.UIManager.setLookAndFeel(info.getClassName());
-          break;
-        }
-      }
-    } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(VentaDulceriaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(VentaDulceriaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(VentaDulceriaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(VentaDulceriaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
-    //</editor-fold>
-
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        new VentaDulceriaView().setVisible(true);
-      }
-    });
-  }
+//  /**
+//   * @param args the command line arguments
+//   */
+//  public static void main(String args[]) {
+//    /* Set the Nimbus look and feel */
+//    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//     */
+//    try {
+//      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//        if ("Nimbus".equals(info.getName())) {
+//          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//          break;
+//        }
+//      }
+//    } catch (ClassNotFoundException ex) {
+//      java.util.logging.Logger.getLogger(VentaDulceriaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//    } catch (InstantiationException ex) {
+//      java.util.logging.Logger.getLogger(VentaDulceriaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//    } catch (IllegalAccessException ex) {
+//      java.util.logging.Logger.getLogger(VentaDulceriaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//      java.util.logging.Logger.getLogger(VentaDulceriaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//    }
+//    //</editor-fold>
+//    //</editor-fold>
+//
+//    /* Create and display the form */
+//    java.awt.EventQueue.invokeLater(new Runnable() {
+//      public void run() {
+//        new VentaDulceriaView().setVisible(true);
+//      }
+//    });
+//  }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JList<String> jList1;
-  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JPanel gridPanelItems;
+  private javax.swing.JScrollPane scrollPaneItems;
   // End of variables declaration//GEN-END:variables
 }

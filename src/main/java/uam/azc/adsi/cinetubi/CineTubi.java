@@ -3,9 +3,16 @@
  */
 package uam.azc.adsi.cinetubi;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import uam.azc.adsi.cinetubi.controller.DulceriaController;
+import uam.azc.adsi.cinetubi.dao.SnackDAO;
 import uam.azc.adsi.cinetubi.model.Combo;
 import uam.azc.adsi.cinetubi.model.ComboCatalog;
 import uam.azc.adsi.cinetubi.model.SnackCatalog;
+import uam.azc.adsi.cinetubi.util.DatabaseConnection;
+import uam.azc.adsi.cinetubi.view.VentaDulceriaView;
 
 /**
  *
@@ -15,16 +22,17 @@ public class CineTubi {
 
   public static void main(String[] args) {
     System.out.println("Hello World!");
-    
-    // Populate snack and combo catalog from data stored in the database
-    SnackCatalog sCatalog = new SnackCatalog();
-    sCatalog.fillCatalog();
-    ComboCatalog cCatalog = new ComboCatalog();
-    cCatalog.fillCatalog(sCatalog);
-    
-    for(Combo c: cCatalog.getCatalog()){
-      System.out.println(c);
-      System.out.println("\t"+c.getSnacks());
+    DatabaseConnection dbConn;
+    try {
+      dbConn = DatabaseConnection.getInstance();
+      SnackDAO sDAO = new SnackDAO(dbConn.getConnection());
+      SnackCatalog sc = new SnackCatalog(sDAO);
+      DulceriaController dulceriaController = new DulceriaController(sc);
+      VentaDulceriaView dulceriaView = new VentaDulceriaView(dulceriaController);
+      dulceriaView.setVisible(true);
+    } catch (SQLException ex) {
+      Logger.getLogger(CineTubi.class.getName()).log(Level.SEVERE, null, ex);
     }
+
   }
 }
