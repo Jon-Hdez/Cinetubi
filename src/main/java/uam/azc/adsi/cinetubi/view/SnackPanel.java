@@ -87,8 +87,8 @@ public class SnackPanel extends javax.swing.JPanel {
     snackPrice.setText("$100.00");
     add(snackPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 179, -1, -1));
 
-    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popcornSmall.png"))); // NOI18N
-    jLabel1.setText("jLabel1");
+    jLabel1.setBackground(new java.awt.Color(255, 0, 51));
+    jLabel1.setText("THIS SHOULD BE AN IMAGE");
     add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, 70));
   }// </editor-fold>//GEN-END:initComponents
 
