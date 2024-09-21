@@ -25,7 +25,6 @@ import uam.azc.adsi.cinetubi.exceptions.SnackNotFoundException;
  */
 public class SingleProductPanel extends javax.swing.JPanel {
 
-  private NumberFormat formatter;
   private int productId;
 
   private String name;
@@ -41,7 +40,6 @@ public class SingleProductPanel extends javax.swing.JPanel {
    * @param name
    */
   public SingleProductPanel(int productId, String name, BigDecimal price, DulceriaController dulceriaController) {
-    formatter = NumberFormat.getCurrencyInstance(Locale.US);
     this.productId = productId;
     this.name = name;
     this.price = price;
@@ -51,7 +49,7 @@ public class SingleProductPanel extends javax.swing.JPanel {
   }
 
   private void initCardContent() {
-    productPriceLabel.setText(formatter.format(price));
+    productPriceLabel.setText(dulceriaController.getFormatter().format(price));
     productTitle.setText(name);
 //    productIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popcornSmall.png")));
   }
@@ -167,7 +165,7 @@ public class SingleProductPanel extends javax.swing.JPanel {
 
   private void increaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseQtyButtonActionPerformed
     try {
-      dulceriaController.increaseProductQuantity(productId);
+      dulceriaController.increaseProductQuantity(productId, evt);
     } catch (SnackNotFoundException ex) {
       Logger.getLogger(SingleProductPanel.class.getName()).log(Level.SEVERE, null, ex);
     }

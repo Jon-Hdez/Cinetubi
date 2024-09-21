@@ -18,12 +18,21 @@ public class LineaVenta {
     this.subtotal = product.getPrice().multiply(BigDecimal.valueOf(quantity));
   }
 
+  public Product getProduct() {
+    return product;
+  }
+
   public int getProductId() {
     return product.getId();
   }
 
   public BigDecimal getSubtotal() {
+    setSubTotal(product.getPrice().multiply(BigDecimal.valueOf(quantity)));
     return subtotal;
+  }
+  
+  private void setSubTotal(BigDecimal st){
+    this.subtotal = st;
   }
 
   public int getQuantity() {

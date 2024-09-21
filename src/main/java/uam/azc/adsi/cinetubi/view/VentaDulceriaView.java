@@ -58,9 +58,9 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   private void initComponents() {
 
     productsPanel = new uam.azc.adsi.cinetubi.view.ProductsPanel();
-    listaVentaDulceriaPanel = new uam.azc.adsi.cinetubi.view.ListaVentaDulceriaPanel();
     cancelButton = new javax.swing.JButton();
     payButton = new javax.swing.JButton();
+    listaVentaDulceriaPanel = new uam.azc.adsi.cinetubi.view.ListaVentaDulceriaPanel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Dulceria");
@@ -80,14 +80,14 @@ public class VentaDulceriaView extends javax.swing.JFrame {
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(productsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+        .addComponent(productsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addComponent(listaVentaDulceriaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
             .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(payButton)))
+            .addGap(83, 83, 83)
+            .addComponent(payButton))
+          .addComponent(listaVentaDulceriaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -96,8 +96,8 @@ public class VentaDulceriaView extends javax.swing.JFrame {
         .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(listaVentaDulceriaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(listaVentaDulceriaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
               .addComponent(payButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
               .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -148,6 +148,9 @@ public class VentaDulceriaView extends javax.swing.JFrame {
 //      }
 //    });
 //  }
+  public ListaVentaDulceriaPanel getListaVentaDulceriaPanel() {
+    return listaVentaDulceriaPanel;
+  }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton cancelButton;

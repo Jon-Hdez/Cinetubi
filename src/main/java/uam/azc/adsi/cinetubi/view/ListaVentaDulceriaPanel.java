@@ -4,6 +4,9 @@
  */
 package uam.azc.adsi.cinetubi.view;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author aldai
@@ -15,6 +18,18 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
    */
   public ListaVentaDulceriaPanel() {
     initComponents();
+  }
+
+  public JPanel getLineaVentaPanel() {
+    return lineaVentaPanel;
+  }
+
+  public JPanel getTotalPanel() {
+    return totalPanel;
+  }
+
+  public JLabel getTotalPriceLabel() {
+    return totalPriceLabel;
   }
 
   /**
@@ -31,7 +46,7 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
     contentPanel = new javax.swing.JPanel();
     contentHeaderPanel = new javax.swing.JPanel();
     contentHeaderLabel = new javax.swing.JLabel();
-    lineSalePanel = new javax.swing.JPanel();
+    lineaVentaPanel = new javax.swing.JPanel();
     totalPanel = new javax.swing.JPanel();
     totalTextLabel = new javax.swing.JLabel();
     totalPriceLabel = new javax.swing.JLabel();
@@ -55,7 +70,7 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
 
     contentPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-    contentHeaderLabel.setText("Snack               Cantidad         Precio");
+    contentHeaderLabel.setText("Producto               Cantidad         Precio");
 
     javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
     contentHeaderPanel.setLayout(contentHeaderPanelLayout);
@@ -70,16 +85,7 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
         .addGap(0, 0, Short.MAX_VALUE))
     );
 
-    javax.swing.GroupLayout lineSalePanelLayout = new javax.swing.GroupLayout(lineSalePanel);
-    lineSalePanel.setLayout(lineSalePanelLayout);
-    lineSalePanelLayout.setHorizontalGroup(
-      lineSalePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 0, Short.MAX_VALUE)
-    );
-    lineSalePanelLayout.setVerticalGroup(
-      lineSalePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 190, Short.MAX_VALUE)
-    );
+    lineaVentaPanel.setLayout(new javax.swing.BoxLayout(lineaVentaPanel, javax.swing.BoxLayout.Y_AXIS));
 
     totalTextLabel.setText("Total:");
 
@@ -114,7 +120,7 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
       .addGroup(contentPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(lineSalePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(lineaVentaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(totalPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(contentHeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addContainerGap())
@@ -124,11 +130,11 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
       .addGroup(contentPanelLayout.createSequentialGroup()
         .addContainerGap()
         .addComponent(contentHeaderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(78, 78, 78)
-        .addComponent(lineSalePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(lineaVentaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
         .addComponent(totalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(35, Short.MAX_VALUE))
+        .addContainerGap(22, Short.MAX_VALUE))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -152,7 +158,7 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
   private javax.swing.JLabel contentHeaderLabel;
   private javax.swing.JPanel contentHeaderPanel;
   private javax.swing.JPanel contentPanel;
-  private javax.swing.JPanel lineSalePanel;
+  private javax.swing.JPanel lineaVentaPanel;
   private javax.swing.JLabel titleLabel;
   private javax.swing.JPanel titlePanel;
   private javax.swing.JPanel totalPanel;

@@ -79,7 +79,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lineSalePanel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lineaVentaPanel" alignment="0" max="32767" attributes="0"/>
                       <Component id="totalPanel" alignment="1" max="32767" attributes="0"/>
                       <Component id="contentHeaderPanel" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -92,11 +92,11 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="contentHeaderPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                  <Component id="lineSalePanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="lineaVentaPanel" min="-2" pref="241" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="totalPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <EmptySpace pref="22" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -122,24 +122,15 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="contentHeaderLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Snack               Cantidad         Precio"/>
+                <Property name="text" type="java.lang.String" value="Producto               Cantidad         Precio"/>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="lineSalePanel">
+        <Container class="javax.swing.JPanel" name="lineaVentaPanel">
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="190" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+            <Property name="axis" type="int" value="1"/>
           </Layout>
         </Container>
         <Container class="javax.swing.JPanel" name="totalPanel">

@@ -36,10 +36,16 @@ public class Venta {
   }
 
   public BigDecimal getTotal() {
+    total = BigDecimal.valueOf(0);
     for (LineaVenta lv : lineas) {
-      total.add(lv.getSubtotal());
+      total = total.add(lv.getSubtotal());
     }
+    System.out.println(total);
     return total;
+  }
+
+  public List<LineaVenta> getLineas() {
+    return lineas;
   }
 
   public LineaVenta findLineaVenta(int productId) {

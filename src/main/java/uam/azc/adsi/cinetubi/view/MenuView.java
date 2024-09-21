@@ -93,6 +93,7 @@ public class MenuView extends javax.swing.JFrame {
 
   private void TaquillaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaquillaButtonActionPerformed
     VentaDulceriaView dulceriaView = new VentaDulceriaView(dulceriaController);
+    dulceriaController.setVentaDulceriaView(dulceriaView);
     dulceriaView.setVisible(true);
     this.dispose();
   }//GEN-LAST:event_TaquillaButtonActionPerformed
