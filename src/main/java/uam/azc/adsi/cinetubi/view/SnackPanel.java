@@ -34,9 +34,9 @@ public class SnackPanel extends javax.swing.JPanel {
   }
   
   private void initCardContent(Snack s){
-    snackNombre.setText(s.getNombre());
+    snackNombreLabel.setText(s.getNombre());
     NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
-    snackPrice.setText(formatter.format(s.getPrecio()));
+    snackPriceLabel.setText(formatter.format(s.getPrecio()));
   };
 
   
@@ -52,61 +52,61 @@ public class SnackPanel extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    snackNombre = new javax.swing.JLabel();
-    decreaseQuantButton = new javax.swing.JButton();
-    increaseQuantButton = new javax.swing.JButton();
-    currentQuant = new javax.swing.JLabel();
-    snackPrice = new javax.swing.JLabel();
-    jLabel1 = new javax.swing.JLabel();
+    snackNombreLabel = new javax.swing.JLabel();
+    decreaseQtyButton = new javax.swing.JButton();
+    increaseQtyButton = new javax.swing.JButton();
+    qtyLabel = new javax.swing.JLabel();
+    snackPriceLabel = new javax.swing.JLabel();
+    altTextLabel = new javax.swing.JLabel();
 
     setBackground(new java.awt.Color(255, 255, 102));
     setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-    snackNombre.setText("Palomitas Chicas");
-    add(snackNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+    snackNombreLabel.setText("Palomitas Chicas");
+    add(snackNombreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-    decreaseQuantButton.setText("-");
-    decreaseQuantButton.addActionListener(new java.awt.event.ActionListener() {
+    decreaseQtyButton.setText("-");
+    decreaseQtyButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        decreaseQuantButtonActionPerformed(evt);
+        decreaseQtyButtonActionPerformed(evt);
       }
     });
-    add(decreaseQuantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 134, -1, -1));
+    add(decreaseQtyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 134, -1, -1));
 
-    increaseQuantButton.setText("+");
-    increaseQuantButton.addActionListener(new java.awt.event.ActionListener() {
+    increaseQtyButton.setText("+");
+    increaseQtyButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        increaseQuantButtonActionPerformed(evt);
+        increaseQtyButtonActionPerformed(evt);
       }
     });
-    add(increaseQuantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 134, -1, -1));
+    add(increaseQtyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 134, -1, -1));
 
-    currentQuant.setText("0");
-    add(currentQuant, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 139, 9, -1));
+    qtyLabel.setText("0");
+    add(qtyLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 139, 9, -1));
 
-    snackPrice.setText("$100.00");
-    add(snackPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 179, -1, -1));
+    snackPriceLabel.setText("$100.00");
+    add(snackPriceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 179, -1, -1));
 
-    jLabel1.setBackground(new java.awt.Color(255, 0, 51));
-    jLabel1.setText("THIS SHOULD BE AN IMAGE");
-    add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, 70));
+    altTextLabel.setBackground(new java.awt.Color(255, 0, 51));
+    altTextLabel.setText("THIS SHOULD BE AN IMAGE");
+    add(altTextLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, 70));
   }// </editor-fold>//GEN-END:initComponents
 
-  private void decreaseQuantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseQuantButtonActionPerformed
+  private void decreaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseQtyButtonActionPerformed
     // TODO add your handling code here:
-  }//GEN-LAST:event_decreaseQuantButtonActionPerformed
+  }//GEN-LAST:event_decreaseQtyButtonActionPerformed
 
-  private void increaseQuantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseQuantButtonActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_increaseQuantButtonActionPerformed
+  private void increaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseQtyButtonActionPerformed
+    
+  }//GEN-LAST:event_increaseQtyButtonActionPerformed
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JLabel currentQuant;
-  private javax.swing.JButton decreaseQuantButton;
-  private javax.swing.JButton increaseQuantButton;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel snackNombre;
-  private javax.swing.JLabel snackPrice;
+  private javax.swing.JLabel altTextLabel;
+  private javax.swing.JButton decreaseQtyButton;
+  private javax.swing.JButton increaseQtyButton;
+  private javax.swing.JLabel qtyLabel;
+  private javax.swing.JLabel snackNombreLabel;
+  private javax.swing.JLabel snackPriceLabel;
   // End of variables declaration//GEN-END:variables
 }
