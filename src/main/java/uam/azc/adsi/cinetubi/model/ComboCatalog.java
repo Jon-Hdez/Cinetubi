@@ -25,21 +25,21 @@ public class ComboCatalog {
   public ComboCatalog(ArrayList<Combo> catalog) {
     this.catalog = catalog;
   }
-
-  public void fillCatalog(SnackCatalog sc) {
-    try {
-      ComboDAO cDAO = new ComboDAO(DatabaseConnection.getInstance().getConnection());
-      catalog = cDAO.getAllCombos();
-      for (Combo c : catalog) {
-        List<Snack> snacks = cDAO.getComboSnacksFromCatalog(c.getId(), sc);
-        c.setSnacks(snacks);
-      }
-    } catch (SQLException ex) {
-      Logger.getLogger(SnackCatalog.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (SnackNotFoundException ex) {
-      Logger.getLogger(ComboCatalog.class.getName()).log(Level.SEVERE, null, ex);
-    }
-  }
+//
+//  public void fillCatalog(ProductCatalog sc) {
+//    try {
+//      ComboDAO cDAO = new ComboDAO(DatabaseConnection.getInstance().getConnection());
+//      catalog = cDAO.getAllCombos();
+//      for (Combo c : catalog) {
+//        List<Snack> snacks = cDAO.getComboSnacksFromCatalog(c.getId(), sc);
+//        c.setSnacks(snacks);
+//      }
+//    } catch (SQLException ex) {
+//      Logger.getLogger(ProductCatalog.class.getName()).log(Level.SEVERE, null, ex);
+//    } catch (SnackNotFoundException ex) {
+//      Logger.getLogger(ComboCatalog.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+//  }
 
   public List<Combo> getCatalog() {
     return catalog;

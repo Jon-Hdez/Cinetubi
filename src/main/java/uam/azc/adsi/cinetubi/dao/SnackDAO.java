@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Snack;
 
 
@@ -22,11 +23,11 @@ public class SnackDAO {
     this.connection = connection;
   }
   
-  public List<Snack> getAllSnacks()throws SQLException {
+  public List<Product> getAllSnacks()throws SQLException {
     String sql = "SELECT * FROM snack";
     PreparedStatement ps = connection.prepareStatement(sql);
     ResultSet rs = ps.executeQuery();
-    List<Snack> snackList = new ArrayList<>();
+    List<Product> snackList = new ArrayList<>();
     while(rs.next()){
       int id = rs.getInt("id");
       String nombre = rs.getString("nombre");

@@ -31,8 +31,8 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   public VentaDulceriaView(DulceriaController dCon) {
     this.dulceriaController = dCon;
     initComponents();
-    productsPanel.setController(dCon);
     initProductsPanel();
+    dulceriaController.createVenta();
   }
 
   private void initProductsPanel() {

@@ -10,7 +10,7 @@ import uam.azc.adsi.cinetubi.controller.DulceriaController;
 import uam.azc.adsi.cinetubi.dao.SnackDAO;
 import uam.azc.adsi.cinetubi.model.Combo;
 import uam.azc.adsi.cinetubi.model.ComboCatalog;
-import uam.azc.adsi.cinetubi.model.SnackCatalog;
+import uam.azc.adsi.cinetubi.model.ProductCatalog;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 import uam.azc.adsi.cinetubi.view.MenuView;
 import uam.azc.adsi.cinetubi.view.VentaDulceriaView;
@@ -27,7 +27,7 @@ public class CineTubi {
     try {
       dbConn = DatabaseConnection.getInstance();
       SnackDAO sDAO = new SnackDAO(dbConn.getConnection());
-      SnackCatalog sc = new SnackCatalog(sDAO);
+      ProductCatalog sc = new ProductCatalog(sDAO);
       DulceriaController dulceriaController = new DulceriaController(sc);
       MenuView menuView = new MenuView(dulceriaController);
       menuView.setVisible(true);
