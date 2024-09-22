@@ -152,6 +152,11 @@ public class VentaDulceriaView extends javax.swing.JFrame {
     return listaVentaDulceriaPanel;
   }
 
+  public ProductsPanel getProductsPanel() {
+    return productsPanel;
+  }
+
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton cancelButton;
   private uam.azc.adsi.cinetubi.view.ListaVentaDulceriaPanel listaVentaDulceriaPanel;

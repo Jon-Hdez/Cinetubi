@@ -56,9 +56,6 @@ public class ProductsPanel extends javax.swing.JPanel {
     this.titlePanel = titlePanel;
   }
 
-  
-  
-  
   /**
    * This method is called from within the constructor to initialize the form.
    * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,8 +113,6 @@ public class ProductsPanel extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
 
-  
-  
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JPanel productsGridPanel;
   private javax.swing.JScrollPane productsScrollerPane;
@@ -125,7 +120,4 @@ public class ProductsPanel extends javax.swing.JPanel {
   private javax.swing.JPanel titlePanel;
   // End of variables declaration//GEN-END:variables
 
-  void setController(DulceriaController dCon) {
-    this.dulceriaController = dCon;
-  }
 }

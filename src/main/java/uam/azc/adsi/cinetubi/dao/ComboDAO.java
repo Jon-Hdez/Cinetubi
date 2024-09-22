@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import uam.azc.adsi.cinetubi.exceptions.SnackNotFoundException;
+import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 import uam.azc.adsi.cinetubi.model.Combo;
 import uam.azc.adsi.cinetubi.model.Snack;
 import uam.azc.adsi.cinetubi.model.ProductCatalog;

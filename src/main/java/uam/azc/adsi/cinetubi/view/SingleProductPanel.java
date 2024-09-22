@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
-import uam.azc.adsi.cinetubi.exceptions.SnackNotFoundException;
+import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 
 /**
  *
@@ -68,9 +68,8 @@ public class SingleProductPanel extends javax.swing.JPanel {
 
     productTitle = new javax.swing.JLabel();
     productIcon = new javax.swing.JLabel();
-    productControlsPanel = new javax.swing.JPanel();
-    decreaseQtyButton = new javax.swing.JButton();
     qtyLabel = new javax.swing.JLabel();
+    decreaseQtyButton = new javax.swing.JButton();
     increaseQtyButton = new javax.swing.JButton();
     productPriceLabel = new javax.swing.JLabel();
 
@@ -83,7 +82,7 @@ public class SingleProductPanel extends javax.swing.JPanel {
     productIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     productIcon.setText("ALT TEXT");
 
-    productControlsPanel.setOpaque(false);
+    qtyLabel.setText("0");
 
     decreaseQtyButton.setText("-");
     decreaseQtyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -91,8 +90,6 @@ public class SingleProductPanel extends javax.swing.JPanel {
         decreaseQtyButtonActionPerformed(evt);
       }
     });
-
-    qtyLabel.setText("0");
 
     increaseQtyButton.setText("+");
     increaseQtyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -103,47 +100,29 @@ public class SingleProductPanel extends javax.swing.JPanel {
 
     productPriceLabel.setText("$100.00");
 
-    javax.swing.GroupLayout productControlsPanelLayout = new javax.swing.GroupLayout(productControlsPanel);
-    productControlsPanel.setLayout(productControlsPanelLayout);
-    productControlsPanelLayout.setHorizontalGroup(
-      productControlsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(productControlsPanelLayout.createSequentialGroup()
-        .addContainerGap(36, Short.MAX_VALUE)
-        .addGroup(productControlsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productControlsPanelLayout.createSequentialGroup()
-            .addComponent(decreaseQtyButton)
-            .addGap(11, 11, 11)
-            .addComponent(qtyLabel)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(increaseQtyButton)
-            .addGap(28, 28, 28))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productControlsPanelLayout.createSequentialGroup()
-            .addComponent(productPriceLabel)
-            .addGap(48, 48, 48))))
-    );
-    productControlsPanelLayout.setVerticalGroup(
-      productControlsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(productControlsPanelLayout.createSequentialGroup()
-        .addGap(10, 10, 10)
-        .addGroup(productControlsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(qtyLabel)
-          .addComponent(decreaseQtyButton)
-          .addComponent(increaseQtyButton))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(productPriceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addContainerGap())
-    );
-
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap()
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addComponent(productTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(productIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(productControlsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(productTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+              .addComponent(productIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(36, 36, 36)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(decreaseQtyButton)
+                .addGap(11, 11, 11)
+                .addComponent(qtyLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(increaseQtyButton))
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(productPriceLabel)
+                .addGap(20, 20, 20)))))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
@@ -153,29 +132,40 @@ public class SingleProductPanel extends javax.swing.JPanel {
         .addComponent(productTitle)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(productIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(qtyLabel)
+          .addComponent(decreaseQtyButton)
+          .addComponent(increaseQtyButton))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(productControlsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap())
+        .addComponent(productPriceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGap(16, 16, 16))
     );
   }// </editor-fold>//GEN-END:initComponents
 
   private void decreaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseQtyButtonActionPerformed
-    // TODO add your handling code here:
+    try {
+      dulceriaController.decreaseProductQuantity(productId, evt);
+    } catch (ProductNotFoundException ex) {
+      Logger.getLogger(SingleProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }//GEN-LAST:event_decreaseQtyButtonActionPerformed
 
   private void increaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseQtyButtonActionPerformed
     try {
       dulceriaController.increaseProductQuantity(productId, evt);
-    } catch (SnackNotFoundException ex) {
+    } catch (ProductNotFoundException ex) {
       Logger.getLogger(SingleProductPanel.class.getName()).log(Level.SEVERE, null, ex);
     }
   }//GEN-LAST:event_increaseQtyButtonActionPerformed
 
+  public JLabel getQtyLabel() {
+    return qtyLabel;
+  }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton decreaseQtyButton;
   private javax.swing.JButton increaseQtyButton;
-  private javax.swing.JPanel productControlsPanel;
   private javax.swing.JLabel productIcon;
   private javax.swing.JLabel productPriceLabel;
   private javax.swing.JLabel productTitle;

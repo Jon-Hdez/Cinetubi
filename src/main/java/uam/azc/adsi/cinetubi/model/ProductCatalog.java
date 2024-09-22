@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.dao.SnackDAO;
-import uam.azc.adsi.cinetubi.exceptions.SnackNotFoundException;
+import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 
 /**
  *
@@ -30,13 +30,13 @@ public class ProductCatalog {
     return catalog;
   }
   
-  public Product findProduct(int productId) throws SnackNotFoundException{
+  public Product findProduct(int productId) throws ProductNotFoundException{
     for(Product s: catalog){
       if(s.getId() == productId){
         return s;
       }
     }
-    throw new SnackNotFoundException("Snack con id: " + productId + " no encontrado");
+    throw new ProductNotFoundException("Snack con id: " + productId + " no encontrado");
   }
 
   public List<Product> getCatalog() {

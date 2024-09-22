@@ -4,9 +4,9 @@ package uam.azc.adsi.cinetubi.exceptions;
  *
  * @author Avalos Albino Aldair Oswaldo 2222005685
  */
-public class SnackNotFoundException extends Exception {
+public class ProductNotFoundException extends Exception {
 
-  public SnackNotFoundException(String msg) {
+  public ProductNotFoundException(String msg) {
     super(msg);
   }
 

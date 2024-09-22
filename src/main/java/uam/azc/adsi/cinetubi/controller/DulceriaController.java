@@ -6,9 +6,10 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Locale;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import uam.azc.adsi.cinetubi.exceptions.SnackNotFoundException;
+import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 import uam.azc.adsi.cinetubi.model.LineaVenta;
 import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Venta;
@@ -46,7 +47,7 @@ public class DulceriaController {
     ventaActual = new Venta();
   }
 
-  public void increaseProductQuantity(int productId, ActionEvent ev) throws SnackNotFoundException {
+  public void increaseProductQuantity(int productId, ActionEvent evt) throws ProductNotFoundException {
     LineaVenta lv = ventaActual.findLineaVenta(productId);
     if (lv == null) {
       Product p = productCatalog.findProduct(productId);
@@ -55,11 +56,23 @@ public class DulceriaController {
     } else {
       lv.setQuantity(lv.getQuantity() + 1);
     }
-    System.out.println(ventaActual);
-    updateListaVentaDulceriaView(ev);
+    updateVentaDulceriaView(lv, evt);
   }
 
-  private void updateListaVentaDulceriaView(ActionEvent ev) {
+  public void decreaseProductQuantity(int productId, ActionEvent evt) throws ProductNotFoundException {
+    LineaVenta lv = ventaActual.findLineaVenta(productId);
+    if (lv == null) {
+      return;
+    } else if (lv.getQuantity() == 1) {
+      lv.setQuantity(0);
+      ventaActual.deleteLineaVenta(productId);
+    } else {
+      lv.setQuantity(lv.getQuantity() - 1);
+    }
+    updateVentaDulceriaView(lv, evt);
+  }
+
+  private void updateVentaDulceriaView(LineaVenta lvActual, ActionEvent evt) {
     JPanel lineaVentaPanel = ventaDulceriaView.getListaVentaDulceriaPanel().getLineaVentaPanel();
     lineaVentaPanel.removeAll();
     for (LineaVenta lv : ventaActual.getLineas()) {
@@ -72,9 +85,13 @@ public class DulceriaController {
     }
     lineaVentaPanel.revalidate();
     lineaVentaPanel.repaint();
-    
+
     JLabel total = ventaDulceriaView.getListaVentaDulceriaPanel().getTotalPriceLabel();
     total.setText(formatter.format(ventaActual.getTotal()));
+    
+    JButton button = (JButton) evt.getSource();
+    SingleProductPanel singleProductPanel = (SingleProductPanel) button.getParent();
+    singleProductPanel.getQtyLabel().setText(lvActual.getQuantity()  + "");
   }
 
   public void setVentaDulceriaView(VentaDulceriaView dulceriaView) {

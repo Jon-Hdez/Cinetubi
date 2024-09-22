@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.dao.ComboDAO;
 import uam.azc.adsi.cinetubi.dao.SnackDAO;
-import uam.azc.adsi.cinetubi.exceptions.SnackNotFoundException;
+import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 
 /**
