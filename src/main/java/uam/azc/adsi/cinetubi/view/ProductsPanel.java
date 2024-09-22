@@ -74,7 +74,7 @@ public class ProductsPanel extends javax.swing.JPanel {
     titlePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
     titleLabel.setBackground(new java.awt.Color(204, 255, 204));
-    titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
     titleLabel.setText("   Productos");
     titleLabel.setOpaque(true);
 
@@ -82,30 +82,35 @@ public class ProductsPanel extends javax.swing.JPanel {
     titlePanel.setLayout(titlePanelLayout);
     titlePanelLayout.setHorizontalGroup(
       titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 446, Short.MAX_VALUE)
+      .addGap(0, 434, Short.MAX_VALUE)
       .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
+        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
     );
     titlePanelLayout.setVerticalGroup(
       titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 31, Short.MAX_VALUE)
+      .addGap(0, 25, Short.MAX_VALUE)
       .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    productsGridPanel.setLayout(new java.awt.GridLayout(5, 3, 10, 10));
+    productsGridPanel.setLayout(new java.awt.GridLayout(4, 3, 15, 15));
     productsScrollerPane.setViewportView(productsGridPanel);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-      .addComponent(productsScrollerPane)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(productsScrollerPane))
+        .addContainerGap())
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
+        .addContainerGap()
         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(productsScrollerPane, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)

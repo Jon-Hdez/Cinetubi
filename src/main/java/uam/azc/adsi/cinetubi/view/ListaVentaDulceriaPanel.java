@@ -89,6 +89,7 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
     totalTextLabel.setText("Total:");
 
     totalPriceLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    totalPriceLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
     totalPriceLabel.setText("$0.00");
     totalPriceLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -100,7 +101,7 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
         .addGap(66, 66, 66)
         .addComponent(totalTextLabel)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(totalPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(totalPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap())
     );
     totalPanelLayout.setVerticalGroup(
