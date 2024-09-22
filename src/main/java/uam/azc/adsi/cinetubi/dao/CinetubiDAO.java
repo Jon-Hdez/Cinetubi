@@ -40,7 +40,7 @@ public class CinetubiDAO {
         }
         return asientos;
     }
-    
+    /*
     public static ArrayList<Funcion> obtenerFunciones(int idFuncion){
         
         ArrayList<Funcion> funciones = new ArrayList<>();
@@ -114,6 +114,6 @@ public class CinetubiDAO {
         return boletos;
     }
        
-    
+    */
 }
 
