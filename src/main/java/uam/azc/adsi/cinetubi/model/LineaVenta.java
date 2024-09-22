@@ -1,7 +1,6 @@
 package uam.azc.adsi.cinetubi.model;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 /**
  *
@@ -42,27 +41,6 @@ public class LineaVenta {
 
   public void setQuantity(int quantity) {
     this.quantity = quantity;
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 7;
-    return hash;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final LineaVenta other = (LineaVenta) obj;
-    return Objects.equals(this.product.getId(), other.product.getId());
   }
 
   @Override

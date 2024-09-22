@@ -1,7 +1,6 @@
 package uam.azc.adsi.cinetubi.controller;
 
 import java.awt.event.ActionEvent;
-import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 import uam.azc.adsi.cinetubi.model.LineaVenta;
 import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Venta;
-import uam.azc.adsi.cinetubi.model.Snack;
 import uam.azc.adsi.cinetubi.model.ProductCatalog;
 import uam.azc.adsi.cinetubi.view.SingleProductPanel;
 import uam.azc.adsi.cinetubi.view.VentaDulceriaView;

@@ -4,13 +4,6 @@
  */
 package uam.azc.adsi.cinetubi.view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.ScrollPane;
-import java.math.BigDecimal;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
@@ -44,7 +37,6 @@ public class VentaDulceriaView extends javax.swing.JFrame {
 
     scrollPaneItems.setViewportView(gridPanelItems);
     scrollPaneItems.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    scrollPaneItems.setPreferredSize(new Dimension(400, 200));
     scrollPaneItems.getVerticalScrollBar().setUnitIncrement(16);
   }
 
