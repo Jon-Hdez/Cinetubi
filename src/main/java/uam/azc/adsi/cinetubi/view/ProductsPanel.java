@@ -74,6 +74,7 @@ public class ProductsPanel extends javax.swing.JPanel {
     titlePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
     titleLabel.setBackground(new java.awt.Color(204, 255, 204));
+    titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     titleLabel.setText("   Productos");
     titleLabel.setOpaque(true);
 
@@ -81,7 +82,7 @@ public class ProductsPanel extends javax.swing.JPanel {
     titlePanel.setLayout(titlePanelLayout);
     titlePanelLayout.setHorizontalGroup(
       titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 0, Short.MAX_VALUE)
+      .addGap(0, 446, Short.MAX_VALUE)
       .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
     );
@@ -92,7 +93,7 @@ public class ProductsPanel extends javax.swing.JPanel {
         .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
     );
 
-    productsGridPanel.setLayout(new java.awt.GridLayout(6, 3, 10, 5));
+    productsGridPanel.setLayout(new java.awt.GridLayout(5, 3, 10, 10));
     productsScrollerPane.setViewportView(productsGridPanel);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

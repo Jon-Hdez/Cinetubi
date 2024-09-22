@@ -1,9 +1,6 @@
 package uam.azc.adsi.cinetubi.controller;
 
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.text.NumberFormat;
 import java.util.List;
@@ -12,7 +9,6 @@ import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 import uam.azc.adsi.cinetubi.model.LineaVenta;
 import uam.azc.adsi.cinetubi.model.Product;
@@ -98,8 +94,9 @@ public class DulceriaController {
     total.setText(formatter.format(ventaActual.getTotal()));
 
     JButton button = (JButton) evt.getSource();
-    SingleProductPanel singleProductPanel = (SingleProductPanel) button.getParent();
-    singleProductPanel.getQtyLabel().setText(lvActual.getQuantity() + "");
+    JPanel subPanel = (JPanel) button.getParent();
+    JLabel qtyLabel = (JLabel) subPanel.getComponent(1);
+    qtyLabel.setText(lvActual.getQuantity() + "");
   }
 
   private String padString(String input, int length) {

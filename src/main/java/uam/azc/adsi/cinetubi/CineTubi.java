@@ -28,10 +28,11 @@ public class CineTubi {
       SnackDAO sDAO = new SnackDAO(dbConn.getConnection());
       ProductCatalog sc = new ProductCatalog(sDAO);
       DulceriaController dulceriaController = new DulceriaController(sc);
-      MenuView menuView = new MenuView(dulceriaController);
-      menuView.setVisible(true);
-//      VentaDulceriaView dulceriaView = new VentaDulceriaView(dulceriaController);
-//      dulceriaView.setVisible(true);
+//      MenuView menuView = new MenuView(dulceriaController);
+//      menuView.setVisible(true);
+      VentaDulceriaView dulceriaView = new VentaDulceriaView(dulceriaController);
+      dulceriaController.setVentaDulceriaView(dulceriaView);
+      dulceriaView.setVisible(true);
     } catch (SQLException ex) {
       Logger.getLogger(CineTubi.class.getName()).log(Level.SEVERE, null, ex);
     }

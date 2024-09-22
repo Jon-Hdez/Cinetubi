@@ -50,7 +50,8 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
     titlePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
     titleLabel.setBackground(new java.awt.Color(204, 255, 204));
-    titleLabel.setText("Lista de Venta");
+    titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+    titleLabel.setText("  Lista de Venta");
     titleLabel.setOpaque(true);
 
     javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
@@ -66,6 +67,7 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
 
     contentPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+    contentHeaderLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     contentHeaderLabel.setText("Producto               Cantidad         Precio");
 
     javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
@@ -83,8 +85,10 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
 
     lineaVentaPanel.setLayout(new javax.swing.BoxLayout(lineaVentaPanel, javax.swing.BoxLayout.Y_AXIS));
 
+    totalTextLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     totalTextLabel.setText("Total:");
 
+    totalPriceLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     totalPriceLabel.setText("$0.00");
     totalPriceLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -130,7 +134,7 @@ public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
         .addComponent(lineaVentaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(18, 18, 18)
         .addComponent(totalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(22, Short.MAX_VALUE))
+        .addContainerGap(21, Short.MAX_VALUE))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
