@@ -15,7 +15,7 @@ import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Venta;
 import uam.azc.adsi.cinetubi.model.ProductCatalog;
 import uam.azc.adsi.cinetubi.view.MenuView;
-import uam.azc.adsi.cinetubi.view.SingleProductPanel;
+import uam.azc.adsi.cinetubi.view.ProductPanel;
 import uam.azc.adsi.cinetubi.view.VentaDulceriaView;
 
 /**
@@ -24,20 +24,20 @@ import uam.azc.adsi.cinetubi.view.VentaDulceriaView;
  */
 public class DulceriaController {
 
-  private ProductCatalog productCatalog;
+  private final ProductCatalog productCatalog;
   private VentaDulceriaView ventaDulceriaView;
   private Venta ventaActual;
-  private NumberFormat formatter;
+  private final NumberFormat formatter;
 
   public DulceriaController(ProductCatalog snackCatalog) {
     this.productCatalog = snackCatalog;
     this.formatter = NumberFormat.getCurrencyInstance(Locale.US);
   }
 
-  public List<SingleProductPanel> createSnackPanels() {
-    List<SingleProductPanel> snackPanels = new ArrayList<>();
+  public List<ProductPanel> createSnackPanels() {
+    List<ProductPanel> snackPanels = new ArrayList<>();
     for (Product s : productCatalog.getCatalog()) {
-      SingleProductPanel mySnackPanel = new SingleProductPanel(s.getId(), s.getName(), s.getPrice(), this);
+      ProductPanel mySnackPanel = new ProductPanel(s.getId(), s.getName(), s.getPrice(), this);
       snackPanels.add(mySnackPanel);
     }
     return snackPanels;

@@ -17,7 +17,7 @@ import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
  *
  * @author aldai
  */
-public class SingleProductPanel extends javax.swing.JPanel {
+public class ProductPanel extends javax.swing.JPanel {
 
   private int productId;
 
@@ -33,7 +33,7 @@ public class SingleProductPanel extends javax.swing.JPanel {
    * @param price
    * @param name
    */
-  public SingleProductPanel(int productId, String name, BigDecimal price, DulceriaController dulceriaController) {
+  public ProductPanel(int productId, String name, BigDecimal price, DulceriaController dulceriaController) {
     this.productId = productId;
     this.name = name;
     this.price = price;
@@ -194,7 +194,7 @@ public class SingleProductPanel extends javax.swing.JPanel {
     try {
       dulceriaController.decreaseProductQuantity(productId, evt);
     } catch (ProductNotFoundException ex) {
-      Logger.getLogger(SingleProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
     }
   }//GEN-LAST:event_decreaseQtyButtonActionPerformed
 
@@ -202,7 +202,7 @@ public class SingleProductPanel extends javax.swing.JPanel {
     try {
       dulceriaController.increaseProductQuantity(productId, evt);
     } catch (ProductNotFoundException ex) {
-      Logger.getLogger(SingleProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
     }
   }//GEN-LAST:event_increaseQtyButtonActionPerformed
 

@@ -7,12 +7,12 @@ import javax.swing.JPanel;
  *
  * @author aldai
  */
-public class ListaVentaDulceriaPanel extends javax.swing.JPanel {
+public class LineaVentasPanel extends javax.swing.JPanel {
 
   /**
    * Creates new form ListaVentaDulceriaPanel
    */
-  public ListaVentaDulceriaPanel() {
+  public LineaVentasPanel() {
     initComponents();
   }
 

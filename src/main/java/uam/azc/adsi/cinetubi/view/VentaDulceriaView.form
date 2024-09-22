@@ -115,7 +115,7 @@
                 <Property name="text" type="java.lang.String" value="Pagar"/>
               </Properties>
             </Component>
-            <Component class="uam.azc.adsi.cinetubi.view.ListaVentaDulceriaPanel" name="listaVentaDulceriaPanel">
+            <Component class="uam.azc.adsi.cinetubi.view.LineaVentasPanel" name="listaVentaDulceriaPanel">
             </Component>
           </SubComponents>
         </Container>

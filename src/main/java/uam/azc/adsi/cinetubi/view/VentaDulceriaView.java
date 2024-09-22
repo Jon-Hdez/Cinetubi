@@ -33,7 +33,7 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   private void initProductsPanel() {
     JPanel gridPanelItems = productsPanel.getProductsGridPanel();
     JScrollPane scrollPaneItems = productsPanel.getProductsScrollerPane();
-    for (SingleProductPanel sp : dulceriaController.createSnackPanels()) {
+    for (ProductPanel sp : dulceriaController.createSnackPanels()) {
       gridPanelItems.add(sp);
     }
 
@@ -56,7 +56,7 @@ public class VentaDulceriaView extends javax.swing.JFrame {
     jPanel1 = new javax.swing.JPanel();
     cancelButton = new javax.swing.JButton();
     payButton = new javax.swing.JButton();
-    listaVentaDulceriaPanel = new uam.azc.adsi.cinetubi.view.ListaVentaDulceriaPanel();
+    listaVentaDulceriaPanel = new uam.azc.adsi.cinetubi.view.LineaVentasPanel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Dulceria");
@@ -162,7 +162,7 @@ public class VentaDulceriaView extends javax.swing.JFrame {
 //      }
 //    });
 //  }
-  public ListaVentaDulceriaPanel getListaVentaDulceriaPanel() {
+  public LineaVentasPanel getListaVentaDulceriaPanel() {
     return listaVentaDulceriaPanel;
   }
 
@@ -175,7 +175,7 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   private javax.swing.JButton cancelButton;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JSplitPane jSplitPane1;
-  private uam.azc.adsi.cinetubi.view.ListaVentaDulceriaPanel listaVentaDulceriaPanel;
+  private uam.azc.adsi.cinetubi.view.LineaVentasPanel listaVentaDulceriaPanel;
   private javax.swing.JButton payButton;
   private uam.azc.adsi.cinetubi.view.ProductsPanel productsPanel;
   // End of variables declaration//GEN-END:variables
