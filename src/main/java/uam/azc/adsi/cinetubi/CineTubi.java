@@ -22,7 +22,6 @@ import uam.azc.adsi.cinetubi.view.VentaDulceriaView;
 public class CineTubi {
 
   public static void main(String[] args) {
-    System.out.println("Hello World!");
     DatabaseConnection dbConn;
     try {
       dbConn = DatabaseConnection.getInstance();

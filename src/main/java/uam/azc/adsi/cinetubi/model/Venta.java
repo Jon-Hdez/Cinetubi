@@ -36,7 +36,6 @@ public class Venta {
     for (LineaVenta lv : lineas) {
       total = total.add(lv.getSubtotal());
     }
-    System.out.println(total);
     return total;
   }
 
@@ -56,9 +55,8 @@ public class Venta {
   public void deleteLineaVenta(int productId) {
     LineaVenta lv = findLineaVenta(productId);
     if (lv == null) {
-      System.out.println("No encontrado, no se pudo eliminar la linea de la venta");
+      System.out.println("Producto con Id: " + productId + " no encontrado. No se puede eliminar la linea de la venta");
     } else {
-      System.out.println("Lineventa a borra" + lv);
       lineas.remove(lv);
 
     }

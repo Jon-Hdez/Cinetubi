@@ -1,5 +1,8 @@
 package uam.azc.adsi.cinetubi.controller;
 
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.text.NumberFormat;
 import java.util.List;
@@ -75,21 +78,36 @@ public class DulceriaController {
     lineaVentaPanel.removeAll();
     for (LineaVenta lv : ventaActual.getLineas()) {
       Product p = lv.getProduct();
-      JLabel lineLabel = new JLabel(
-              String.format("%-12s", p.getName()) + "\t               "
-              + lv.getQuantity() + "\t                     "
-              + formatter.format(p.getPrice()));
-      lineaVentaPanel.add(lineLabel);
+      String paddedText = "<html>"
+              + padString(p.getName(), 15)
+              + padString(lv.getQuantity() + "", 8)
+              + padString(formatter.format(p.getPrice()), 10)
+              + "</html>";
+      JLabel lineaLabel = new JLabel(paddedText);
+      Font monospaceFont = new Font("Monospaced", Font.PLAIN, 14);
+      lineaLabel.setFont(monospaceFont);
+      lineaVentaPanel.add(lineaLabel);
     }
     lineaVentaPanel.revalidate();
     lineaVentaPanel.repaint();
 
     JLabel total = ventaDulceriaView.getListaVentaDulceriaPanel().getTotalPriceLabel();
     total.setText(formatter.format(ventaActual.getTotal()));
-    
+
     JButton button = (JButton) evt.getSource();
     SingleProductPanel singleProductPanel = (SingleProductPanel) button.getParent();
-    singleProductPanel.getQtyLabel().setText(lvActual.getQuantity()  + "");
+    singleProductPanel.getQtyLabel().setText(lvActual.getQuantity() + "");
+  }
+
+  private String padString(String input, int length) {
+    StringBuilder sb = new StringBuilder(input);
+    int spacesToAdd = length - input.length();
+    if (spacesToAdd > 0) {
+      for (int i = 0; i < spacesToAdd; i++) {
+        sb.append("&nbsp;"); // Append non-breaking spaces
+      }
+    }
+    return sb.toString();
   }
 
   public void setVentaDulceriaView(VentaDulceriaView dulceriaView) {
