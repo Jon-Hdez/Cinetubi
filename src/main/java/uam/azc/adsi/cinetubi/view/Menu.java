@@ -2,7 +2,10 @@ package uam.azc.adsi.cinetubi.view;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
+import java.util.ArrayList;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
+import uam.azc.adsi.cinetubi.dao.CinetubiDAO;
+import uam.azc.adsi.cinetubi.model.Asiento;
 
 /**
  *
@@ -21,6 +24,7 @@ public class Menu extends javax.swing.JFrame {
   public Menu(DulceriaController dulceriaController) {
     initComponents();
     this.dulceriaController = dulceriaController;
+    ArrayList<Asiento> asientos=CinetubiDAO.obtenerAsientos(1);
   }
 
   /**

@@ -199,8 +199,7 @@ public class Login extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         if(true){
-            DulceriaController dulceriaController = null;
-            Menu menu=new Menu(dulceriaController);
+            Menu menu=new Menu(null);
             menu.setVisible(true);
             this.dispose();
         } else {

@@ -37,14 +37,16 @@ public class DatabaseConnection {
     return connection;
   }
   
-  public void ejecutarConsulta(String sql) {
+  public Statement ejecutarConsulta(String sql) {
         try {
             Statement stmt = connection.createStatement();
             stmt.executeUpdate(sql);
             System.out.println("Consulta ejecutada: " + sql);
+            return stmt;
         } catch (SQLException e) {
             System.out.println("Error al ejecutar la consulta, realiza bien la consulta");
         }
+        return null;
     }
 
 }
