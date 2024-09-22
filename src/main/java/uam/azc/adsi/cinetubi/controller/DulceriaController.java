@@ -1,5 +1,6 @@
 package uam.azc.adsi.cinetubi.controller;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -11,11 +12,13 @@ import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 import uam.azc.adsi.cinetubi.model.LineaVenta;
 import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Venta;
 import uam.azc.adsi.cinetubi.model.ProductCatalog;
+import uam.azc.adsi.cinetubi.view.MenuView;
 import uam.azc.adsi.cinetubi.view.SingleProductPanel;
 import uam.azc.adsi.cinetubi.view.VentaDulceriaView;
 
@@ -118,4 +121,10 @@ public class DulceriaController {
     return formatter;
   }
 
+  public void cancelVenta(ActionEvent evt) {
+    ventaActual = null;
+    MenuView newMenu = new MenuView(this);
+    newMenu.setVisible(true);
+    ventaDulceriaView.dispose();
+  }
 }

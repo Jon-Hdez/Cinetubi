@@ -1,5 +1,7 @@
 package uam.azc.adsi.cinetubi.view;
 
+import java.awt.GraphicsConfiguration;
+import java.awt.HeadlessException;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
 
 /**

@@ -102,7 +102,7 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-    // TODO add your handling code here:
+    dulceriaController.cancelVenta(evt);
   }//GEN-LAST:event_cancelButtonActionPerformed
 
 //  /**
