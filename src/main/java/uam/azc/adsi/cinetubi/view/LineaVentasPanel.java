@@ -2,13 +2,14 @@ package uam.azc.adsi.cinetubi.view;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import uam.azc.adsi.cinetubi.controller.DulceriaController;
 
 /**
  *
  * @author aldai
  */
 public class LineaVentasPanel extends javax.swing.JPanel {
-
+  private DulceriaController dulceriaController;
   /**
    * Creates new form ListaVentaDulceriaPanel
    */
@@ -166,4 +167,8 @@ public class LineaVentasPanel extends javax.swing.JPanel {
   private javax.swing.JLabel totalPriceLabel;
   private javax.swing.JLabel totalTextLabel;
   // End of variables declaration//GEN-END:variables
+
+  void setController(DulceriaController dCon) {
+    this.dulceriaController = dCon;
+  }
 }

@@ -7,6 +7,7 @@ package uam.azc.adsi.cinetubi.view;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
 
 /**
@@ -24,6 +25,15 @@ public class ProductsPanel extends javax.swing.JPanel {
     initComponents();
   }
 
+    public void initProductsPanel() {
+    for (ProductPanel sp : dulceriaController.createSnackPanels()) {
+      productsGridPanel.add(sp);
+    }
+    productsScrollerPane.setViewportView(productsGridPanel);
+    productsScrollerPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    productsScrollerPane.getVerticalScrollBar().setUnitIncrement(16);
+  }
+  
   public JPanel getProductsGridPanel() {
     return productsGridPanel;
   }
@@ -68,6 +78,9 @@ public class ProductsPanel extends javax.swing.JPanel {
     titlePanel = new javax.swing.JPanel();
     titleLabel = new javax.swing.JLabel();
     productsScrollerPane = new javax.swing.JScrollPane();
+    jPanel1 = new javax.swing.JPanel();
+    jPanel2 = new javax.swing.JPanel();
+    jLabel1 = new javax.swing.JLabel();
     productsGridPanel = new javax.swing.JPanel();
 
     titlePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -82,7 +95,7 @@ public class ProductsPanel extends javax.swing.JPanel {
     titlePanel.setLayout(titlePanelLayout);
     titlePanelLayout.setHorizontalGroup(
       titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 434, Short.MAX_VALUE)
+      .addGap(0, 0, Short.MAX_VALUE)
       .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
     );
@@ -93,8 +106,37 @@ public class ProductsPanel extends javax.swing.JPanel {
         .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
+    jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
+
+    jLabel1.setText("HJKHKJHFKJHSKJDFHJKSD");
+
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 444, Short.MAX_VALUE)
+      .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel2Layout.createSequentialGroup()
+          .addContainerGap()
+          .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+    );
+    jPanel2Layout.setVerticalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 646, Short.MAX_VALUE)
+      .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel2Layout.createSequentialGroup()
+          .addGap(133, 133, 133)
+          .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addContainerGap(133, Short.MAX_VALUE)))
+    );
+
+    jPanel1.add(jPanel2);
+
     productsGridPanel.setLayout(new java.awt.GridLayout(4, 3, 15, 15));
-    productsScrollerPane.setViewportView(productsGridPanel);
+    jPanel1.add(productsGridPanel);
+
+    productsScrollerPane.setViewportView(jPanel1);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
@@ -113,17 +155,24 @@ public class ProductsPanel extends javax.swing.JPanel {
         .addContainerGap()
         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(productsScrollerPane, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+        .addComponent(productsScrollerPane, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
         .addContainerGap())
     );
   }// </editor-fold>//GEN-END:initComponents
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JPanel jPanel2;
   private javax.swing.JPanel productsGridPanel;
   private javax.swing.JScrollPane productsScrollerPane;
   private javax.swing.JLabel titleLabel;
   private javax.swing.JPanel titlePanel;
   // End of variables declaration//GEN-END:variables
+
+  void setController(DulceriaController dCon) {
+    this.dulceriaController = dCon;
+  }
 
 }

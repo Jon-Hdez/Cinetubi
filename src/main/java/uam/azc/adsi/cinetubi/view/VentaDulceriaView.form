@@ -74,7 +74,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="payButton" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="listaVentaDulceriaPanel" min="-2" pref="321" max="-2" attributes="0"/>
+                          <Component id="lineaVentasPanel" min="-2" pref="321" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -84,7 +84,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="listaVentaDulceriaPanel" min="-2" max="-2" attributes="0"/>
+                      <Component id="lineaVentasPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="cancelButton" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
@@ -115,7 +115,7 @@
                 <Property name="text" type="java.lang.String" value="Pagar"/>
               </Properties>
             </Component>
-            <Component class="uam.azc.adsi.cinetubi.view.LineaVentasPanel" name="listaVentaDulceriaPanel">
+            <Component class="uam.azc.adsi.cinetubi.view.LineaVentasPanel" name="lineaVentasPanel">
             </Component>
           </SubComponents>
         </Container>

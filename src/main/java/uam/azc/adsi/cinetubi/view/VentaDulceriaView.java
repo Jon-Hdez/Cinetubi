@@ -4,8 +4,11 @@
  */
 package uam.azc.adsi.cinetubi.view;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.Timer;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
 
 /**
@@ -24,22 +27,15 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   public VentaDulceriaView(DulceriaController dCon) {
     this.dulceriaController = dCon;
     initComponents();
-    initProductsPanel();
     dulceriaController.createVenta();
+    
+    productsPanel.setController(dCon);
+    productsPanel.initProductsPanel();
+    
+    lineaVentasPanel.setController(dCon);
+    
     this.pack();
     this.setLocationRelativeTo(null);
-  }
-
-  private void initProductsPanel() {
-    JPanel gridPanelItems = productsPanel.getProductsGridPanel();
-    JScrollPane scrollPaneItems = productsPanel.getProductsScrollerPane();
-    for (ProductPanel sp : dulceriaController.createSnackPanels()) {
-      gridPanelItems.add(sp);
-    }
-
-    scrollPaneItems.setViewportView(gridPanelItems);
-    scrollPaneItems.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    scrollPaneItems.getVerticalScrollBar().setUnitIncrement(16);
   }
 
   /**
@@ -56,7 +52,7 @@ public class VentaDulceriaView extends javax.swing.JFrame {
     jPanel1 = new javax.swing.JPanel();
     cancelButton = new javax.swing.JButton();
     payButton = new javax.swing.JButton();
-    listaVentaDulceriaPanel = new uam.azc.adsi.cinetubi.view.LineaVentasPanel();
+    lineaVentasPanel = new uam.azc.adsi.cinetubi.view.LineaVentasPanel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Dulceria");
@@ -86,14 +82,14 @@ public class VentaDulceriaView extends javax.swing.JFrame {
             .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(payButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addComponent(listaVentaDulceriaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(lineaVentasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addContainerGap())
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(listaVentaDulceriaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(lineaVentasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,7 +159,7 @@ public class VentaDulceriaView extends javax.swing.JFrame {
 //    });
 //  }
   public LineaVentasPanel getListaVentaDulceriaPanel() {
-    return listaVentaDulceriaPanel;
+    return lineaVentasPanel;
   }
 
   public ProductsPanel getProductsPanel() {
@@ -175,7 +171,7 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   private javax.swing.JButton cancelButton;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JSplitPane jSplitPane1;
-  private uam.azc.adsi.cinetubi.view.LineaVentasPanel listaVentaDulceriaPanel;
+  private uam.azc.adsi.cinetubi.view.LineaVentasPanel lineaVentasPanel;
   private javax.swing.JButton payButton;
   private uam.azc.adsi.cinetubi.view.ProductsPanel productsPanel;
   // End of variables declaration//GEN-END:variables
