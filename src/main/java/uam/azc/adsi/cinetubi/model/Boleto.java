@@ -9,63 +9,64 @@ package uam.azc.adsi.cinetubi.model;
  * @author Jony
  * @author José Vicente López López 2212002118
  */
-class Boleto {
-    private int id;
-    private int idFuncion;
-    private int idVenta;
-    private int idSala;
-    private int numeroAsiento;
+public class Boleto {
 
-    public Boleto(int id, int idFuncion, int idVenta, int idSala, int numeroAsiento) {
-        this.id = id;
-        this.idFuncion = idFuncion;
-        this.idVenta = idVenta;
-        this.idSala = idSala;
-        this.numeroAsiento = numeroAsiento;
-    }
+  private int id;
+  private int idFuncion;
+  private int idVenta;
+  private int idSala;
+  private int numeroAsiento;
 
-    public int getId() {
-        return id;
-    }
+  public Boleto(int id, int idFuncion, int idVenta, int idSala, int numeroAsiento) {
+    this.id = id;
+    this.idFuncion = idFuncion;
+    this.idVenta = idVenta;
+    this.idSala = idSala;
+    this.numeroAsiento = numeroAsiento;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public int getIdFuncion() {
-        return idFuncion;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setIdFuncion(int idFuncion) {
-        this.idFuncion = idFuncion;
-    }
+  public int getIdFuncion() {
+    return idFuncion;
+  }
 
-    public int getIdVenta() {
-        return idVenta;
-    }
+  public void setIdFuncion(int idFuncion) {
+    this.idFuncion = idFuncion;
+  }
 
-    public void setIdVenta(int idVenta) {
-        this.idVenta = idVenta;
-    }
+  public int getIdVenta() {
+    return idVenta;
+  }
 
-    public int getIdSala() {
-        return idSala;
-    }
+  public void setIdVenta(int idVenta) {
+    this.idVenta = idVenta;
+  }
 
-    public void setIdSala(int idSala) {
-        this.idSala = idSala;
-    }
+  public int getIdSala() {
+    return idSala;
+  }
 
-    public int getNumeroAsiento() {
-        return numeroAsiento;
-    }
+  public void setIdSala(int idSala) {
+    this.idSala = idSala;
+  }
 
-    public void setNumeroAsiento(int numeroAsiento) {
-        this.numeroAsiento = numeroAsiento;
-    }
+  public int getNumeroAsiento() {
+    return numeroAsiento;
+  }
 
-    @Override
-    public String toString() {
-        return "Boleto{" + "id=" + id + ", idFuncion=" + idFuncion + ", idVenta=" + idVenta + ", idSala=" + idSala + ", numeroAsiento=" + numeroAsiento + '}';
-    }
+  public void setNumeroAsiento(int numeroAsiento) {
+    this.numeroAsiento = numeroAsiento;
+  }
+
+  @Override
+  public String toString() {
+    return "Boleto{" + "id=" + id + ", idFuncion=" + idFuncion + ", idVenta=" + idVenta + ", idSala=" + idSala + ", numeroAsiento=" + numeroAsiento + '}';
+  }
 }

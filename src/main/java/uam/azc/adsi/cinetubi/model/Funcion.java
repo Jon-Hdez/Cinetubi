@@ -1,4 +1,4 @@
-*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -9,7 +9,7 @@ package uam.azc.adsi.cinetubi.model;
  * @author Jony
  * @author José Vicente López López 2212002118
  */
-class Funcion {
+public class Funcion {
     private int id;
     private int id_pelicula;
     private String horario;

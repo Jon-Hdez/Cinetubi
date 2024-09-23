@@ -750,7 +750,7 @@ public class Taquilla extends javax.swing.JFrame {
 
     private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
         // TODO add your handling code here:
-        Menu menu=new Menu(null);
+        MenuView menu=new MenuView(null);
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblMenuMouseClicked
