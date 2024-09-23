@@ -9,7 +9,7 @@ package uam.azc.adsi.cinetubi.model;
  * @author Jony
  * @author José Vicente López López 2212002118
  */
-class Pelicula {
+public class Pelicula {
     private int idPelicula;
     private String titulo;
     private int duracion;
@@ -19,6 +19,9 @@ class Pelicula {
     private String pais;
     private String descripcion;
 
+    public Pelicula() {
+    }
+    
     public Pelicula(int idPelicula, String titulo, int duracion, String distribuidor, String clasificacion, String director, String pais, String descripcion) {
         this.idPelicula = idPelicula;
         this.titulo = titulo;

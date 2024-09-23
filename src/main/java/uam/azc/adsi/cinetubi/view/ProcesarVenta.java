@@ -204,14 +204,14 @@ public class ProcesarVenta extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        MenuView menu=new MenuView(null);
+        Menu menu=new Menu();
         menu.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        MenuView menu=new MenuView(null);
+        Menu menu=new Menu();
         menu.setVisible(true);
     }//GEN-LAST:event_btnMenuActionPerformed
 

@@ -31,7 +31,7 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   private void initProductsPanel() {
     JPanel gridPanelItems = productsPanel.getProductsGridPanel();
     JScrollPane scrollPaneItems = productsPanel.getProductsScrollerPane();
-    for (ProductPanel sp : dulceriaController.createSnackPanels()) {
+    for (SingleProductPanel sp : dulceriaController.createSnackPanels()) {
       gridPanelItems.add(sp);
     }
 

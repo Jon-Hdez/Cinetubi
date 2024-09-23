@@ -16,6 +16,10 @@ public class Funcion {
     private int sala;
     private String idioma;
 
+    public Funcion() {
+    }
+
+    
     public Funcion(int id, int id_pelicula, String horario, int sala, String idioma) {
         this.id = id;
         this.id_pelicula = id_pelicula;
