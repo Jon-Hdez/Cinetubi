@@ -30,8 +30,6 @@ public class CineTubi {
       DulceriaController dulceriaController = new DulceriaController(sc);
       Menu menuView = new Menu(dulceriaController);
       menuView.setVisible(true);
-//      VentaDulceriaView dulceriaView = new VentaDulceriaView(dulceriaController);
-//      dulceriaView.setVisible(true);
     } catch (SQLException ex) {
       Logger.getLogger(CineTubi.class.getName()).log(Level.SEVERE, null, ex);
     }
