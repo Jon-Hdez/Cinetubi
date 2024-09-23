@@ -4,28 +4,35 @@
  */
 package uam.azc.adsi.cinetubi.model;
 
+import java.sql.Time;
+import java.util.Date;
+
 /**
  *
  * @author Jony
- * @author José Vicente López López 2212002118
  */
 public class Funcion {
     private int id;
-    private int id_pelicula;
+    private int idPelicula;
     private String horario;
-    private int sala;
+    private int idSala;
     private String idioma;
+    private Date fecha;
 
-    public Funcion() {
+    // Constructor, getters y setters
+
+    public Funcion(int id, int idPelicula, String horario, int idSala, String idioma, Date fecha) {
+        this.id = id;
+        this.idPelicula = idPelicula;
+        this.horario = horario;
+        this.idSala = idSala;
+        this.idioma = idioma;
+        this.fecha = fecha;
     }
 
     
-    public Funcion(int id, int id_pelicula, String horario, int sala, String idioma) {
-        this.id = id;
-        this.id_pelicula = id_pelicula;
-        this.horario = horario;
-        this.sala = sala;
-        this.idioma = idioma;
+
+    public Funcion() {
     }
 
     public int getId() {
@@ -36,12 +43,12 @@ public class Funcion {
         this.id = id;
     }
 
-    public int getId_pelicula() {
-        return id_pelicula;
+    public int getIdPelicula() {
+        return idPelicula;
     }
 
-    public void setId_pelicula(int id_pelicula) {
-        this.id_pelicula = id_pelicula;
+    public void setIdPelicula(int idPelicula) {
+        this.idPelicula = idPelicula;
     }
 
     public String getHorario() {
@@ -52,12 +59,12 @@ public class Funcion {
         this.horario = horario;
     }
 
-    public int getSala() {
-        return sala;
+    public int getIdSala() {
+        return idSala;
     }
 
-    public void setSala(int sala) {
-        this.sala = sala;
+    public void setIdSala(int idSala) {
+        this.idSala = idSala;
     }
 
     public String getIdioma() {
@@ -68,9 +75,14 @@ public class Funcion {
         this.idioma = idioma;
     }
 
-    @Override
-    public String toString() {
-        return "Funcion{" + "id=" + id + ", id_pelicula=" + id_pelicula + ", horario=" + horario + ", sala=" + sala + ", idioma=" + idioma + '}';
+    public Date getFecha() {
+        return fecha;
     }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+    
+    
     
 }
