@@ -3,6 +3,7 @@ package uam.azc.adsi.cinetubi.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -35,5 +36,17 @@ public class DatabaseConnection {
   public Connection getConnection() {
     return connection;
   }
+  
+  public Statement ejecutarConsulta(String sql) {
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(sql);
+            System.out.println("Consulta ejecutada: " + sql);
+            return stmt;
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar la consulta, realiza bien la consulta");
+        }
+        return null;
+    }
 
 }
