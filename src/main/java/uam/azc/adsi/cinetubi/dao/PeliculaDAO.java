@@ -83,4 +83,29 @@ public class PeliculaDAO {
             return stmt.executeUpdate() > 0;
         }
     }
+
+    public Pelicula searchMovie(int idP){
+        try {
+            String sql = "SELECT * FROM pelicula WHERE id="+idP +";";
+            PreparedStatement ps;
+            ps = connection.prepareStatement(sql);
+            
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                int id =rs.getInt(1);
+                String titulo = rs.getString(2);
+                int duracion=rs.getInt(3);
+                String distribuidor=rs.getString(4);
+                String clasifiacion=rs.getString(5);
+                String director=rs.getString(6);
+                String pais=rs.getString(7);
+                String descripcion=rs.getString(8);
+                Pelicula pelicula = new Pelicula(id,titulo, duracion, distribuidor, clasifiacion, director, pais, descripcion);
+                return pelicula;
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error tipo: " +ex);
+        }
+        return null;
+    }
 }
