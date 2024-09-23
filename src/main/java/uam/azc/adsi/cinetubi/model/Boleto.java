@@ -7,48 +7,65 @@ package uam.azc.adsi.cinetubi.model;
 /**
  *
  * @author Jony
+ * @author José Vicente López López 2212002118
  */
 class Boleto {
-    
-    private Funcion funcion;
-    private int numAsiento;
-    private double precio;
+    private int id;
+    private int idFuncion;
+    private int idVenta;
+    private int idSala;
+    private int numeroAsiento;
 
-    public Boleto() {
+    public Boleto(int id, int idFuncion, int idVenta, int idSala, int numeroAsiento) {
+        this.id = id;
+        this.idFuncion = idFuncion;
+        this.idVenta = idVenta;
+        this.idSala = idSala;
+        this.numeroAsiento = numeroAsiento;
     }
 
-    public Boleto(Funcion funcion, int numAsiento, double precio) {
-        this.funcion = funcion;
-        this.numAsiento = numAsiento;
-        this.precio = precio;
+    public int getId() {
+        return id;
     }
 
-    
-    
-    public Funcion getFuncion() {
-        return funcion;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setFuncion(Funcion funcion) {
-        this.funcion = funcion;
+    public int getIdFuncion() {
+        return idFuncion;
     }
 
-    public int getNumAsiento() {
-        return numAsiento;
+    public void setIdFuncion(int idFuncion) {
+        this.idFuncion = idFuncion;
     }
 
-    public void setNumAsiento(int numAsiento) {
-        this.numAsiento = numAsiento;
+    public int getIdVenta() {
+        return idVenta;
     }
 
-    public double getPrecio() {
-        return precio;
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public int getIdSala() {
+        return idSala;
     }
-    
-    
-    
+
+    public void setIdSala(int idSala) {
+        this.idSala = idSala;
+    }
+
+    public int getNumeroAsiento() {
+        return numeroAsiento;
+    }
+
+    public void setNumeroAsiento(int numeroAsiento) {
+        this.numeroAsiento = numeroAsiento;
+    }
+
+    @Override
+    public String toString() {
+        return "Boleto{" + "id=" + id + ", idFuncion=" + idFuncion + ", idVenta=" + idVenta + ", idSala=" + idSala + ", numeroAsiento=" + numeroAsiento + '}';
+    }
 }

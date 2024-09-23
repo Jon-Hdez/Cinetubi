@@ -14,8 +14,13 @@ import uam.azc.adsi.cinetubi.model.LineaVenta;
 import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Venta;
 import uam.azc.adsi.cinetubi.model.ProductCatalog;
+
+import uam.azc.adsi.cinetubi.view.Menu;
+import uam.azc.adsi.cinetubi.view.SingleProductPanel;
+
 import uam.azc.adsi.cinetubi.view.MenuView;
 import uam.azc.adsi.cinetubi.view.ProductPanel;
+
 import uam.azc.adsi.cinetubi.view.VentaDulceriaView;
 
 /**
@@ -120,7 +125,7 @@ public class DulceriaController {
 
   public void cancelVenta(ActionEvent evt) {
     ventaActual = null;
-    MenuView newMenu = new MenuView(this);
+    Menu newMenu = new Menu(this);
     newMenu.setVisible(true);
     ventaDulceriaView.dispose();
   }
