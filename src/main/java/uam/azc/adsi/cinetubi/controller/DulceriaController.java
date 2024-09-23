@@ -18,9 +18,6 @@ import uam.azc.adsi.cinetubi.model.ProductCatalog;
 import uam.azc.adsi.cinetubi.view.MenuView;
 import uam.azc.adsi.cinetubi.view.SingleProductPanel;
 
-import uam.azc.adsi.cinetubi.view.MenuView;
-import uam.azc.adsi.cinetubi.view.ProductPanel;
-
 import uam.azc.adsi.cinetubi.view.VentaDulceriaView;
 
 /**
