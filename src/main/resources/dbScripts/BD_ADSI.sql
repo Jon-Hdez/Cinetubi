@@ -57,12 +57,12 @@ CREATE TABLE funcion (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_pelicula INT NOT NULL,
     horario TIME NOT NULL,
-    sala INT NOT NULL,
+    id_sala INT NOT NULL,
     idioma VARCHAR(30) NOT NULL CHECK (idioma IN ('Español', 'Ingles')),
     fecha DATE NULL,
     CONSTRAINT fk_pelicula FOREIGN KEY (id_pelicula) REFERENCES pelicula(id)
         ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT fk_sala FOREIGN KEY (sala) REFERENCES sala(id)
+    CONSTRAINT fk_sala FOREIGN KEY (id_sala) REFERENCES sala(id)
         ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -159,7 +159,7 @@ CREATE TABLE venta_combo (
 );*/
 
 CREATE TABLE combo_snack (	
-	id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     id_combo INT NOT NULL,
     id_snack INT NOT NULL,
     CONSTRAINT fk_cs_combo FOREIGN KEY (id_combo) REFERENCES combo(id) ON DELETE CASCADE,
@@ -268,7 +268,7 @@ INSERT INTO sala (categoria, capacidad, estado) VALUES
 ('Estandar', 30, 'disponible');
 
 -- Insert sample data into funcion
-INSERT INTO funcion (id_pelicula, horario, sala, idioma, fecha) VALUES
+INSERT INTO funcion (id_pelicula, horario, id_sala, idioma, fecha) VALUES
 (1, '18:00:00', 1, 'Español', '2024-09-16'),
 (2, '20:30:00', 2, 'Español', '2024-09-14'),
 (3, '21:00:00', 3, 'Inglés', '2024-09-15'),
@@ -360,8 +360,6 @@ INSERT INTO venta_snack (id_venta, id_snack) VALUES
 (8, 5),(8, 6),
 (9, 7),(9, 8),
 (10, 9);
-
--- Insert sample data into venta_combo
 
 -- Insert sample data into combo_snack
 INSERT INTO combo_snack (id_combo, id_snack) VALUES
