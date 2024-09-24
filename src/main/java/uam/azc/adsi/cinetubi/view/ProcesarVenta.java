@@ -4,19 +4,13 @@
  */
 package uam.azc.adsi.cinetubi.view;
 
-import static com.mysql.cj.util.StringUtils.padString;
-import java.awt.Font;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import uam.azc.adsi.cinetubi.controller.DulceriaController;
 import uam.azc.adsi.cinetubi.controller.VentaController;
-import uam.azc.adsi.cinetubi.model.LineaVenta;
-import uam.azc.adsi.cinetubi.model.Product;
-import uam.azc.adsi.cinetubi.model.Venta;
 import uam.azc.adsi.cinetubi.util.MoneyFormatter;
-import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
 
 /**
  *
@@ -25,7 +19,6 @@ import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
 public class ProcesarVenta extends javax.swing.JFrame {
 
   private VentaController ventaController;
-  private Venta ventaActual;
 
   /**
    * Creates new form ProcesarVenta
@@ -35,11 +28,10 @@ public class ProcesarVenta extends javax.swing.JFrame {
   public ProcesarVenta(VentaController ventaController) {
     initComponents();
     this.ventaController = ventaController;
-    this.ventaActual = ventaController.getVentaActual();
     
     btnContado.setSelected(true);
     btnConfirmarVenta.setEnabled(false);
-    
+
     cargarInformacionProcesarVenta();
   }
 
@@ -261,22 +253,15 @@ public class ProcesarVenta extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void cargarInformacionProcesarVenta() {
-    lblTotal.setText(MoneyFormatter.format(ventaActual.getTotal()));
+    lblTotal.setText(MoneyFormatter.format(ventaController.getVentaActual().getTotal()));
 
     //Llenas la descripcion de la venta, agregando todas las lineas de venta
     pnlDescripcionVentaBoxLayout.removeAll();
-    for (LineaVenta lv : ventaActual.getLineas()) {
-      Product p = lv.getProduct();
-      String paddedText = "<html>"
-              + padString(p.getName(), 15)
-              + padString(lv.getQuantity() + "", 8)
-              + padString(MoneyFormatter.format(p.getPrice()), 10)
-              + "</html>";
-      JLabel lineaLabel = new JLabel(paddedText);
-      Font monospaceFont = new Font("Monospaced", Font.PLAIN, 14);
-      lineaLabel.setFont(monospaceFont);
-      pnlDescripcionVentaBoxLayout.add(lineaLabel);
+    List<JLabel> lineaVentaLabels = ventaController.createLineaVentaLabels();
+    for(JLabel lvLabel: lineaVentaLabels){
+      pnlDescripcionVentaBoxLayout.add(lvLabel);
     }
+    
     this.revalidate();
     this.repaint();
   }
@@ -320,11 +305,11 @@ public class ProcesarVenta extends javax.swing.JFrame {
 
   private void btnContadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContadoActionPerformed
     // TODO add your handling code here:
-    ventaActual.setMetodoPago("contado");
+    ventaController.getVentaActual().setMetodoPago("contado");
   }//GEN-LAST:event_btnContadoActionPerformed
 
   private void btnCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditoActionPerformed
-    ventaActual.setMetodoPago("credito");
+    ventaController.getVentaActual().setMetodoPago("credito");
   }//GEN-LAST:event_btnCreditoActionPerformed
 
   private void lblReciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblReciboActionPerformed
@@ -340,8 +325,8 @@ public class ProcesarVenta extends javax.swing.JFrame {
 
     if (evt.getKeyChar() == '\n') {
       BigDecimal efectivo = new BigDecimal(((JTextField) evt.getSource()).getText());
-      BigDecimal cambio = efectivo.subtract(ventaActual.getTotal());
-      
+      BigDecimal cambio = efectivo.subtract(ventaController.getVentaActual().getTotal());
+
       if (cambio.compareTo(BigDecimal.ZERO) < 0) {
         JOptionPane.showMessageDialog(null,
                 "Efectivo Recibido Insuficiente",

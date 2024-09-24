@@ -30,6 +30,25 @@ public class Venta {
     lineas.add(lv);
   }
 
+  public LineaVenta findLineaVenta(int productId) {
+    for (LineaVenta lv : lineas) {
+      if (lv.getProductId() == productId) {
+        return lv;
+      }
+    }
+    return null;
+  }
+
+  public void deleteLineaVenta(int productId) {
+    LineaVenta lv = findLineaVenta(productId);
+    if (lv == null) {
+      System.out.println("Producto con Id: " + productId + " no encontrado. No se puede eliminar la linea de la venta");
+    } else {
+      lineas.remove(lv);
+
+    }
+  }
+
   public int getId() {
     return id;
   }
@@ -54,6 +73,14 @@ public class Venta {
     this.idSocio = idSocio;
   }
 
+  public String getMetodoPago() {
+    return metodoPago;
+  }
+
+  public void setMetodoPago(String metodoPago) {
+    this.metodoPago = metodoPago;
+  }
+
   public String getArea() {
     return area;
   }
@@ -63,6 +90,10 @@ public class Venta {
   }
 
   public BigDecimal getTotal() {
+    total = BigDecimal.ZERO;
+    for(LineaVenta lv: lineas){
+      total = total.add(lv.getSubtotal());
+    }
     return total;
   }
 
@@ -78,31 +109,12 @@ public class Venta {
     this.creada_en = creada_en;
   }
 
-  public String getMetodoPago() {
-    return metodoPago;
+  public List<LineaVenta> getLineas() {
+    return lineas;
   }
 
-  public void setMetodoPago(String metodoPago) {
-    this.metodoPago = metodoPago;
+  public void setLineas(List<LineaVenta> lineas) {
+    this.lineas = lineas;
   }
 
-  public LineaVenta findLineaVenta(int productId) {
-    for (LineaVenta lv : lineas) {
-      if (lv.getProductId() == productId) {
-        return lv;
-      }
-    }
-    return null;
-  }
-
-  public void deleteLineaVenta(int productId) {
-    LineaVenta lv = findLineaVenta(productId);
-    if (lv == null) {
-      System.out.println("Producto con Id: " + productId + " no encontrado. No se puede eliminar la linea de la venta");
-    } else {
-      lineas.remove(lv);
-
-    }
-
-  }
 }
