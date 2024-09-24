@@ -29,7 +29,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
   public ProcesarVenta(VentaController ventaController) {
     initComponents();
     this.ventaController = ventaController;
-    
+
     btnEfectivo.setSelected(true);
     this.ventaController.getVentaActual().setMetodoPago("efectivo");
     btnConfirmarVenta.setEnabled(false);
@@ -273,7 +273,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
     //Llenas la descripcion de la venta, agregando todas las lineas de venta
     pnlDescripcionVentaBoxLayout.removeAll();
     List<JLabel> lineaVentaLabels = ventaController.createLineaVentaLabels();
-    for(JLabel lvLabel: lineaVentaLabels){
+    for (JLabel lvLabel : lineaVentaLabels) {
       pnlDescripcionVentaBoxLayout.add(lvLabel);
     }
     pnlDescripcionVentaBoxLayout.revalidate();
@@ -310,11 +310,14 @@ public class ProcesarVenta extends javax.swing.JFrame {
     private void btnConfirmarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarVentaActionPerformed
       // TODO add your handling code here:
       ventaController.guardarVenta();
-      
-      this.dispose();
+      DulceriaController dulceriaController = new DulceriaController();
+      Dulceria dulceria = new Dulceria(dulceriaController);
+      dulceriaController.setDulceria(dulceria);
+      dulceria.setVisible(true);
 //      Dulceria dulceria = new Dulceria(dulceriaController);
 //      Taquilla taquilla = new Taquilla();
 //      taquilla.setVisible(true);
+      this.dispose();
     }//GEN-LAST:event_btnConfirmarVentaActionPerformed
 
   private void lblTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblTotalActionPerformed

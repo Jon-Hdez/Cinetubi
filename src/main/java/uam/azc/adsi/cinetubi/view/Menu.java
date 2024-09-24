@@ -57,7 +57,7 @@ public class Menu extends javax.swing.JFrame {
     txtCinetubi.setFont(new java.awt.Font("Showcard Gothic", 1, 24)); // NOI18N
     txtCinetubi.setForeground(new java.awt.Color(255, 255, 255));
     txtCinetubi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    txtCinetubi.setText("CINETUBBI");
+    txtCinetubi.setText("CineTubi");
 
     javax.swing.GroupLayout pnlAuxLayout = new javax.swing.GroupLayout(pnlAux);
     pnlAux.setLayout(pnlAuxLayout);
@@ -174,7 +174,7 @@ public class Menu extends javax.swing.JFrame {
   private void DulceriaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DulceriaButtonActionPerformed
     // TODO add your handling code here:
     Dulceria dulceria = new Dulceria(dulceriaController);
-    dulceriaController.setVentaDulceriaView(dulceria);
+    dulceriaController.setDulceria(dulceria);
     dulceria.setVisible(true);
     this.dispose();
   }//GEN-LAST:event_DulceriaButtonActionPerformed

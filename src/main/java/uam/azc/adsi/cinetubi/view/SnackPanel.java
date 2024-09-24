@@ -196,13 +196,13 @@ public class SnackPanel extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void decreaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseQtyButtonActionPerformed
-    dulceriaController.decreaseProductQuantity(productId, evt);
-    dulceriaController.updateDulceria(productId, evt);
+    dulceriaController.decrementarCantidadSnack(productId, evt);
+    dulceriaController.actualizarDulceria(productId, evt);
   }//GEN-LAST:event_decreaseQtyButtonActionPerformed
 
   private void increaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseQtyButtonActionPerformed
-    dulceriaController.increaseProductQuantity(productId, evt);
-    dulceriaController.updateDulceria(productId, evt);
+    dulceriaController.incrementarCantidadSnack(productId, evt);
+    dulceriaController.actualizarDulceria(productId, evt);
   }//GEN-LAST:event_increaseQtyButtonActionPerformed
 
   public String getNombre() {

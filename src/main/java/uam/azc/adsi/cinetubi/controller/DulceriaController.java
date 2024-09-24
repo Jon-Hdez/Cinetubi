@@ -27,11 +27,11 @@ public class DulceriaController {
   private Dulceria dulceria;
   private Venta ventaActual;
 
-  public DulceriaController(SnackCatalog snackCatalog) {
-    this.snackCatalog = snackCatalog;
+  public DulceriaController() {
+    this.snackCatalog = new SnackCatalog();
   }
 
-  public List<SnackPanel> createSnackPanels() {
+  public List<SnackPanel> crearSnackPanels() {
     List<SnackPanel> snackPanels = new ArrayList<>();
     for (Snack s : snackCatalog.getCatalog().values()) {
       SnackPanel mySnackPanel = new SnackPanel(
@@ -45,11 +45,11 @@ public class DulceriaController {
     return snackPanels;
   }
 
-  public void createVenta() {
+  public void crearVenta() {
     ventaActual = new Venta();
   }
 
-  public void increaseProductQuantity(int productId, ActionEvent evt) {
+  public void incrementarCantidadSnack(int productId, ActionEvent evt) {
     LineaVenta lv = ventaActual.findLineaVenta(productId);
     if (lv == null) {
       Snack p = snackCatalog.findSnack(productId);
@@ -60,7 +60,7 @@ public class DulceriaController {
     }
   }
 
-  public void decreaseProductQuantity(int productId, ActionEvent evt) {
+  public void decrementarCantidadSnack(int productId, ActionEvent evt) {
     LineaVenta lv = ventaActual.findLineaVenta(productId);
     if (lv == null) {
       return;
@@ -72,12 +72,12 @@ public class DulceriaController {
     }
   }
 
-  public void updateDulceria(int productId, ActionEvent evt) {
-    updateLineaVentaPanel();
-    updateSnackPanel(productId, evt);
+  public void actualizarDulceria(int productId, ActionEvent evt) {
+    actualizarLineaVentaPanel();
+    actualizarSnackPanel(productId, evt);
   }
 
-  private void updateLineaVentaPanel() {
+  private void actualizarLineaVentaPanel() {
     JPanel lineaVentaPanel = dulceria.getListaVentaDulceriaPanel().getLineaVentaPanel();
     lineaVentaPanel.removeAll();
     for (LineaVenta lv : ventaActual.getLineas()) {
@@ -96,7 +96,7 @@ public class DulceriaController {
     lineaVentaPanel.repaint();
   }
 
-  private void updateSnackPanel(int productId, ActionEvent evt) {
+  private void actualizarSnackPanel(int productId, ActionEvent evt) {
     JLabel total = dulceria.getListaVentaDulceriaPanel().getTotalPriceLabel();
     total.setText(MoneyFormatter.format(ventaActual.getTotal()));
 
@@ -118,11 +118,11 @@ public class DulceriaController {
     return ventaActual;
   }
 
-  public void setVentaDulceriaView(Dulceria dulceriaView) {
+  public void setDulceria(Dulceria dulceriaView) {
     this.dulceria = dulceriaView;
   }
 
-  public void cancelVenta(ActionEvent evt) {
+  public void cancelarVenta(ActionEvent evt) {
     this.ventaActual = new Venta();
   }
 

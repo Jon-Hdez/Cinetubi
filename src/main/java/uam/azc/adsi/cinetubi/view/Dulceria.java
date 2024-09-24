@@ -41,7 +41,7 @@ public class Dulceria extends javax.swing.JFrame {
   }
 
   private void initVenta() {
-    dulceriaController.createVenta();
+    dulceriaController.crearVenta();
     // CORRREGGIIIIIRIRIRIR, sacar un id Empleado de a de veras
     dulceriaController.getVentaActual().setIdEmpleado(1);
     dulceriaController.getVentaActual().setIdSocio(null);
@@ -135,7 +135,7 @@ public class Dulceria extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-    dulceriaController.cancelVenta(evt);
+    dulceriaController.cancelarVenta(evt);
     Menu newMenu = new Menu();
     newMenu.setDulceriaController(dulceriaController);
     newMenu.setVisible(true);

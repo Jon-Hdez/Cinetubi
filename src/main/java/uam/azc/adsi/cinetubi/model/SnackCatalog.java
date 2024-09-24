@@ -15,18 +15,14 @@ public class SnackCatalog {
   private final SnackDAO sDAO;
   private HashMap<Integer, Snack> catalog;
 
-  public SnackCatalog(SnackDAO sDAO) {
-    this.sDAO = sDAO;
+  public SnackCatalog() {
+    this.sDAO = new SnackDAO();
     this.catalog = createSnackCatalog();
   }
 
   private HashMap<Integer, Snack> createSnackCatalog() {
     HashMap<Integer, Snack> snacks = new HashMap<>();
-    try {
-      snacks = sDAO.getAllSnacks();
-    } catch (SQLException ex) {
-      Logger.getLogger(SnackCatalog.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    snacks = sDAO.obtenerTodosSnacks();
     return snacks;
   }
 

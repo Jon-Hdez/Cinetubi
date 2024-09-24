@@ -3,14 +3,7 @@
  */
 package uam.azc.adsi.cinetubi;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
-import uam.azc.adsi.cinetubi.dao.ComboDAO;
-import uam.azc.adsi.cinetubi.dao.SnackDAO;
-import uam.azc.adsi.cinetubi.model.SnackCatalog;
-import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 import uam.azc.adsi.cinetubi.view.Menu;
 
 /**
@@ -20,21 +13,12 @@ import uam.azc.adsi.cinetubi.view.Menu;
 public class CineTubi {
 
   public static void main(String[] args) {
-    DatabaseConnection dbConnection;
-    try {
-      dbConnection = DatabaseConnection.getInstance();
-      SnackDAO sDAO = new SnackDAO(dbConnection);
-      SnackCatalog sc = new SnackCatalog(sDAO);
-
-      DulceriaController dulceriaController = new DulceriaController(sc);
+    DulceriaController dulceriaController = new DulceriaController();
 
 //      Modifiquen la vista que quieren ejecutar
-      Menu menuView = new Menu();
-      menuView.setDulceriaController(dulceriaController);
-      menuView.setVisible(true);
-    } catch (SQLException ex) {
-      Logger.getLogger(CineTubi.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    Menu menuView = new Menu();
+    menuView.setDulceriaController(dulceriaController);
+    menuView.setVisible(true);
 
   }
 }
