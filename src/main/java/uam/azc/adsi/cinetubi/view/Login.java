@@ -201,6 +201,7 @@ public class Login extends javax.swing.JFrame {
       // TODO add your handling code here:
       if (true) {
         Menu menu = new Menu();
+        menu.setDulceriaController(dulceriaController);
         menu.setVisible(true);
         this.dispose();
       } else {
