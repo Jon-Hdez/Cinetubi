@@ -2,19 +2,18 @@ package uam.azc.adsi.cinetubi.controller;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.text.NumberFormat;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 import uam.azc.adsi.cinetubi.model.LineaVenta;
 import uam.azc.adsi.cinetubi.model.Product;
+import uam.azc.adsi.cinetubi.model.Snack;
 import uam.azc.adsi.cinetubi.model.Venta;
-import uam.azc.adsi.cinetubi.model.ProductCatalog;
-import uam.azc.adsi.cinetubi.view.ProductPanel;
+import uam.azc.adsi.cinetubi.model.SnackCatalog;
+import uam.azc.adsi.cinetubi.util.MoneyFormatter;
+import uam.azc.adsi.cinetubi.view.SnackPanel;
 import uam.azc.adsi.cinetubi.view.Dulceria;
 
 /**
@@ -23,21 +22,23 @@ import uam.azc.adsi.cinetubi.view.Dulceria;
  */
 public class DulceriaController {
 
-  private final ProductCatalog productCatalog;
-  private Dulceria ventaDulceriaView;
+  private final SnackCatalog snackCatalog;
+  private Dulceria dulceria;
   private Venta ventaActual;
 
-  private final NumberFormat formatter;
-
-  public DulceriaController(ProductCatalog snackCatalog) {
-    this.productCatalog = snackCatalog;
-    this.formatter = NumberFormat.getCurrencyInstance(Locale.US);
+  public DulceriaController(SnackCatalog snackCatalog) {
+    this.snackCatalog = snackCatalog;
   }
 
-  public List<ProductPanel> createSnackPanels() {
-    List<ProductPanel> snackPanels = new ArrayList<>();
-    for (Product s : productCatalog.getCatalog().values()) {
-      ProductPanel mySnackPanel = new ProductPanel(s.getId(), s.getName(), s.getPrice(), this);
+  public List<SnackPanel> createSnackPanels() {
+    List<SnackPanel> snackPanels = new ArrayList<>();
+    for (Snack s : snackCatalog.getCatalog().values()) {
+      SnackPanel mySnackPanel = new SnackPanel(
+              s.getId(),
+              s.getName(),
+              s.getPrice(),
+              s.getTamanio(),
+              this);
       snackPanels.add(mySnackPanel);
     }
     return snackPanels;
@@ -47,10 +48,10 @@ public class DulceriaController {
     ventaActual = new Venta();
   }
 
-  public void increaseProductQuantity(int productId, ActionEvent evt) throws ProductNotFoundException {
+  public void increaseProductQuantity(int productId, ActionEvent evt) {
     LineaVenta lv = ventaActual.findLineaVenta(productId);
     if (lv == null) {
-      Product p = productCatalog.findProduct(productId);
+      Snack p = snackCatalog.findSnack(productId);
       lv = new LineaVenta(p, 1);
       ventaActual.addLineaVenta(lv);
     } else {
@@ -59,7 +60,7 @@ public class DulceriaController {
     updateVentaDulceriaView(lv, evt);
   }
 
-  public void decreaseProductQuantity(int productId, ActionEvent evt) throws ProductNotFoundException {
+  public void decreaseProductQuantity(int productId, ActionEvent evt) {
     LineaVenta lv = ventaActual.findLineaVenta(productId);
     if (lv == null) {
       return;
@@ -73,14 +74,14 @@ public class DulceriaController {
   }
 
   private void updateVentaDulceriaView(LineaVenta lvActual, ActionEvent evt) {
-    JPanel lineaVentaPanel = ventaDulceriaView.getListaVentaDulceriaPanel().getLineaVentaPanel();
+    JPanel lineaVentaPanel = dulceria.getListaVentaDulceriaPanel().getLineaVentaPanel();
     lineaVentaPanel.removeAll();
     for (LineaVenta lv : ventaActual.getLineas()) {
       Product p = lv.getProduct();
       String paddedText = "<html>"
               + padString(p.getName(), 15)
               + padString(lv.getQuantity() + "", 8)
-              + padString(formatter.format(p.getPrice()), 10)
+              + padString(MoneyFormatter.format(p.getPrice()), 10)
               + "</html>";
       JLabel lineaLabel = new JLabel(paddedText);
       Font monospaceFont = new Font("Monospaced", Font.PLAIN, 14);
@@ -90,8 +91,8 @@ public class DulceriaController {
     lineaVentaPanel.revalidate();
     lineaVentaPanel.repaint();
 
-    JLabel total = ventaDulceriaView.getListaVentaDulceriaPanel().getTotalPriceLabel();
-    total.setText(formatter.format(ventaActual.getTotal()));
+    JLabel total = dulceria.getListaVentaDulceriaPanel().getTotalPriceLabel();
+    total.setText(MoneyFormatter.format(ventaActual.getTotal()));
 
     JButton button = (JButton) evt.getSource();
     JPanel subPanel = (JPanel) button.getParent();
@@ -115,16 +116,11 @@ public class DulceriaController {
   }
 
   public void setVentaDulceriaView(Dulceria dulceriaView) {
-    this.ventaDulceriaView = dulceriaView;
-  }
-
-  public NumberFormat getFormatter() {
-    return formatter;
+    this.dulceria = dulceriaView;
   }
 
   public void cancelVenta(ActionEvent evt) {
-    System.out.println("NO ESTA IMPLEMENTADO ESE BOTON");
-
+    this.ventaActual = new Venta();
   }
 
   public boolean esVentaActualVacia() {

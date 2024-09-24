@@ -6,37 +6,43 @@ package uam.azc.adsi.cinetubi.view;
 
 import java.awt.Image;
 import java.math.BigDecimal;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
-import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
+import uam.azc.adsi.cinetubi.util.MoneyFormatter;
 
 /**
  *
  * @author aldai
  */
-public class ProductPanel extends javax.swing.JPanel {
+public class SnackPanel extends javax.swing.JPanel {
 
   private int productId;
 
-  private String name;
-  private BigDecimal price;
+  private String nombre;
+  private BigDecimal precio;
+  private String tamanio;
   private DulceriaController dulceriaController;
 
   /**
-   * Creates new form SnackCard
+   * Creates new form ProductPanel
    *
    * @param dulceriaController
    * @param productId
-   * @param price
-   * @param name
+   * @param precio
+   * @param tamanio
+   * @param nombre
    */
-  public ProductPanel(int productId, String name, BigDecimal price, DulceriaController dulceriaController) {
+  public SnackPanel(
+          int productId,
+          String nombre,
+          BigDecimal precio,
+          String tamanio,
+          DulceriaController dulceriaController) {
     this.productId = productId;
-    this.name = name;
-    this.price = price;
+    this.nombre = nombre;
+    this.precio = precio;
+    this.tamanio = tamanio != null ? tamanio: "";
     this.dulceriaController = dulceriaController;
     initComponents();
     initCardContent();
@@ -44,11 +50,11 @@ public class ProductPanel extends javax.swing.JPanel {
 
   private void initCardContent() {
     productTitle.setText("<html>"
-            + name
+            + nombre
             + "<br>"
-            + name
+            + tamanio
             + "</html>");
-    productPriceLabel.setText(dulceriaController.getFormatter().format(price));
+    productPriceLabel.setText(MoneyFormatter.format(precio));
 
     ImageIcon icon = new ImageIcon(getClass().getResource("/images/popcornSmall.png"));
     Image scaledImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -162,16 +168,15 @@ public class ProductPanel extends javax.swing.JPanel {
     jPanel3Layout.setHorizontalGroup(
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
-        .addContainerGap(36, Short.MAX_VALUE)
-        .addComponent(decreaseQtyButton)
-        .addGap(18, 18, 18)
-        .addComponent(qtyLabel)
-        .addGap(20, 20, 20)
-        .addComponent(increaseQtyButton)
-        .addContainerGap(37, Short.MAX_VALUE))
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(productPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel3Layout.createSequentialGroup()
+            .addComponent(decreaseQtyButton)
+            .addGap(18, 18, 18)
+            .addComponent(qtyLabel)
+            .addGap(20, 20, 20)
+            .addComponent(increaseQtyButton))
+          .addComponent(productPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanel3Layout.setVerticalGroup(
@@ -191,19 +196,11 @@ public class ProductPanel extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void decreaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseQtyButtonActionPerformed
-    try {
-      dulceriaController.decreaseProductQuantity(productId, evt);
-    } catch (ProductNotFoundException ex) {
-      Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    dulceriaController.decreaseProductQuantity(productId, evt);
   }//GEN-LAST:event_decreaseQtyButtonActionPerformed
 
   private void increaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseQtyButtonActionPerformed
-    try {
-      dulceriaController.increaseProductQuantity(productId, evt);
-    } catch (ProductNotFoundException ex) {
-      Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    dulceriaController.increaseProductQuantity(productId, evt);
   }//GEN-LAST:event_increaseQtyButtonActionPerformed
 
   public JLabel getQtyLabel() {

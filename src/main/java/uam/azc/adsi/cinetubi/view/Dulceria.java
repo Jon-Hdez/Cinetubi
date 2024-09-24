@@ -23,17 +23,17 @@ public class Dulceria extends javax.swing.JFrame {
   /**
    * Creates new form VentaDulceriaView
    *
-   * @param dCon
+   * @param dulceriaController
    */
-  public Dulceria(DulceriaController dCon) {
+  public Dulceria(DulceriaController dulceriaController) {
     initComponents();
 
-    this.dulceriaController = dCon;
+    this.dulceriaController = dulceriaController;
     initVenta();
-    productsPanel.setController(dCon);
+    productsPanel.setController(dulceriaController);
     productsPanel.initProductsPanel();
 
-    lineaVentasPanel.setController(dCon);
+    lineaVentasPanel.setController(dulceriaController);
 
     this.pack();
     this.setLocationRelativeTo(null);

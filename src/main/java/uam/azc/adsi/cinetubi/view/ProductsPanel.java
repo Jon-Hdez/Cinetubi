@@ -26,7 +26,7 @@ public class ProductsPanel extends javax.swing.JPanel {
   }
 
     public void initProductsPanel() {
-    for (ProductPanel sp : dulceriaController.createSnackPanels()) {
+    for (SnackPanel sp : dulceriaController.createSnackPanels()) {
       productsGridPanel.add(sp);
     }
     productsScrollerPane.setViewportView(productsGridPanel);
