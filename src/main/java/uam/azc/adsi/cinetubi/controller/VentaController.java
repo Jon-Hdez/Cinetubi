@@ -37,6 +37,10 @@ public class VentaController {
   }
 
   public void guardarVenta() {
+    System.out.println(ventaActual + " venta controller");
+    if (this.vDAO == null) {
+      this.vDAO = new VentaDAO(ventaActual);
+    }
     vDAO.guardarVenta();
   }
 

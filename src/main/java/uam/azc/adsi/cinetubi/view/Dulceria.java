@@ -42,6 +42,10 @@ public class Dulceria extends javax.swing.JFrame {
 
   private void initVenta() {
     dulceriaController.createVenta();
+    // CORRREGGIIIIIRIRIRIR, sacar un id Empleado de a de veras
+    dulceriaController.getVentaActual().setIdEmpleado(1);
+    dulceriaController.getVentaActual().setIdSocio(null);
+    dulceriaController.getVentaActual().setArea("dulceria");
   }
 
   /**

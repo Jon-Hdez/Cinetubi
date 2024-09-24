@@ -90,7 +90,7 @@ CREATE TABLE venta (
     metodo_pago VARCHAR(30) NOT NULL CHECK (metodo_pago IN ('efectivo', 'credito')),
     area VARCHAR(30) NOT NULL CHECK (area IN ('taquilla', 'dulceria')),
     total DECIMAL DEFAULT 100.0,
-    creada_en DATETIME DEFAULT (NOW() - INTERVAL 1 DAY),
+    creada_en DATETIME DEFAULT NOW(),
     CONSTRAINT fk_empleado FOREIGN KEY (id_empleado) REFERENCES empleado(id)
         ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_socio FOREIGN KEY (id_socio) REFERENCES socio(id)

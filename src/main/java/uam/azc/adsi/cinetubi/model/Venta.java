@@ -91,7 +91,7 @@ public class Venta {
 
   public BigDecimal getTotal() {
     total = BigDecimal.ZERO;
-    for(LineaVenta lv: lineas){
+    for (LineaVenta lv : lineas) {
       total = total.add(lv.getSubtotal());
     }
     return total;
@@ -115,6 +115,11 @@ public class Venta {
 
   public void setLineas(List<LineaVenta> lineas) {
     this.lineas = lineas;
+  }
+
+  @Override
+  public String toString() {
+    return "Venta{" + "id=" + id + ", idEmpleado=" + idEmpleado + ", idSocio=" + idSocio + ", metodoPago=" + metodoPago + ", area=" + area + ", total=" + total + ", creada_en=" + creada_en + '}';
   }
 
 }

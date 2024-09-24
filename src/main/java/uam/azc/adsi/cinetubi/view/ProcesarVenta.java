@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import uam.azc.adsi.cinetubi.controller.DulceriaController;
 import uam.azc.adsi.cinetubi.controller.VentaController;
 import uam.azc.adsi.cinetubi.util.MoneyFormatter;
 
@@ -29,7 +30,8 @@ public class ProcesarVenta extends javax.swing.JFrame {
     initComponents();
     this.ventaController = ventaController;
     
-    btnContado.setSelected(true);
+    btnEfectivo.setSelected(true);
+    this.ventaController.getVentaActual().setMetodoPago("efectivo");
     btnConfirmarVenta.setEnabled(false);
 
     cargarInformacionProcesarVenta();
@@ -52,7 +54,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
     lblTotal = new javax.swing.JTextField();
     lblRecibo = new javax.swing.JTextField();
     lblCambio = new javax.swing.JTextField();
-    btnContado = new javax.swing.JRadioButton();
+    btnEfectivo = new javax.swing.JRadioButton();
     btnCredito = new javax.swing.JRadioButton();
     pnlDescripcionVenta = new javax.swing.JPanel();
     pnlDescripcionVentaBoxLayout = new javax.swing.JPanel();
@@ -105,12 +107,12 @@ public class ProcesarVenta extends javax.swing.JFrame {
       }
     });
 
-    btgForma.add(btnContado);
-    btnContado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-    btnContado.setText("Contado");
-    btnContado.addActionListener(new java.awt.event.ActionListener() {
+    btgForma.add(btnEfectivo);
+    btnEfectivo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+    btnEfectivo.setText("Efectivo");
+    btnEfectivo.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnContadoActionPerformed(evt);
+        btnEfectivoActionPerformed(evt);
       }
     });
 
@@ -191,7 +193,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
               .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                  .addComponent(btnContado)
+                  .addComponent(btnEfectivo)
                   .addComponent(txtForma))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCredito)
@@ -225,7 +227,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
             .addComponent(txtForma)
             .addGap(8, 8, 8)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(btnContado)
+              .addComponent(btnEfectivo)
               .addComponent(btnCredito))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(txtEfectivo)
@@ -294,7 +296,9 @@ public class ProcesarVenta extends javax.swing.JFrame {
     private void btnConfirmarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarVentaActionPerformed
       // TODO add your handling code here:
       ventaController.guardarVenta();
+      
       this.dispose();
+//      Dulceria dulceria = new Dulceria(dulceriaController);
 //      Taquilla taquilla = new Taquilla();
 //      taquilla.setVisible(true);
     }//GEN-LAST:event_btnConfirmarVentaActionPerformed
@@ -303,10 +307,10 @@ public class ProcesarVenta extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_lblTotalActionPerformed
 
-  private void btnContadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContadoActionPerformed
+  private void btnEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEfectivoActionPerformed
     // TODO add your handling code here:
-    ventaController.getVentaActual().setMetodoPago("contado");
-  }//GEN-LAST:event_btnContadoActionPerformed
+    ventaController.getVentaActual().setMetodoPago("efectivo");
+  }//GEN-LAST:event_btnEfectivoActionPerformed
 
   private void btnCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditoActionPerformed
     ventaController.getVentaActual().setMetodoPago("credito");
@@ -386,8 +390,8 @@ public class ProcesarVenta extends javax.swing.JFrame {
   private javax.swing.ButtonGroup btgForma;
   private javax.swing.JButton btnCancelar;
   private javax.swing.JButton btnConfirmarVenta;
-  private javax.swing.JRadioButton btnContado;
   private javax.swing.JRadioButton btnCredito;
+  private javax.swing.JRadioButton btnEfectivo;
   private javax.swing.JButton btnMenu;
   private javax.swing.JButton btnTaquilla;
   private javax.swing.JTextField lblCambio;
