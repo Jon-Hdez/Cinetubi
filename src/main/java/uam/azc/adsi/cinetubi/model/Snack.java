@@ -8,8 +8,19 @@ import java.math.BigDecimal;
  */
 public class Snack extends Product {
 
-  public Snack(int id, String nombre, BigDecimal precio) {
+  private String tamanio;
+
+  public Snack(int id, String nombre, BigDecimal precio, String tamanio) {
     super(id, nombre, precio);
+    this.tamanio = tamanio;
+  }
+
+  public String getTamanio() {
+    return tamanio;
+  }
+
+  public void setTamanio(String tamanio) {
+    this.tamanio = tamanio;
   }
 
   @Override

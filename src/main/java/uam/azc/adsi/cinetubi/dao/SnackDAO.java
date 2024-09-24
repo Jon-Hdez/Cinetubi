@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
 import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Snack;
@@ -23,20 +21,21 @@ public class SnackDAO {
     this.dbConnection = dbConnection;
   }
 
-  public HashMap<Integer, Product> getAllSnacks() throws SQLException {
+  public HashMap<Integer, Snack> getAllSnacks() throws SQLException {
     String sql = "SELECT * FROM snack";
 
     PreparedStatement ps = dbConnection.getConnection().prepareStatement(sql);
     ResultSet rs = ps.executeQuery();
-    HashMap<Integer, Product> snackList = new HashMap<>() {
+    HashMap<Integer, Snack> snacks = new HashMap<>() {
     };
     while (rs.next()) {
       int id = rs.getInt("id");
       String nombre = rs.getString("nombre");
       BigDecimal precio = rs.getBigDecimal("precio");
-      Snack mySnack = new Snack(id, nombre, precio);
-      snackList.put(id, mySnack);
+      String tamanio = rs.getString("tamanio");
+      Snack mySnack = new Snack(id, nombre, precio, tamanio);
+      snacks.put(id, mySnack);
     }
-    return snackList;
+    return snacks;
   }
 }

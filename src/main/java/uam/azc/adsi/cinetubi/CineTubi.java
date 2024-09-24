@@ -9,10 +9,9 @@ import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
 import uam.azc.adsi.cinetubi.dao.ComboDAO;
 import uam.azc.adsi.cinetubi.dao.SnackDAO;
-import uam.azc.adsi.cinetubi.model.ProductCatalog;
+import uam.azc.adsi.cinetubi.model.SnackCatalog;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 import uam.azc.adsi.cinetubi.view.Menu;
-import uam.azc.adsi.cinetubi.view.Dulceria;
 
 /**
  *
@@ -25,8 +24,7 @@ public class CineTubi {
     try {
       dbConnection = DatabaseConnection.getInstance();
       SnackDAO sDAO = new SnackDAO(dbConnection);
-      ComboDAO cDAO = new ComboDAO(dbConnection);
-      ProductCatalog sc = new ProductCatalog(sDAO, cDAO);
+      SnackCatalog sc = new SnackCatalog(sDAO);
 
       DulceriaController dulceriaController = new DulceriaController(sc);
 

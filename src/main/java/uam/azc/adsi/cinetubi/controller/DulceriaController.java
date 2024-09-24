@@ -2,20 +2,18 @@ package uam.azc.adsi.cinetubi.controller;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.text.NumberFormat;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 import uam.azc.adsi.cinetubi.model.LineaVenta;
 import uam.azc.adsi.cinetubi.model.Product;
+import uam.azc.adsi.cinetubi.model.Snack;
 import uam.azc.adsi.cinetubi.model.Venta;
-import uam.azc.adsi.cinetubi.model.ProductCatalog;
+import uam.azc.adsi.cinetubi.model.SnackCatalog;
 import uam.azc.adsi.cinetubi.util.MoneyFormatter;
-import uam.azc.adsi.cinetubi.view.ProductPanel;
+import uam.azc.adsi.cinetubi.view.SnackPanel;
 import uam.azc.adsi.cinetubi.view.Dulceria;
 
 /**
@@ -24,18 +22,24 @@ import uam.azc.adsi.cinetubi.view.Dulceria;
  */
 public class DulceriaController {
 
-  private final ProductCatalog productCatalog;
+  private final SnackCatalog snackCatalog;
   private Dulceria dulceria;
   private Venta ventaActual;
 
-  public DulceriaController(ProductCatalog snackCatalog) {
-    this.productCatalog = snackCatalog;
+  public DulceriaController(SnackCatalog snackCatalog) {
+    this.snackCatalog = snackCatalog;
   }
 
-  public List<ProductPanel> createSnackPanels() {
-    List<ProductPanel> snackPanels = new ArrayList<>();
-    for (Product s : productCatalog.getCatalog().values()) {
-      ProductPanel mySnackPanel = new ProductPanel(s.getId(), s.getName(), s.getPrice(), this);
+  public List<SnackPanel> createSnackPanels() {
+    List<SnackPanel> snackPanels = new ArrayList<>();
+    for (Snack s : snackCatalog.getCatalog().values()) {
+      System.out.println("Empieza catalago " + s);
+      SnackPanel mySnackPanel = new SnackPanel(
+              s.getId(),
+              s.getName(),
+              s.getPrice(),
+              s.getTamanio(),
+              this);
       snackPanels.add(mySnackPanel);
     }
     return snackPanels;
@@ -45,10 +49,10 @@ public class DulceriaController {
     ventaActual = new Venta();
   }
 
-  public void increaseProductQuantity(int productId, ActionEvent evt) throws ProductNotFoundException {
+  public void increaseProductQuantity(int productId, ActionEvent evt) {
     LineaVenta lv = ventaActual.findLineaVenta(productId);
     if (lv == null) {
-      Product p = productCatalog.findProduct(productId);
+      Snack p = snackCatalog.findSnack(productId);
       lv = new LineaVenta(p, 1);
       ventaActual.addLineaVenta(lv);
     } else {
@@ -57,7 +61,7 @@ public class DulceriaController {
     updateVentaDulceriaView(lv, evt);
   }
 
-  public void decreaseProductQuantity(int productId, ActionEvent evt) throws ProductNotFoundException {
+  public void decreaseProductQuantity(int productId, ActionEvent evt) {
     LineaVenta lv = ventaActual.findLineaVenta(productId);
     if (lv == null) {
       return;

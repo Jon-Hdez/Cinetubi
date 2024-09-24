@@ -70,7 +70,7 @@ CREATE TABLE snack (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     precio DECIMAL(10, 2) NOT NULL CHECK (precio > 0),
-    tamaño VARCHAR(15) NOT NULL CHECK (tamaño IN ('chico', 'mediano', 'grande'))
+    tamanio VARCHAR(15) NULL CHECK (tamanio IN ('chico', 'mediano', 'grande'))
 );
 
 -- Crear tabla cartelera
@@ -280,17 +280,16 @@ INSERT INTO funcion (id_pelicula, horario, sala, idioma) VALUES
 (10, '23:00:00', 10, 'Español');
 
 -- Insert sample data into snack
-INSERT INTO snack (nombre, precio, tamaño) VALUES
-('Palomitas', 5.00, 'chico'),
-('Refresco', 3.00, 'chico'),
-('Nachos', 6.00, 'chico'),
-('Dulces', 4.00, 'chico'),
-('Hot Dog', 7.00, 'chico'),
-('Cerveza', 5.50, 'chico'),
-('Agua', 2.00, 'chico'),
-('Chocolates', 4.50, 'chico'),
-('Galletas', 3.50, 'chico'),
-('Pretzels', 4.00, 'chico');
+INSERT INTO snack (nombre, precio, tamanio) VALUES
+('Palomitas', 10.00, 'chico'),
+('Palomitas', 15.00, 'mediano'),
+('Palomitas', 20.00, 'grande'),
+('Refresco', 8.00, 'chico'),
+('Refresco', 10.00, 'mediano'),
+('Refresco', 12.00, 'grande'),
+('Nachos', 6.00, null),
+('Hot Dog', 7.00, null),
+('Chocolates', 4.50, null);
 
 -- Insert sample data into combo
 INSERT INTO combo (nombre, precio) VALUES
@@ -350,49 +349,28 @@ INSERT INTO boleto (id_funcion, id_venta, id_sala, numero_asiento) VALUES
 (4, 4, 4, 1), (4, 4, 4, 2), (4, 4, 4, 3), (4, 4, 4, 4), (4, 4, 4, 5);
 -- Insert sample data into venta_snack
 INSERT INTO venta_snack (id_venta, id_snack) VALUES
-(1, 1),
-(1, 2),
-(2, 3),
-(2, 4),
-(3, 5),
-(3, 6),
-(4, 7),
-(4, 8),
-(5, 9),
-(5, 10),
-(6, 1),
-(6, 3),
-(7, 2),
-(7, 4),
-(8, 5),
-(8, 6),
-(9, 7),
-(9, 8),
+(1, 1),(1, 2),
+(2, 3),(2, 4),
+(3, 5),(3, 6),
+(4, 7),(4, 8),
+(5, 9),(5, 9),
+(6, 1),(6, 3),
+(7, 2),(7, 4),
+(8, 5),(8, 6),
+(9, 7),(9, 8),
 (10, 9);
 
 -- Insert sample data into venta_combo
 
 -- Insert sample data into combo_snack
 INSERT INTO combo_snack (id_combo, id_snack) VALUES
-(1, 1),
-(1, 2),
-(2, 3),
-(2, 4),
-(3, 5),
-(3, 6),
-(4, 7),
-(4, 8),
-(5, 9),
-(5, 10),
-(6, 1),
-(6, 3),
-(7, 2),
-(7, 4),
-(8, 5),
-(8, 6),
-(9, 7),
-(9, 8),
+(1, 1),(1, 2),
+(2, 3),(2, 4),
+(3, 5),(3, 6),
+(4, 7),(4, 8),
+(5, 9),(5, 9),
+(6, 1),(6, 3),
+(7, 2),(7, 4),
+(8, 5),(8, 6),
+(9, 7),(9, 8),
 (10, 9);
-
-SELECT * FROM asiento WHERE id_sala=1 ;
-
