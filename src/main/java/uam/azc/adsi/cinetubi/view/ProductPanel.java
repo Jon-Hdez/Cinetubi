@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
 import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
+import uam.azc.adsi.cinetubi.util.MoneyFormatter;
 
 /**
  *
@@ -48,7 +49,7 @@ public class ProductPanel extends javax.swing.JPanel {
             + "<br>"
             + name
             + "</html>");
-    productPriceLabel.setText(dulceriaController.getFormatter().format(price));
+    productPriceLabel.setText(MoneyFormatter.format(price));
 
     ImageIcon icon = new ImageIcon(getClass().getResource("/images/popcornSmall.png"));
     Image scaledImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);

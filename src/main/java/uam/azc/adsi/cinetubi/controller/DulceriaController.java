@@ -14,6 +14,7 @@ import uam.azc.adsi.cinetubi.model.LineaVenta;
 import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Venta;
 import uam.azc.adsi.cinetubi.model.ProductCatalog;
+import uam.azc.adsi.cinetubi.util.MoneyFormatter;
 import uam.azc.adsi.cinetubi.view.ProductPanel;
 import uam.azc.adsi.cinetubi.view.Dulceria;
 
@@ -24,14 +25,11 @@ import uam.azc.adsi.cinetubi.view.Dulceria;
 public class DulceriaController {
 
   private final ProductCatalog productCatalog;
-  private Dulceria ventaDulceriaView;
+  private Dulceria dulceria;
   private Venta ventaActual;
-
-  private final NumberFormat formatter;
 
   public DulceriaController(ProductCatalog snackCatalog) {
     this.productCatalog = snackCatalog;
-    this.formatter = NumberFormat.getCurrencyInstance(Locale.US);
   }
 
   public List<ProductPanel> createSnackPanels() {
@@ -73,14 +71,14 @@ public class DulceriaController {
   }
 
   private void updateVentaDulceriaView(LineaVenta lvActual, ActionEvent evt) {
-    JPanel lineaVentaPanel = ventaDulceriaView.getListaVentaDulceriaPanel().getLineaVentaPanel();
+    JPanel lineaVentaPanel = dulceria.getListaVentaDulceriaPanel().getLineaVentaPanel();
     lineaVentaPanel.removeAll();
     for (LineaVenta lv : ventaActual.getLineas()) {
       Product p = lv.getProduct();
       String paddedText = "<html>"
               + padString(p.getName(), 15)
               + padString(lv.getQuantity() + "", 8)
-              + padString(formatter.format(p.getPrice()), 10)
+              + padString(MoneyFormatter.format(p.getPrice()), 10)
               + "</html>";
       JLabel lineaLabel = new JLabel(paddedText);
       Font monospaceFont = new Font("Monospaced", Font.PLAIN, 14);
@@ -90,8 +88,8 @@ public class DulceriaController {
     lineaVentaPanel.revalidate();
     lineaVentaPanel.repaint();
 
-    JLabel total = ventaDulceriaView.getListaVentaDulceriaPanel().getTotalPriceLabel();
-    total.setText(formatter.format(ventaActual.getTotal()));
+    JLabel total = dulceria.getListaVentaDulceriaPanel().getTotalPriceLabel();
+    total.setText(MoneyFormatter.format(ventaActual.getTotal()));
 
     JButton button = (JButton) evt.getSource();
     JPanel subPanel = (JPanel) button.getParent();
@@ -115,11 +113,7 @@ public class DulceriaController {
   }
 
   public void setVentaDulceriaView(Dulceria dulceriaView) {
-    this.ventaDulceriaView = dulceriaView;
-  }
-
-  public NumberFormat getFormatter() {
-    return formatter;
+    this.dulceria = dulceriaView;
   }
 
   public void cancelVenta(ActionEvent evt) {
