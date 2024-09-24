@@ -197,6 +197,7 @@ public class Menu extends javax.swing.JFrame {
   private void FuncionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FuncionButtonActionPerformed
     dispose();
     MenuProgramacion menu = new MenuProgramacion();
+    menu.setDulceriaController(dulceriaController);
     menu.setVisible(true);
   }//GEN-LAST:event_FuncionButtonActionPerformed
 
