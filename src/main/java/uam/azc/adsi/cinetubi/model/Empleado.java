@@ -4,61 +4,91 @@
  */
 package uam.azc.adsi.cinetubi.model;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Jony
  */
 public class Empleado {
-    private int idEmpleado;
-    private String nombre;
-    private String claveSocio;
-    private boolean esSocio;
 
-    public Empleado() {
-    }
+  private int id;
+  private String nombre;
+  private String paterno;
+  private String materno;
+  private String categoria;
+  private BigDecimal sueldo;
+  private String area;
 
-    public Empleado(int idEmpleado, String nombre, String claveSocio, boolean esSocio) {
-        this.idEmpleado = idEmpleado;
-        this.nombre = nombre;
-        this.claveSocio = claveSocio;
-        this.esSocio = esSocio;
-    }
+  public Empleado(int id, String nombre, String paterno, String materno, String categoria, BigDecimal sueldo, String area) {
+    this.id = id;
+    this.nombre = nombre;
+    this.paterno = paterno;
+    this.materno = materno;
+    this.categoria = categoria;
+    this.sueldo = sueldo;
+    this.area = area;
+  }
 
-    
-    
-    
-    public int getIdEmpleado() {
-        return idEmpleado;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setIdEmpleado(int idEmpleado) {
-        this.idEmpleado = idEmpleado;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public String getNombre() {
-        return nombre;
-    }
+  public String getNombre() {
+    return nombre;
+  }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
 
-    public String getClaveSocio() {
-        return claveSocio;
-    }
+  public String getPaterno() {
+    return paterno;
+  }
 
-    public void setClaveSocio(String claveSocio) {
-        this.claveSocio = claveSocio;
-    }
+  public void setPaterno(String paterno) {
+    this.paterno = paterno;
+  }
 
-    public boolean isEsSocio() {
-        return esSocio;
-    }
+  public String getMaterno() {
+    return materno;
+  }
 
-    public void setEsSocio(boolean esSocio) {
-        this.esSocio = esSocio;
-    }
-    
+  public void setMaterno(String materno) {
+    this.materno = materno;
+  }
 
-    
+  public String getCategoria() {
+    return categoria;
+  }
+
+  public void setCategoria(String categoria) {
+    this.categoria = categoria;
+  }
+
+  public BigDecimal getSueldo() {
+    return sueldo;
+  }
+
+  public void setSueldo(BigDecimal sueldo) {
+    this.sueldo = sueldo;
+  }
+
+  public String getArea() {
+    return area;
+  }
+
+  public void setArea(String area) {
+    this.area = area;
+  }
+
+  @Override
+  public String toString() {
+    return "Empleado{" + "id=" + id + ", nombre=" + nombre + ", paterno=" + paterno + ", materno=" + materno + ", categoria=" + categoria + ", sueldo=" + sueldo + ", area=" + area + '}';
+  }
+
 }

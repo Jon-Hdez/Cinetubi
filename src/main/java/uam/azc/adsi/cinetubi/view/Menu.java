@@ -1,7 +1,6 @@
 package uam.azc.adsi.cinetubi.view;
 
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
-
 /**
  *
  * @author aldai
@@ -190,7 +189,7 @@ public class Menu extends javax.swing.JFrame {
       // TODO add your handling code here:
       this.dispose();
       Login login = new Login();
-      login.setDulceriaController(dulceriaController);
+//      login.setDulceriaController(dulceriaController);
       login.setVisible(true);
     }//GEN-LAST:event_SalirButtonActionPerformed
 

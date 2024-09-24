@@ -308,9 +308,12 @@ public class ProcesarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTaquillaActionPerformed
 
     private void btnConfirmarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarVentaActionPerformed
-      // TODO add your handling code here:
-      ventaController.guardarVenta();
+      ventaController.confirmarVenta();
+      //Cambio de estafeta, de ventaController a dulceriaController
       DulceriaController dulceriaController = new DulceriaController();
+      dulceriaController.setEmpleadoActual(ventaController.getEmpleadoActual());
+      dulceriaController.crearVenta();
+      
       Dulceria dulceria = new Dulceria(dulceriaController);
       dulceriaController.setDulceria(dulceria);
       dulceria.setVisible(true);

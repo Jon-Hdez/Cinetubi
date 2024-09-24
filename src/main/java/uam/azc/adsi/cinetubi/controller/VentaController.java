@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import uam.azc.adsi.cinetubi.dao.VentaDAO;
+import uam.azc.adsi.cinetubi.model.Empleado;
 import uam.azc.adsi.cinetubi.model.LineaVenta;
 import uam.azc.adsi.cinetubi.model.Venta;
 import uam.azc.adsi.cinetubi.util.MoneyFormatter;
@@ -19,6 +20,7 @@ import uam.azc.adsi.cinetubi.util.StringHTMLPadder;
 public class VentaController {
 
   private Venta ventaActual;
+  private Empleado empleadoActual;
   private VentaDAO vDAO;
 
   public VentaController() {
@@ -37,8 +39,15 @@ public class VentaController {
     this.ventaActual = ventaActual;
   }
 
-  public void guardarVenta() {
-    System.out.println(ventaActual + " venta controller");
+  public Empleado getEmpleadoActual() {
+    return empleadoActual;
+  }
+
+  public void setEmpleadoActual(Empleado empleadoActual) {
+    this.empleadoActual = empleadoActual;
+  }
+
+  public void confirmarVenta() {
     if (this.vDAO == null) {
       this.vDAO = new VentaDAO(ventaActual);
     }

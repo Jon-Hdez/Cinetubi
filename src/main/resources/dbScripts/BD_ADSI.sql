@@ -17,7 +17,8 @@ CREATE TABLE socio (
 CREATE TABLE categoria_empleado (
     id INT AUTO_INCREMENT PRIMARY KEY,
     categoria VARCHAR(50) NOT NULL,
-    sueldo DECIMAL(10, 2) NOT NULL CHECK (sueldo > 0)
+    sueldo DECIMAL(10, 2) NOT NULL CHECK (sueldo > 0),
+    area VARCHAR(15) NOT NULL DEFAULT 'dulceria'
 );
 
 -- Crear tabla empleado
@@ -182,15 +183,16 @@ INSERT INTO socio (nombre, paterno, materno, fecha_inicio, puntos, passwd) VALUE
 ('Sofía', 'Reyes', 'Castro', '2023-10-05', 160, 'password114');
 
 -- Insert sample data into categoria_empleado
-INSERT INTO categoria_empleado (categoria, sueldo) VALUES
-('Cajero', 1500.00),
-('Encargado', 2500.00),
-('Gerente', 3500.00),
-('Supervisor', 3000.00),
-('Auxiliar', 1200.00);
+INSERT INTO categoria_empleado (categoria, sueldo, area) VALUES
+('Cajero', 1500.00, 'dulceria'),
+('Encargado', 2500.00, 'dulceria'),
+('Gerente', 3500.00, 'dulceria'),
+('Supervisor', 3000.00, 'dulceria'),
+('Auxiliar', 1200.00, 'taquilla');
 
 -- Insert sample data into empleado
 INSERT INTO empleado (nombre, paterno, materno, id_categoria, psw) VALUES
+('droot', 'droot', 'droot', 1, 'droot'),
 ('Carlos', 'Fernández', 'Hernández', 1, 'psw789'),
 ('María', 'Rodríguez', 'Sánchez', 2, 'psw101112'),
 ('Ana', 'Martínez', 'Gómez', 3, 'psw131415'),

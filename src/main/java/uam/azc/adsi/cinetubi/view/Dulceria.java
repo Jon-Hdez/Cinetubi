@@ -28,24 +28,18 @@ public class Dulceria extends javax.swing.JFrame {
    */
   public Dulceria(DulceriaController dulceriaController) {
     initComponents();
-
+    
     this.dulceriaController = dulceriaController;
-    initVenta();
     productsPanel.setController(dulceriaController);
     productsPanel.initProductsPanel();
-
     lineaVentasPanel.setController(dulceriaController);
 
     this.pack();
     this.setLocationRelativeTo(null);
   }
 
-  private void initVenta() {
+  private void crearVenta() {
     dulceriaController.crearVenta();
-    // CORRREGGIIIIIRIRIRIR, sacar un id Empleado de a de veras
-    dulceriaController.getVentaActual().setIdEmpleado(1);
-    dulceriaController.getVentaActual().setIdSocio(null);
-    dulceriaController.getVentaActual().setArea("dulceria");
   }
 
   /**
@@ -149,6 +143,7 @@ public class Dulceria extends javax.swing.JFrame {
     }
     VentaController ventaController = new VentaController();
     ventaController.setVentaActual(dulceriaController.getVentaActual());
+    ventaController.setEmpleadoActual(dulceriaController.getEmpleadoActual());
     ProcesarVenta procesar = new ProcesarVenta(ventaController);
     procesar.setVisible(true);
     this.dispose();

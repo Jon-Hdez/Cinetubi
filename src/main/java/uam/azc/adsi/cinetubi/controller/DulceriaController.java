@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import uam.azc.adsi.cinetubi.model.Empleado;
 import uam.azc.adsi.cinetubi.model.LineaVenta;
 import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Snack;
@@ -26,6 +27,7 @@ public class DulceriaController {
   private final SnackCatalog snackCatalog;
   private Dulceria dulceria;
   private Venta ventaActual;
+  private Empleado empleadoActual;
 
   public DulceriaController() {
     this.snackCatalog = new SnackCatalog();
@@ -47,6 +49,10 @@ public class DulceriaController {
 
   public void crearVenta() {
     ventaActual = new Venta();
+    ventaActual.setIdEmpleado(empleadoActual.getId());
+    ventaActual.setArea(empleadoActual.getArea());
+    // CORRREGGIIIIIRIRIRIR, sacar un id socio de a de veras
+    ventaActual.setIdSocio(null);
   }
 
   public void incrementarCantidadSnack(int productId, ActionEvent evt) {
@@ -129,4 +135,13 @@ public class DulceriaController {
   public boolean esVentaActualVacia() {
     return ventaActual.getLineas().isEmpty();
   }
+
+  public Empleado getEmpleadoActual() {
+    return empleadoActual;
+  }
+
+  public void setEmpleadoActual(Empleado empleadoActual) {
+    this.empleadoActual = empleadoActual;
+  }
+
 }

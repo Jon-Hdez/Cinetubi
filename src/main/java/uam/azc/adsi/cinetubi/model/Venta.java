@@ -11,13 +11,11 @@ import java.util.List;
  */
 public class Venta {
 
-  private int id;
   private int idEmpleado;
   private Integer idSocio;
   private String metodoPago;
   private String area;
   private BigDecimal total;
-  private Date creada_en;
 
   private List<LineaVenta> lineas;
 
@@ -47,14 +45,6 @@ public class Venta {
       lineas.remove(lv);
 
     }
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 
   public int getIdEmpleado() {
@@ -101,14 +91,6 @@ public class Venta {
     this.total = total;
   }
 
-  public Date getCreada_en() {
-    return creada_en;
-  }
-
-  public void setCreada_en(Date creada_en) {
-    this.creada_en = creada_en;
-  }
-
   public List<LineaVenta> getLineas() {
     return lineas;
   }
@@ -119,7 +101,7 @@ public class Venta {
 
   @Override
   public String toString() {
-    return "Venta{" + "id=" + id + ", idEmpleado=" + idEmpleado + ", idSocio=" + idSocio + ", metodoPago=" + metodoPago + ", area=" + area + ", total=" + total + ", creada_en=" + creada_en + '}';
+    return "Venta{" + "idEmpleado=" + idEmpleado + ", idSocio=" + idSocio + ", metodoPago=" + metodoPago + ", area=" + area + ", total=" + total + ", lineas=" + lineas + '}';
   }
 
 }
