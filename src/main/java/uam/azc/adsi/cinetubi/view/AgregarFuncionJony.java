@@ -16,9 +16,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import uam.azc.adsi.cinetubi.controller.PeliculaController;
-import uam.azc.adsi.cinetubi.dao.FuncionesDAOJony;
+import uam.azc.adsi.cinetubi.dao.FuncionesDAO;
 import uam.azc.adsi.cinetubi.dao.PeliculaDAO;
-import uam.azc.adsi.cinetubi.model.FuncionJony;
+import uam.azc.adsi.cinetubi.model.Funcion;
 import uam.azc.adsi.cinetubi.model.Pelicula;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 
@@ -383,8 +383,8 @@ public class AgregarFuncionJony extends javax.swing.JFrame {
 
     try {
         Connection connection = DatabaseConnection.getInstance().getConnection();
-        FuncionesDAOJony funcionDAO = new FuncionesDAOJony(connection);
-        FuncionJony funcion = new FuncionJony();
+        FuncionesDAO funcionDAO = new FuncionesDAO(connection);
+        Funcion funcion = new Funcion();
         String fechatxt = jTfecha.getText();
         Date fecha = null;
         if (!fechatxt.isEmpty()) {

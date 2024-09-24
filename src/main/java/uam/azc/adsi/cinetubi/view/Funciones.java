@@ -68,7 +68,7 @@ public class Funciones extends javax.swing.JPanel {
              DatabaseConnection dbConnection = DatabaseConnection.getInstance();
              // Obtener la conexión desde DataBaseConnection
              connection = dbConnection.getConnection();
-             FuncionesDAO f = new FuncionesDAO();
+             FuncionesDAO f = new FuncionesDAO(connection);
              
              List<Funcion> funciones = f.getAllFuncion();
              JPanel panelPrincipal = new JPanel();

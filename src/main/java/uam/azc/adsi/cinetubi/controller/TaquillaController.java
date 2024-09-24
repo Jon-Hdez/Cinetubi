@@ -50,7 +50,7 @@ public class TaquillaController extends JPanel {
   }
 
   public Funcion funciones(JPanel panelRecibido, JPanel panelDescripcion, JPanel panelAseintos, JPanel resumen) {
-    FuncionesDAO f = new FuncionesDAO();
+    FuncionesDAO f = new FuncionesDAO(dbConnection.getConnection());
     AsientosDAO asientos = new AsientosDAO();
     List<Funcion> funciones = f.getAllFuncion();
     JPanel panelPrincipal = new JPanel();

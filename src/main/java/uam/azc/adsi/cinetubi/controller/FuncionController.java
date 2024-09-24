@@ -5,26 +5,26 @@
 package uam.azc.adsi.cinetubi.controller;
 import java.sql.SQLException;
 import java.util.List;
-import uam.azc.adsi.cinetubi.dao.FuncionesDAOJony;
-import uam.azc.adsi.cinetubi.model.FuncionJony;
+import uam.azc.adsi.cinetubi.dao.FuncionesDAO;
+import uam.azc.adsi.cinetubi.model.Funcion;
 
 
 public class FuncionController {
-    private FuncionesDAOJony funcionDAO;
+    private FuncionesDAO funcionDAO;
 
-    public FuncionController(FuncionesDAOJony funcionDAO) {
+    public FuncionController(FuncionesDAO funcionDAO) {
         this.funcionDAO = funcionDAO;
     }
 
-    public void agregarFuncion(FuncionJony funcion) throws SQLException {
+    public void agregarFuncion(Funcion funcion) throws SQLException {
         funcionDAO.agregarFuncion(funcion);
     }
 
-    public List<FuncionJony> obtenerFunciones() throws SQLException {
+    public List<Funcion> obtenerFunciones() throws SQLException {
         return funcionDAO.obtenerFunciones();
     }
 
-    public void actualizarFuncion(FuncionJony funcion) throws SQLException {
+    public void actualizarFuncion(Funcion funcion) throws SQLException {
         funcionDAO.actualizarFuncion(funcion);
     }
 

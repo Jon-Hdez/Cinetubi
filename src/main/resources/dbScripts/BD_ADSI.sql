@@ -59,6 +59,7 @@ CREATE TABLE funcion (
     horario TIME NOT NULL,
     sala INT NOT NULL,
     idioma VARCHAR(30) NOT NULL CHECK (idioma IN ('Español', 'Ingles')),
+    fecha DATE NULL,
     CONSTRAINT fk_pelicula FOREIGN KEY (id_pelicula) REFERENCES pelicula(id)
         ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_sala FOREIGN KEY (sala) REFERENCES sala(id)
@@ -267,17 +268,17 @@ INSERT INTO sala (categoria, capacidad, estado) VALUES
 ('Estandar', 30, 'disponible');
 
 -- Insert sample data into funcion
-INSERT INTO funcion (id_pelicula, horario, sala, idioma) VALUES
-(1, '18:00:00', 1, 'Español'),
-(2, '20:30:00', 2, 'Español'),
-(3, '21:00:00', 3, 'Inglés'),
-(4, '19:00:00', 4, 'Español'),
-(5, '17:00:00', 5, 'Español'),
-(6, '22:00:00', 6, 'Español'),
-(7, '18:30:00', 7, 'Inglés'),
-(8, '20:00:00', 8, 'Español'),
-(9, '21:30:00', 9, 'Inglés'),
-(10, '23:00:00', 10, 'Español');
+INSERT INTO funcion (id_pelicula, horario, sala, idioma, fecha) VALUES
+(1, '18:00:00', 1, 'Español', '2024-09-16'),
+(2, '20:30:00', 2, 'Español', '2024-09-14'),
+(3, '21:00:00', 3, 'Inglés', '2024-09-15'),
+(4, '19:00:00', 4, 'Español', '2024-09-15'),
+(5, '17:00:00', 5, 'Español', '2024-09-17'),
+(6, '22:00:00', 6, 'Español', '2024-09-18'),
+(7, '18:30:00', 7, 'Inglés', '2024-09-19'),
+(8, '20:00:00', 8, 'Español', '2024-09-20'),
+(9, '21:30:00', 9, 'Inglés', '2024-09-21'),
+(10, '23:00:00', 10, 'Español', '2024-09-22');
 
 -- Insert sample data into snack
 INSERT INTO snack (nombre, precio, tamaño) VALUES

@@ -15,8 +15,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import uam.azc.adsi.cinetubi.controller.FuncionController;
-import uam.azc.adsi.cinetubi.dao.FuncionesDAOJony;
-import uam.azc.adsi.cinetubi.model.FuncionJony;
+import uam.azc.adsi.cinetubi.dao.FuncionesDAO;
+import uam.azc.adsi.cinetubi.model.Funcion;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 
 /**
@@ -153,7 +153,7 @@ int selectedRow = jTfunc.getSelectedRow();
     
     try {
         Connection connection = DatabaseConnection.getInstance().getConnection();
-        FuncionesDAOJony funcionDAO = new FuncionesDAOJony(connection);
+        FuncionesDAO funcionDAO = new FuncionesDAO(connection);
         
                 funcionDAO.eliminarFuncion(funcionId);
                       actualizarVentana();
@@ -178,8 +178,8 @@ int selectedRow = jTfunc.getSelectedRow();
    
         try {
         Connection connection = DatabaseConnection.getInstance().getConnection();
-        FuncionesDAOJony funcionDAO = new FuncionesDAOJony(connection);
-        FuncionJony funcion = new FuncionJony();
+        FuncionesDAO funcionDAO = new FuncionesDAO(connection);
+        Funcion funcion = new Funcion();
         String fechatxt = (String) jTfunc.getValueAt(selectedRow, 2);
         Date fecha = null;
         if (!fechatxt.isEmpty()) {
@@ -227,13 +227,13 @@ int selectedRow = jTfunc.getSelectedRow();
             DatabaseConnection dbConnection = DatabaseConnection.getInstance();
             // Obtener la conexión desde DataBaseConnection
             connection = dbConnection.getConnection();
-            FuncionesDAOJony funcionDAO = new FuncionesDAOJony(connection);
+            FuncionesDAO funcionDAO = new FuncionesDAO(connection);
             FuncionController funcionControl = new FuncionController(funcionDAO);
             
-            List<FuncionJony> listaFuncion = funcionControl.obtenerFunciones();
+            List<Funcion> listaFuncion = funcionControl.obtenerFunciones();
            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd"); // Ajusta el formato según tus necesidades
 
-            for ( FuncionJony func: listaFuncion){
+            for ( Funcion func: listaFuncion){
                 Object[] data = new Object[columnNames.length];
                 data[0] = func.getId();
                 data[1] = func.getId_pelicula();

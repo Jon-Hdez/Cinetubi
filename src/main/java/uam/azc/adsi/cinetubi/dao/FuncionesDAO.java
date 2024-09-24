@@ -4,63 +4,95 @@
  */
 package uam.azc.adsi.cinetubi.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.model.Funcion;
-import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 
-/**
- *
- * @author vicen
- */
 public class FuncionesDAO {
-    
-    private Connection connection;
 
-    private static final String URL = "jdbc:mysql://localhost:3306/cinetubi";
-    private static final String USER = "root";
-    private static final String PASSWORD = "root";
+  private Connection connection;
 
-    public FuncionesDAO() {
-        try {
-            this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (SQLException ex) {
-            System.err.println("Error tipo: " +ex);
-        }
-      
+  public FuncionesDAO(Connection connection) {
+    this.connection = connection;
+  }
+
+  // Crear función
+  public boolean agregarFuncion(Funcion funcion) throws SQLException {
+    String query = "INSERT INTO funcion (id_pelicula, horario, id_sala, idioma, fecha) VALUES (?, ?, ?, ?, ?)";
+    try (PreparedStatement stmt = connection.prepareStatement(query)) {
+      stmt.setInt(1, funcion.getId_pelicula());
+      stmt.setString(2, funcion.getHorario());
+      stmt.setInt(3, funcion.getSala());
+      stmt.setString(4, funcion.getIdioma());
+      stmt.setDate(5, (Date) funcion.getFecha());
+      return stmt.executeUpdate() > 0;
     }
-    
-    public List<Funcion> getAllFuncion(){
-        try {
-            String sql = "SELECT * FROM funcion ORDER BY id_pelicula AND horario;";
-            PreparedStatement ps;
-            ps = connection.prepareStatement(sql);
-            
-            ResultSet rs = ps.executeQuery();
-            List<Funcion> funciones = new ArrayList<>();
-            while(rs.next()){
-                int id = rs.getInt(1);
-                int id_pelicula = rs.getInt(2);
-                String hora=rs.getString(3);
-                int sala=rs.getInt(4);
-                String idioma=rs.getString(5);
-                Funcion funcion = new Funcion(id,id_pelicula, hora, sala, idioma);
-                System.out.println(funcion.toString()+"\n");
-                funciones.add(funcion);
-            }
-            return funciones;
-        } catch (SQLException ex) {
-            System.err.println("Error tipo: " +ex);
-        }
-        return null;
+  }
+
+  // Leer todas las funciones
+  public List<Funcion> obtenerFunciones() throws SQLException {
+    List<Funcion> funciones = new ArrayList<>();
+    String query = "SELECT * FROM funcion";
+    try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+      while (rs.next()) {
+        Funcion funcion = new Funcion();
+        funcion.setId(rs.getInt("id"));
+        funcion.setId_pelicula(rs.getInt("id_pelicula"));
+        funcion.setHorario(rs.getString("horario"));
+        funcion.setSala(rs.getInt("id_sala"));
+        funcion.setIdioma(rs.getString("idioma"));
+        funciones.add(funcion);
+      }
     }
-    
-    
+    return funciones;
+  }
+
+  // Actualizar función
+  public boolean actualizarFuncion(Funcion funcion) throws SQLException {
+    String query = "UPDATE funcion SET id_pelicula = ?, horario = ?, id_sala = ?, idioma = ? WHERE id = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(query)) {
+      stmt.setInt(1, funcion.getId_pelicula());
+      stmt.setString(2, funcion.getHorario());
+      stmt.setInt(3, funcion.getSala());
+      stmt.setString(4, funcion.getIdioma());
+      stmt.setInt(5, funcion.getId());
+      return stmt.executeUpdate() > 0;
+    }
+  }
+
+  // Eliminar función
+  public boolean eliminarFuncion(int id) throws SQLException {
+    String query = "DELETE FROM funcion WHERE id = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(query)) {
+      stmt.setInt(1, id);
+      return stmt.executeUpdate() > 0;
+    }
+  }
+
+  public List<Funcion> getAllFuncion() {
+    try {
+      String sql = "SELECT * FROM funcion ORDER BY id_pelicula AND horario;";
+      PreparedStatement ps;
+      ps = connection.prepareStatement(sql);
+
+      ResultSet rs = ps.executeQuery();
+      List<Funcion> funciones = new ArrayList<>();
+      while (rs.next()) {
+        int id = rs.getInt(1);
+        int id_pelicula = rs.getInt(2);
+        String hora = rs.getString(3);
+        int sala = rs.getInt(4);
+        String idioma = rs.getString(5);
+        Date fecha = rs.getDate(6);
+        Funcion funcion = new Funcion(id, id_pelicula, hora, sala, idioma, fecha);
+        System.out.println(funcion.toString() + "\n");
+        funciones.add(funcion);
+      }
+      return funciones;
+    } catch (SQLException ex) {
+      System.err.println("Error tipo: " + ex);
+    }
+    return null;
+  }
 }
