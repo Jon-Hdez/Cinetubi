@@ -42,7 +42,7 @@ public class SnackPanel extends javax.swing.JPanel {
     this.productId = productId;
     this.nombre = nombre;
     this.precio = precio;
-    this.tamanio = tamanio != null ? tamanio: "";
+    this.tamanio = tamanio != null ? tamanio : "";
     this.dulceriaController = dulceriaController;
     initComponents();
     initCardContent();
@@ -197,15 +197,35 @@ public class SnackPanel extends javax.swing.JPanel {
 
   private void decreaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseQtyButtonActionPerformed
     dulceriaController.decreaseProductQuantity(productId, evt);
+    dulceriaController.updateDulceria(productId, evt);
   }//GEN-LAST:event_decreaseQtyButtonActionPerformed
 
   private void increaseQtyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseQtyButtonActionPerformed
     dulceriaController.increaseProductQuantity(productId, evt);
+    dulceriaController.updateDulceria(productId, evt);
   }//GEN-LAST:event_increaseQtyButtonActionPerformed
+
+  public String getNombre() {
+    return nombre;
+  }
+
+  public String getTamanio() {
+    return tamanio;
+  }
+
+  
+  public String getNombreYTamanio() {
+    return nombre + " " + tamanio;
+  }
 
   public JLabel getQtyLabel() {
     return qtyLabel;
   }
+
+  public JLabel getProductTitle() {
+    return productTitle;
+  }
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton decreaseQtyButton;

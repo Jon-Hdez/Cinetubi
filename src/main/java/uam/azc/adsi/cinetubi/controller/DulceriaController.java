@@ -57,7 +57,6 @@ public class DulceriaController {
     } else {
       lv.setQuantity(lv.getQuantity() + 1);
     }
-    updateVentaDulceriaView(lv, evt);
   }
 
   public void decreaseProductQuantity(int productId, ActionEvent evt) {
@@ -70,18 +69,22 @@ public class DulceriaController {
     } else {
       lv.setQuantity(lv.getQuantity() - 1);
     }
-    updateVentaDulceriaView(lv, evt);
   }
 
-  private void updateVentaDulceriaView(LineaVenta lvActual, ActionEvent evt) {
+  public void updateDulceria(int productId, ActionEvent evt) {
+    updateLineaVentaPanel();
+    updateSnackPanel(productId, evt);
+  }
+
+  private void updateLineaVentaPanel() {
     JPanel lineaVentaPanel = dulceria.getListaVentaDulceriaPanel().getLineaVentaPanel();
     lineaVentaPanel.removeAll();
     for (LineaVenta lv : ventaActual.getLineas()) {
-      Product p = lv.getProduct();
+      Snack s = (Snack) lv.getProduct();
       String paddedText = "<html>"
-              + padString(p.getName(), 15)
+              + padString(s.getName() + " " + (s.getTamanio() != null ? s.getTamanio() : ""), 20)
               + padString(lv.getQuantity() + "", 8)
-              + padString(MoneyFormatter.format(p.getPrice()), 10)
+              + padString(MoneyFormatter.format(s.getPrice()), 6)
               + "</html>";
       JLabel lineaLabel = new JLabel(paddedText);
       Font monospaceFont = new Font("Monospaced", Font.PLAIN, 14);
@@ -90,14 +93,24 @@ public class DulceriaController {
     }
     lineaVentaPanel.revalidate();
     lineaVentaPanel.repaint();
+  }
 
+  private void updateSnackPanel(int productId, ActionEvent evt) {
     JLabel total = dulceria.getListaVentaDulceriaPanel().getTotalPriceLabel();
     total.setText(MoneyFormatter.format(ventaActual.getTotal()));
 
-    JButton button = (JButton) evt.getSource();
-    JPanel subPanel = (JPanel) button.getParent();
-    JLabel qtyLabel = (JLabel) subPanel.getComponent(1);
-    qtyLabel.setText(lvActual.getQuantity() + "");
+    JPanel btnContainer = (JPanel) (((JButton) evt.getSource()).getParent());
+    SnackPanel snackPanel = (SnackPanel) btnContainer.getParent();
+    String productTitle = "<html>"
+            + snackPanel.getNombre()
+            + "<br>"
+            + (snackPanel.getTamanio() == null ? "" : snackPanel.getTamanio())
+            + "</html>";
+    snackPanel.getProductTitle().setText(productTitle);
+    String quantity = ventaActual.findLineaVenta(productId) == null ? "0" : ventaActual.findLineaVenta(productId).getQuantity() + "";
+    snackPanel.getQtyLabel().setText(quantity);
+    snackPanel.revalidate();
+    snackPanel.repaint();
   }
 
   private String padString(String input, int length) {
