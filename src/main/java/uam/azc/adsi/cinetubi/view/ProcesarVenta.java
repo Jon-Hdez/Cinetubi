@@ -57,6 +57,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
     btnEfectivo = new javax.swing.JRadioButton();
     btnCredito = new javax.swing.JRadioButton();
     pnlDescripcionVenta = new javax.swing.JPanel();
+    jLabel1 = new javax.swing.JLabel();
     pnlDescripcionVentaBoxLayout = new javax.swing.JPanel();
     btnConfirmarVenta = new javax.swing.JButton();
     btnCancelar = new javax.swing.JButton();
@@ -130,6 +131,8 @@ public class ProcesarVenta extends javax.swing.JFrame {
     pnlDescripcionVenta.setRequestFocusEnabled(false);
     pnlDescripcionVenta.setVerifyInputWhenFocusTarget(false);
 
+    jLabel1.setText("Producto                             Cantidad                             Precio");
+
     pnlDescripcionVentaBoxLayout.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
     pnlDescripcionVentaBoxLayout.setLayout(new javax.swing.BoxLayout(pnlDescripcionVentaBoxLayout, javax.swing.BoxLayout.Y_AXIS));
 
@@ -137,11 +140,21 @@ public class ProcesarVenta extends javax.swing.JFrame {
     pnlDescripcionVenta.setLayout(pnlDescripcionVentaLayout);
     pnlDescripcionVentaLayout.setHorizontalGroup(
       pnlDescripcionVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(pnlDescripcionVentaBoxLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+      .addGroup(pnlDescripcionVentaLayout.createSequentialGroup()
+        .addGroup(pnlDescripcionVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addComponent(pnlDescripcionVentaBoxLayout, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addGroup(pnlDescripcionVentaLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        .addGap(325, 325, 325))
     );
     pnlDescripcionVentaLayout.setVerticalGroup(
       pnlDescripcionVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(pnlDescripcionVentaBoxLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+      .addGroup(pnlDescripcionVentaLayout.createSequentialGroup()
+        .addComponent(jLabel1)
+        .addGap(28, 28, 28)
+        .addComponent(pnlDescripcionVentaBoxLayout, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap())
     );
 
     btnConfirmarVenta.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -263,7 +276,8 @@ public class ProcesarVenta extends javax.swing.JFrame {
     for(JLabel lvLabel: lineaVentaLabels){
       pnlDescripcionVentaBoxLayout.add(lvLabel);
     }
-    
+    pnlDescripcionVentaBoxLayout.revalidate();
+    pnlDescripcionVentaBoxLayout.repaint();
     this.revalidate();
     this.repaint();
   }
@@ -394,6 +408,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
   private javax.swing.JRadioButton btnEfectivo;
   private javax.swing.JButton btnMenu;
   private javax.swing.JButton btnTaquilla;
+  private javax.swing.JLabel jLabel1;
   private javax.swing.JTextField lblCambio;
   private javax.swing.JTextField lblRecibo;
   private javax.swing.JTextField lblTotal;

@@ -18,6 +18,8 @@ abstract public class Product {
     this.price = price;
   }
 
+  abstract public String getShortDescription();
+  
   public int getId() {
     return id;
   }

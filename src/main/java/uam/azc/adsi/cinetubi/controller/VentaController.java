@@ -10,6 +10,7 @@ import uam.azc.adsi.cinetubi.dao.VentaDAO;
 import uam.azc.adsi.cinetubi.model.LineaVenta;
 import uam.azc.adsi.cinetubi.model.Venta;
 import uam.azc.adsi.cinetubi.util.MoneyFormatter;
+import uam.azc.adsi.cinetubi.util.StringHTMLPadder;
 
 /**
  *
@@ -48,9 +49,9 @@ public class VentaController {
     List<JLabel> lineaLabels = new ArrayList<>();
     for (LineaVenta lv : ventaActual.getLineas()) {
       String paddedText = "<html>"
-              + padString(lv.getProduct().getName(), 15)
-              + padString(lv.getQuantity() + "", 8)
-              + padString(MoneyFormatter.format(lv.getProduct().getPrice()), 10)
+              + StringHTMLPadder.padString(lv.getProduct().getShortDescription(), 20)
+              + StringHTMLPadder.padString(lv.getQuantity() + "", 8)
+              + StringHTMLPadder.padString(MoneyFormatter.format(lv.getProduct().getPrice()), 10)
               + "</html>";
       JLabel lineaLabel = new JLabel(paddedText);
       Font monospaceFont = new Font("Monospaced", Font.PLAIN, 14);

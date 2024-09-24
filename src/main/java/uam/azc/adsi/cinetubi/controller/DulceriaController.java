@@ -13,6 +13,7 @@ import uam.azc.adsi.cinetubi.model.Snack;
 import uam.azc.adsi.cinetubi.model.Venta;
 import uam.azc.adsi.cinetubi.model.SnackCatalog;
 import uam.azc.adsi.cinetubi.util.MoneyFormatter;
+import uam.azc.adsi.cinetubi.util.StringHTMLPadder;
 import uam.azc.adsi.cinetubi.view.SnackPanel;
 import uam.azc.adsi.cinetubi.view.Dulceria;
 
@@ -82,9 +83,9 @@ public class DulceriaController {
     for (LineaVenta lv : ventaActual.getLineas()) {
       Snack s = (Snack) lv.getProduct();
       String paddedText = "<html>"
-              + padString(s.getName() + " " + (s.getTamanio() != null ? s.getTamanio() : ""), 20)
-              + padString(lv.getQuantity() + "", 8)
-              + padString(MoneyFormatter.format(s.getPrice()), 6)
+              + StringHTMLPadder.padString(s.getName() + " " + (s.getTamanio() != null ? s.getTamanio() : ""), 20)
+              + StringHTMLPadder.padString(lv.getQuantity() + "", 8)
+              + StringHTMLPadder.padString(MoneyFormatter.format(s.getPrice()), 6)
               + "</html>";
       JLabel lineaLabel = new JLabel(paddedText);
       Font monospaceFont = new Font("Monospaced", Font.PLAIN, 14);
@@ -111,17 +112,6 @@ public class DulceriaController {
     snackPanel.getQtyLabel().setText(quantity);
     snackPanel.revalidate();
     snackPanel.repaint();
-  }
-
-  private String padString(String input, int length) {
-    StringBuilder sb = new StringBuilder(input);
-    int spacesToAdd = length - input.length();
-    if (spacesToAdd > 0) {
-      for (int i = 0; i < spacesToAdd; i++) {
-        sb.append("&nbsp;"); // Append non-breaking spaces
-      }
-    }
-    return sb.toString();
   }
 
   public Venta getVentaActual() {

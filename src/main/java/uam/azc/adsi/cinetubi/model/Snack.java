@@ -27,4 +27,10 @@ public class Snack extends Product {
   public String toString() {
     return "Snack{" + "id=" + this.getId() + ", nombre=" + this.getName() + ", precio=" + this.getPrice() + '}';
   }
+
+  // Usado en las lineas de venta para colocar la descripcion del producto comprado
+  @Override
+  public String getShortDescription() {
+    return super.getName() + " " + tamanio;
+  }
 }
