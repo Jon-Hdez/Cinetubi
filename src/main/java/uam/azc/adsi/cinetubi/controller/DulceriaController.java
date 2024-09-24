@@ -33,7 +33,6 @@ public class DulceriaController {
   public List<SnackPanel> createSnackPanels() {
     List<SnackPanel> snackPanels = new ArrayList<>();
     for (Snack s : snackCatalog.getCatalog().values()) {
-      System.out.println("Empieza catalago " + s);
       SnackPanel mySnackPanel = new SnackPanel(
               s.getId(),
               s.getName(),
@@ -121,8 +120,7 @@ public class DulceriaController {
   }
 
   public void cancelVenta(ActionEvent evt) {
-    System.out.println("NO ESTA IMPLEMENTADO ESE BOTON");
-
+    this.ventaActual = new Venta();
   }
 
   public boolean esVentaActualVacia() {
