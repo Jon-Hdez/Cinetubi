@@ -187,6 +187,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Programar Funcion"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FuncionButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="SalirButton">
           <Properties>

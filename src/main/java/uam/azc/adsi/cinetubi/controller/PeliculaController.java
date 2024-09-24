@@ -6,26 +6,26 @@ package uam.azc.adsi.cinetubi.controller;
 
 import java.sql.SQLException;
 import java.util.List;
-import uam.azc.adsi.cinetubi.dao.PeliculaDAO;
-import uam.azc.adsi.cinetubi.model.Pelicula;
+import uam.azc.adsi.cinetubi.dao.PeliculaDAOJony;
+import uam.azc.adsi.cinetubi.model.PeliculaJony;
 
 
 public class PeliculaController {
-    private PeliculaDAO peliculaDAO;
+    private PeliculaDAOJony peliculaDAO;
 
-    public PeliculaController(PeliculaDAO peliculaDAO) {
+    public PeliculaController(PeliculaDAOJony peliculaDAO) {
         this.peliculaDAO = peliculaDAO;
     }
 
-    public void agregarPelicula(Pelicula pelicula) throws SQLException {
+    public void agregarPelicula(PeliculaJony pelicula) throws SQLException {
         peliculaDAO.agregarPelicula(pelicula);
     }
 
-    public List<Pelicula> obtenerPeliculas() throws SQLException {
+    public List<PeliculaJony> obtenerPeliculas() throws SQLException {
         return peliculaDAO.obtenerPeliculas();
     }
 
-    public void actualizarPelicula(Pelicula pelicula) throws SQLException {
+    public void actualizarPelicula(PeliculaJony pelicula) throws SQLException {
         peliculaDAO.actualizarPelicula(pelicula);
     }
 

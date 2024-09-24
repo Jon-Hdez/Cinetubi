@@ -8,7 +8,7 @@ import uam.azc.adsi.cinetubi.controller.DulceriaController;
  * @author José Vicente López López 2212002118
  */
 public class Menu extends javax.swing.JFrame {
-  
+
   private DulceriaController dulceriaController;
 
   /**
@@ -103,6 +103,11 @@ public class Menu extends javax.swing.JFrame {
     FuncionButton.setBackground(new java.awt.Color(0, 102, 102));
     FuncionButton.setForeground(new java.awt.Color(255, 255, 255));
     FuncionButton.setText("Programar Funcion");
+    FuncionButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        FuncionButtonActionPerformed(evt);
+      }
+    });
 
     SalirButton.setBackground(new java.awt.Color(0, 102, 102));
     SalirButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -188,6 +193,12 @@ public class Menu extends javax.swing.JFrame {
       login.setDulceriaController(dulceriaController);
       login.setVisible(true);
     }//GEN-LAST:event_SalirButtonActionPerformed
+
+  private void FuncionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FuncionButtonActionPerformed
+    dispose();
+    MenuProgramacion menu = new MenuProgramacion();
+    menu.setVisible(true);
+  }//GEN-LAST:event_FuncionButtonActionPerformed
 
 //  /**
 //   * @param args the command line arguments
