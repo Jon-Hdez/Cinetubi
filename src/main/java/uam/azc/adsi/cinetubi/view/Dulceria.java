@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.Timer;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
+import uam.azc.adsi.cinetubi.controller.LoginController;
 import uam.azc.adsi.cinetubi.controller.VentaController;
 import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
 
@@ -57,6 +58,7 @@ public class Dulceria extends javax.swing.JFrame {
     cancelButton = new javax.swing.JButton();
     payButton = new javax.swing.JButton();
     lineaVentasPanel = new uam.azc.adsi.cinetubi.view.LineaVentasPanel();
+    jButton1 = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Dulceria");
@@ -80,25 +82,36 @@ public class Dulceria extends javax.swing.JFrame {
       }
     });
 
+    jButton1.setText("Cerrar Sesión");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1ActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(payButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addComponent(lineaVentasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+              .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(payButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(lineaVentasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)))
         .addContainerGap())
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(lineaVentasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(lineaVentasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,11 +142,8 @@ public class Dulceria extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-    dulceriaController.cancelarVenta(evt);
-    Menu newMenu = new Menu();
-    newMenu.setDulceriaController(dulceriaController);
-    newMenu.setVisible(true);
-    this.dispose();
+    dulceriaController.cancelarVenta();
+    dulceriaController.actualizarDulceriaNuevaVenta();
   }//GEN-LAST:event_cancelButtonActionPerformed
 
   private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
@@ -148,6 +158,14 @@ public class Dulceria extends javax.swing.JFrame {
     procesar.setVisible(true);
     this.dispose();
   }//GEN-LAST:event_payButtonActionPerformed
+
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    LoginController loginController = new LoginController();
+    Login login = new Login();
+    login.setLoginController(loginController);
+    login.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_jButton1ActionPerformed
 
 //  /**
 //   * @param args the command line arguments
@@ -195,6 +213,7 @@ public class Dulceria extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton cancelButton;
+  private javax.swing.JButton jButton1;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JSplitPane jSplitPane1;
   private uam.azc.adsi.cinetubi.view.LineaVentasPanel lineaVentasPanel;

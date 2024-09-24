@@ -1,5 +1,6 @@
 package uam.azc.adsi.cinetubi.controller;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -78,9 +79,26 @@ public class DulceriaController {
     }
   }
 
-  public void actualizarDulceria(int productId, ActionEvent evt) {
+  public void actualizarDulceriaNuevaVenta() {
+    actualizarLineaVentaPanel();
+    limpiarSnackPanels();
+  }
+
+  public void actualizarDulceriaNuevaLineaVenta(int productId, ActionEvent evt) {
     actualizarLineaVentaPanel();
     actualizarSnackPanel(productId, evt);
+  }
+
+  private void limpiarSnackPanels() {
+    JPanel grid = dulceria.getProductsPanel().getProductsGridPanel();
+    for (Component c : grid.getComponents()) {
+      if (c instanceof SnackPanel) {
+        SnackPanel snackPanel = (SnackPanel) c;
+        snackPanel.getQtyLabel().setText("0");
+      }
+    }
+    grid.revalidate();
+    grid.repaint();
   }
 
   private void actualizarLineaVentaPanel() {
@@ -128,7 +146,7 @@ public class DulceriaController {
     this.dulceria = dulceriaView;
   }
 
-  public void cancelarVenta(ActionEvent evt) {
+  public void cancelarVenta() {
     this.ventaActual = new Venta();
   }
 
