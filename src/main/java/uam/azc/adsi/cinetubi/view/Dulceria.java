@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.Timer;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
+import uam.azc.adsi.cinetubi.controller.VentaController;
 import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
 
 /**
@@ -138,11 +139,13 @@ public class Dulceria extends javax.swing.JFrame {
   }//GEN-LAST:event_cancelButtonActionPerformed
 
   private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
-    System.out.println(dulceriaController);
+    // No te deja pagar, si no hay elementos en la venta actual
     if (dulceriaController.esVentaActualVacia()) {
       return;
     }
-    ProcesarVenta procesar = new ProcesarVenta(VistaDeOrigen.DULCERIA, dulceriaController);
+    VentaController ventaController = new VentaController();
+    ventaController.setVentaActual(dulceriaController.getVentaActual());
+    ProcesarVenta procesar = new ProcesarVenta(ventaController);
     procesar.setVisible(true);
     this.dispose();
   }//GEN-LAST:event_payButtonActionPerformed

@@ -361,9 +361,9 @@ public class Taquilla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-      ProcesarVenta venta = new ProcesarVenta(VistaDeOrigen.TAQUILLA, dulceriaController);
-      venta.setDulceriaController(dulceriaController);
-      venta.setVisible(true);
+//      ProcesarVenta venta = new ProcesarVenta(VistaDeOrigen.TAQUILLA, dulceriaController);
+//      venta.setDulceriaController(dulceriaController);
+//      venta.setVisible(true);
       this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
 

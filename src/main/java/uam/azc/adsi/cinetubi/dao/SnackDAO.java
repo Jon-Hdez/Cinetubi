@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Snack;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 

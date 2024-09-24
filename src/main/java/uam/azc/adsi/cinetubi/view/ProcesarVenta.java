@@ -4,9 +4,16 @@
  */
 package uam.azc.adsi.cinetubi.view;
 
+import static com.mysql.cj.util.StringUtils.padString;
+import java.awt.Font;
+import java.math.BigDecimal;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
+import uam.azc.adsi.cinetubi.controller.VentaController;
 import uam.azc.adsi.cinetubi.model.LineaVenta;
+import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Venta;
 import uam.azc.adsi.cinetubi.util.MoneyFormatter;
 import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
@@ -17,32 +24,23 @@ import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
  */
 public class ProcesarVenta extends javax.swing.JFrame {
 
-  private DulceriaController dulceriaController;
-  private final VistaDeOrigen origen;
+  private VentaController ventaController;
   private Venta ventaActual;
 
   /**
    * Creates new form ProcesarVenta
    *
-   * @param origen
-   * @param dulceriaController
+   * @param ventaController
    */
-  public ProcesarVenta(VistaDeOrigen origen, DulceriaController dulceriaController) {
+  public ProcesarVenta(VentaController ventaController) {
     initComponents();
-    this.origen = origen;
-    this.dulceriaController = dulceriaController;
-    this.ventaActual = eligeVentaActual();
-    lblTotal.setText(MoneyFormatter.format(ventaActual.getTotal()));
-  }
-
-  private Venta eligeVentaActual() {
-    if (origen == VistaDeOrigen.DULCERIA) {
-      return dulceriaController.getVentaActual();
-    } else {
-      // Vicente aqui regresarias tu instancia de venta actual, tendria que estar guardada en TaquillaController
-      // return taquillaController.getVentaActual();
-      return dulceriaController.getVentaActual();
-    }
+    this.ventaController = ventaController;
+    this.ventaActual = ventaController.getVentaActual();
+    
+    btnContado.setSelected(true);
+    btnConfirmarVenta.setEnabled(false);
+    
+    cargarInformacionProcesarVenta();
   }
 
   /**
@@ -65,7 +63,8 @@ public class ProcesarVenta extends javax.swing.JFrame {
     btnContado = new javax.swing.JRadioButton();
     btnCredito = new javax.swing.JRadioButton();
     pnlDescripcionVenta = new javax.swing.JPanel();
-    btnProcesar = new javax.swing.JButton();
+    pnlDescripcionVentaBoxLayout = new javax.swing.JPanel();
+    btnConfirmarVenta = new javax.swing.JButton();
     btnCancelar = new javax.swing.JButton();
     btnMenu = new javax.swing.JButton();
     btnTaquilla = new javax.swing.JButton();
@@ -95,9 +94,24 @@ public class ProcesarVenta extends javax.swing.JFrame {
     });
 
     lblRecibo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+    lblRecibo.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        lblReciboActionPerformed(evt);
+      }
+    });
+    lblRecibo.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(java.awt.event.KeyEvent evt) {
+        lblReciboKeyTyped(evt);
+      }
+    });
 
     lblCambio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
     lblCambio.setEnabled(false);
+    lblCambio.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        lblCambioActionPerformed(evt);
+      }
+    });
 
     btgForma.add(btnContado);
     btnContado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -122,22 +136,25 @@ public class ProcesarVenta extends javax.swing.JFrame {
     pnlDescripcionVenta.setRequestFocusEnabled(false);
     pnlDescripcionVenta.setVerifyInputWhenFocusTarget(false);
 
+    pnlDescripcionVentaBoxLayout.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+    pnlDescripcionVentaBoxLayout.setLayout(new javax.swing.BoxLayout(pnlDescripcionVentaBoxLayout, javax.swing.BoxLayout.Y_AXIS));
+
     javax.swing.GroupLayout pnlDescripcionVentaLayout = new javax.swing.GroupLayout(pnlDescripcionVenta);
     pnlDescripcionVenta.setLayout(pnlDescripcionVentaLayout);
     pnlDescripcionVentaLayout.setHorizontalGroup(
       pnlDescripcionVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 690, Short.MAX_VALUE)
+      .addComponent(pnlDescripcionVentaBoxLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
     pnlDescripcionVentaLayout.setVerticalGroup(
       pnlDescripcionVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 371, Short.MAX_VALUE)
+      .addComponent(pnlDescripcionVentaBoxLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
 
-    btnProcesar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-    btnProcesar.setText("Procesar Venta");
-    btnProcesar.addActionListener(new java.awt.event.ActionListener() {
+    btnConfirmarVenta.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+    btnConfirmarVenta.setText("Confirmar Venta");
+    btnConfirmarVenta.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnProcesarActionPerformed(evt);
+        btnConfirmarVentaActionPerformed(evt);
       }
     });
 
@@ -186,11 +203,10 @@ public class ProcesarVenta extends javax.swing.JFrame {
                   .addComponent(txtForma))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCredito)
-                .addGap(31, 31, 31)))
-            .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(31, 31, 31))))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnProcesar))
+            .addComponent(btnConfirmarVenta))
           .addGroup(layout.createSequentialGroup()
             .addComponent(btnCancelar)
             .addGap(0, 0, Short.MAX_VALUE)))
@@ -228,7 +244,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(lblCambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
-            .addComponent(btnProcesar)
+            .addComponent(btnConfirmarVenta)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnCancelar))
           .addGroup(layout.createSequentialGroup()
@@ -244,23 +260,43 @@ public class ProcesarVenta extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  private void cargarInformacionProcesarVenta() {
+    lblTotal.setText(MoneyFormatter.format(ventaActual.getTotal()));
+
+    //Llenas la descripcion de la venta, agregando todas las lineas de venta
+    pnlDescripcionVentaBoxLayout.removeAll();
+    for (LineaVenta lv : ventaActual.getLineas()) {
+      Product p = lv.getProduct();
+      String paddedText = "<html>"
+              + padString(p.getName(), 15)
+              + padString(lv.getQuantity() + "", 8)
+              + padString(MoneyFormatter.format(p.getPrice()), 10)
+              + "</html>";
+      JLabel lineaLabel = new JLabel(paddedText);
+      Font monospaceFont = new Font("Monospaced", Font.PLAIN, 14);
+      lineaLabel.setFont(monospaceFont);
+      pnlDescripcionVentaBoxLayout.add(lineaLabel);
+    }
+    this.revalidate();
+    this.repaint();
+  }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-      // TODO add your handling code here:
-      if(origen == VistaDeOrigen.DULCERIA){
-        Dulceria dulceria = new Dulceria(dulceriaController);
-        dulceriaController.setVentaDulceriaView(dulceria);
-      }
-      Menu menu = new Menu();
-      menu.setVisible(true);
-      this.dispose();
+//      // TODO add your handling code here:
+//      if (origen == VistaDeOrigen.DULCERIA) {
+//        Dulceria dulceria = new Dulceria(ventaController);
+//        ventaController.setVentaDulceriaView(dulceria);
+//      }
+//      Menu menu = new Menu();
+//      menu.setVisible(true);
+//      this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-      // TODO add your handling code here:
-      this.dispose();
-      Menu menu = new Menu();
-      menu.setDulceriaController(dulceriaController);
-      menu.setVisible(true);
+//      // TODO add your handling code here:
+//      this.dispose();
+//      Menu menu = new Menu();
+//      menu.setDulceriaController(ventaController);
+//      menu.setVisible(true);
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnTaquillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaquillaActionPerformed
@@ -270,12 +306,13 @@ public class ProcesarVenta extends javax.swing.JFrame {
       taquilla.setVisible(true);
     }//GEN-LAST:event_btnTaquillaActionPerformed
 
-    private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
+    private void btnConfirmarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarVentaActionPerformed
       // TODO add your handling code here:
+      ventaController.guardarVenta();
       this.dispose();
-      Taquilla taquilla = new Taquilla();
-      taquilla.setVisible(true);
-    }//GEN-LAST:event_btnProcesarActionPerformed
+//      Taquilla taquilla = new Taquilla();
+//      taquilla.setVisible(true);
+    }//GEN-LAST:event_btnConfirmarVentaActionPerformed
 
   private void lblTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblTotalActionPerformed
     // TODO add your handling code here:
@@ -290,9 +327,38 @@ public class ProcesarVenta extends javax.swing.JFrame {
     ventaActual.setMetodoPago("credito");
   }//GEN-LAST:event_btnCreditoActionPerformed
 
-  public void setDulceriaController(DulceriaController dulceriaController) {
-    this.dulceriaController = dulceriaController;
-  }
+  private void lblReciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblReciboActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_lblReciboActionPerformed
+
+  private void lblReciboKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblReciboKeyTyped
+    // TODO add your handling code here:
+    String efectivoRecibido = ((JTextField) evt.getSource()).getText();
+    if ("".equals(efectivoRecibido)) {
+      return;
+    }
+
+    if (evt.getKeyChar() == '\n') {
+      BigDecimal efectivo = new BigDecimal(((JTextField) evt.getSource()).getText());
+      BigDecimal cambio = efectivo.subtract(ventaActual.getTotal());
+      
+      if (cambio.compareTo(BigDecimal.ZERO) < 0) {
+        JOptionPane.showMessageDialog(null,
+                "Efectivo Recibido Insuficiente",
+                "Efectivo Insuficiente",
+                JOptionPane.WARNING_MESSAGE);
+      } else {
+        lblCambio.setText(MoneyFormatter.format(cambio));
+        btnConfirmarVenta.setEnabled(true);
+      }
+
+    }
+  }//GEN-LAST:event_lblReciboKeyTyped
+
+  private void lblCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblCambioActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_lblCambioActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -334,15 +400,16 @@ public class ProcesarVenta extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.ButtonGroup btgForma;
   private javax.swing.JButton btnCancelar;
+  private javax.swing.JButton btnConfirmarVenta;
   private javax.swing.JRadioButton btnContado;
   private javax.swing.JRadioButton btnCredito;
   private javax.swing.JButton btnMenu;
-  private javax.swing.JButton btnProcesar;
   private javax.swing.JButton btnTaquilla;
   private javax.swing.JTextField lblCambio;
   private javax.swing.JTextField lblRecibo;
   private javax.swing.JTextField lblTotal;
   private javax.swing.JPanel pnlDescripcionVenta;
+  private javax.swing.JPanel pnlDescripcionVentaBoxLayout;
   private javax.swing.JLabel txtCambio;
   private javax.swing.JLabel txtEfectivo;
   private javax.swing.JLabel txtForma;

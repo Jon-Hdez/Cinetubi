@@ -2,6 +2,7 @@ package uam.azc.adsi.cinetubi.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,10 +11,15 @@ import java.util.List;
  */
 public class Venta {
 
-  private int idVenta;
-  private List<LineaVenta> lineas;
-  private BigDecimal total;
+  private int id;
+  private int idEmpleado;
+  private Integer idSocio;
   private String metodoPago;
+  private String area;
+  private BigDecimal total;
+  private Date creada_en;
+
+  private List<LineaVenta> lineas;
 
   public Venta() {
     this.lineas = new ArrayList<>();
@@ -24,24 +30,52 @@ public class Venta {
     lineas.add(lv);
   }
 
-  public int getIdVenta() {
-    return idVenta;
+  public int getId() {
+    return id;
   }
 
-  public void setIdVenta(int idVenta) {
-    this.idVenta = idVenta;
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public int getIdEmpleado() {
+    return idEmpleado;
+  }
+
+  public void setIdEmpleado(int idEmpleado) {
+    this.idEmpleado = idEmpleado;
+  }
+
+  public Integer getIdSocio() {
+    return idSocio;
+  }
+
+  public void setIdSocio(Integer idSocio) {
+    this.idSocio = idSocio;
+  }
+
+  public String getArea() {
+    return area;
+  }
+
+  public void setArea(String area) {
+    this.area = area;
   }
 
   public BigDecimal getTotal() {
-    total = BigDecimal.valueOf(0);
-    for (LineaVenta lv : lineas) {
-      total = total.add(lv.getSubtotal());
-    }
     return total;
   }
 
-  public List<LineaVenta> getLineas() {
-    return lineas;
+  public void setTotal(BigDecimal total) {
+    this.total = total;
+  }
+
+  public Date getCreada_en() {
+    return creada_en;
+  }
+
+  public void setCreada_en(Date creada_en) {
+    this.creada_en = creada_en;
   }
 
   public String getMetodoPago() {
