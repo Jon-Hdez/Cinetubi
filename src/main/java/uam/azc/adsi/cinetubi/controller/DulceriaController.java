@@ -15,7 +15,7 @@ import uam.azc.adsi.cinetubi.model.Product;
 import uam.azc.adsi.cinetubi.model.Venta;
 import uam.azc.adsi.cinetubi.model.ProductCatalog;
 import uam.azc.adsi.cinetubi.view.ProductPanel;
-import uam.azc.adsi.cinetubi.view.VentaDulceriaView;
+import uam.azc.adsi.cinetubi.view.Dulceria;
 
 /**
  *
@@ -24,8 +24,9 @@ import uam.azc.adsi.cinetubi.view.VentaDulceriaView;
 public class DulceriaController {
 
   private final ProductCatalog productCatalog;
-  private VentaDulceriaView ventaDulceriaView;
+  private Dulceria ventaDulceriaView;
   private Venta ventaActual;
+
   private final NumberFormat formatter;
 
   public DulceriaController(ProductCatalog snackCatalog) {
@@ -109,7 +110,11 @@ public class DulceriaController {
     return sb.toString();
   }
 
-  public void setVentaDulceriaView(VentaDulceriaView dulceriaView) {
+  public Venta getVentaActual() {
+    return ventaActual;
+  }
+
+  public void setVentaDulceriaView(Dulceria dulceriaView) {
     this.ventaDulceriaView = dulceriaView;
   }
 
@@ -120,5 +125,9 @@ public class DulceriaController {
   public void cancelVenta(ActionEvent evt) {
     System.out.println("NO ESTA IMPLEMENTADO ESE BOTON");
 
+  }
+
+  public boolean esVentaActualVacia() {
+    return ventaActual.getLineas().isEmpty();
   }
 }

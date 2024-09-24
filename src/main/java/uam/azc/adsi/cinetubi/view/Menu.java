@@ -168,7 +168,7 @@ public class Menu extends javax.swing.JFrame {
 
   private void DulceriaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DulceriaButtonActionPerformed
     // TODO add your handling code here:
-    VentaDulceriaView dulceria = new VentaDulceriaView(dulceriaController);
+    Dulceria dulceria = new Dulceria(dulceriaController);
     dulceriaController.setVentaDulceriaView(dulceria);
     dulceria.setVisible(true);
     this.dispose();

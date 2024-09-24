@@ -10,12 +10,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.Timer;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
+import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
 
 /**
  *
  * @author aldai
  */
-public class VentaDulceriaView extends javax.swing.JFrame {
+public class Dulceria extends javax.swing.JFrame {
 
   private final DulceriaController dulceriaController;
 
@@ -24,7 +25,7 @@ public class VentaDulceriaView extends javax.swing.JFrame {
    *
    * @param dCon
    */
-  public VentaDulceriaView(DulceriaController dCon) {
+  public Dulceria(DulceriaController dCon) {
     initComponents();
 
     this.dulceriaController = dCon;
@@ -137,8 +138,11 @@ public class VentaDulceriaView extends javax.swing.JFrame {
   }//GEN-LAST:event_cancelButtonActionPerformed
 
   private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
-    ProcesarVenta procesar = new ProcesarVenta();
-    procesar.setDulceriaController(dulceriaController);
+    System.out.println(dulceriaController);
+    if (dulceriaController.esVentaActualVacia()) {
+      return;
+    }
+    ProcesarVenta procesar = new ProcesarVenta(VistaDeOrigen.DULCERIA, dulceriaController);
     procesar.setVisible(true);
     this.dispose();
   }//GEN-LAST:event_payButtonActionPerformed

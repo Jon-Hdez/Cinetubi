@@ -11,6 +11,7 @@ import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 import uam.azc.adsi.cinetubi.model.Combo;
 import uam.azc.adsi.cinetubi.model.Snack;
 import uam.azc.adsi.cinetubi.model.ProductCatalog;
+import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 
 /**
  *
@@ -18,10 +19,10 @@ import uam.azc.adsi.cinetubi.model.ProductCatalog;
  */
 public class ComboDAO {
 
-  private Connection connection;
+  private DatabaseConnection dbConnection;
 
-  public ComboDAO(Connection connection) {
-    this.connection = connection;
+  public ComboDAO(DatabaseConnection dbConnection) {
+    this.dbConnection = dbConnection;
   }
 
 //  public List<Combo> getAllCombos() throws SQLException {

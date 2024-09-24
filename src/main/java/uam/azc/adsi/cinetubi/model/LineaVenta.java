@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  */
 public class LineaVenta {
 
-  private Product product;
+  private final Product product;
   private int quantity;
   private BigDecimal subtotal;
 

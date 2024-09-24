@@ -8,6 +8,7 @@ import uam.azc.adsi.cinetubi.controller.DulceriaController;
 import uam.azc.adsi.cinetubi.controller.TaquillaController;
 import uam.azc.adsi.cinetubi.dao.PeliculaDAO;
 import uam.azc.adsi.cinetubi.model.*;
+import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
 
 /**
  *
@@ -348,8 +349,7 @@ public class Taquilla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-      // TODO add your handling code here:
-      ProcesarVenta venta = new ProcesarVenta();
+      ProcesarVenta venta = new ProcesarVenta(VistaDeOrigen.TAQUILLA, dulceriaController);
       venta.setDulceriaController(dulceriaController);
       venta.setVisible(true);
       this.dispose();

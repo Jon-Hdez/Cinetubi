@@ -4,7 +4,12 @@
  */
 package uam.azc.adsi.cinetubi.view;
 
+import javax.swing.JLabel;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
+import uam.azc.adsi.cinetubi.model.LineaVenta;
+import uam.azc.adsi.cinetubi.model.Venta;
+import uam.azc.adsi.cinetubi.util.MoneyFormatter;
+import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
 
 /**
  *
@@ -13,12 +18,31 @@ import uam.azc.adsi.cinetubi.controller.DulceriaController;
 public class ProcesarVenta extends javax.swing.JFrame {
 
   private DulceriaController dulceriaController;
+  private final VistaDeOrigen origen;
+  private Venta ventaActual;
 
   /**
    * Creates new form ProcesarVenta
+   *
+   * @param origen
+   * @param dulceriaController
    */
-  public ProcesarVenta() {
+  public ProcesarVenta(VistaDeOrigen origen, DulceriaController dulceriaController) {
     initComponents();
+    this.origen = origen;
+    this.dulceriaController = dulceriaController;
+    this.ventaActual = eligeVentaActual();
+    lblTotal.setText(MoneyFormatter.format(ventaActual.getTotal()));
+  }
+
+  private Venta eligeVentaActual() {
+    if (origen == VistaDeOrigen.DULCERIA) {
+      return dulceriaController.getVentaActual();
+    } else {
+      // Vicente aqui regresarias tu instancia de venta actual, tendria que estar guardada en TquillaController
+      // return taquillaController.getVentaActual();
+      return dulceriaController.getVentaActual();
+    }
   }
 
   /**
@@ -40,7 +64,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
     lblCambio = new javax.swing.JTextField();
     btnContado = new javax.swing.JRadioButton();
     btnCredito = new javax.swing.JRadioButton();
-    jPanel1 = new javax.swing.JPanel();
+    pnlDescripcionVenta = new javax.swing.JPanel();
     btnProcesar = new javax.swing.JButton();
     btnCancelar = new javax.swing.JButton();
     btnMenu = new javax.swing.JButton();
@@ -64,6 +88,11 @@ public class ProcesarVenta extends javax.swing.JFrame {
     txtCambio.setText("Cambio");
 
     lblTotal.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+    lblTotal.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        lblTotalActionPerformed(evt);
+      }
+    });
 
     lblRecibo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
@@ -73,24 +102,34 @@ public class ProcesarVenta extends javax.swing.JFrame {
     btgForma.add(btnContado);
     btnContado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
     btnContado.setText("Contado");
+    btnContado.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnContadoActionPerformed(evt);
+      }
+    });
 
     btgForma.add(btnCredito);
     btnCredito.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
     btnCredito.setText("Credito");
+    btnCredito.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCreditoActionPerformed(evt);
+      }
+    });
 
-    jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripción venta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 18))); // NOI18N
-    jPanel1.setPreferredSize(new java.awt.Dimension(700, 400));
-    jPanel1.setRequestFocusEnabled(false);
-    jPanel1.setVerifyInputWhenFocusTarget(false);
+    pnlDescripcionVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripción venta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 18))); // NOI18N
+    pnlDescripcionVenta.setPreferredSize(new java.awt.Dimension(700, 400));
+    pnlDescripcionVenta.setRequestFocusEnabled(false);
+    pnlDescripcionVenta.setVerifyInputWhenFocusTarget(false);
 
-    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-    jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    javax.swing.GroupLayout pnlDescripcionVentaLayout = new javax.swing.GroupLayout(pnlDescripcionVenta);
+    pnlDescripcionVenta.setLayout(pnlDescripcionVentaLayout);
+    pnlDescripcionVentaLayout.setHorizontalGroup(
+      pnlDescripcionVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGap(0, 690, Short.MAX_VALUE)
     );
-    jPanel1Layout.setVerticalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    pnlDescripcionVentaLayout.setVerticalGroup(
+      pnlDescripcionVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGap(0, 371, Short.MAX_VALUE)
     );
 
@@ -148,7 +187,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCredito)
                 .addGap(31, 31, 31)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnProcesar)
@@ -156,7 +195,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
           .addGroup(layout.createSequentialGroup()
             .addComponent(btnCancelar)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(pnlDescripcionVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(57, 57, 57))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addGap(0, 0, Short.MAX_VALUE)
@@ -198,8 +237,8 @@ public class ProcesarVenta extends javax.swing.JFrame {
               .addComponent(btnMenu)
               .addComponent(btnTaquilla))
             .addGap(62, 62, 62)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(271, Short.MAX_VALUE))
+            .addComponent(pnlDescripcionVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(267, Short.MAX_VALUE))
     );
 
     pack();
@@ -234,47 +273,59 @@ public class ProcesarVenta extends javax.swing.JFrame {
       taquilla.setVisible(true);
     }//GEN-LAST:event_btnProcesarActionPerformed
 
-  /**
-   * @param args the command line arguments
-   */
-  public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-        if ("Nimbus".equals(info.getName())) {
-          javax.swing.UIManager.setLookAndFeel(info.getClassName());
-          break;
-        }
-      }
-    } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(ProcesarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(ProcesarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(ProcesarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(ProcesarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
-    //</editor-fold>
-    //</editor-fold>
-    //</editor-fold>
+  private void lblTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblTotalActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_lblTotalActionPerformed
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        new ProcesarVenta().setVisible(true);
-      }
-    });
-  }
+  private void btnContadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContadoActionPerformed
+    // TODO add your handling code here:
+    ventaActual.setMetodoPago("contado");
+  }//GEN-LAST:event_btnContadoActionPerformed
+
+  private void btnCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditoActionPerformed
+    ventaActual.setMetodoPago("credito");
+  }//GEN-LAST:event_btnCreditoActionPerformed
 
   public void setDulceriaController(DulceriaController dulceriaController) {
     this.dulceriaController = dulceriaController;
   }
+  /**
+   * @param args the command line arguments
+   */
+//  public static void main(String args[]) {
+//    /* Set the Nimbus look and feel */
+//    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//     */
+//    try {
+//      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//        if ("Nimbus".equals(info.getName())) {
+//          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//          break;
+//        }
+//      }
+//    } catch (ClassNotFoundException ex) {
+//      java.util.logging.Logger.getLogger(ProcesarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//    } catch (InstantiationException ex) {
+//      java.util.logging.Logger.getLogger(ProcesarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//    } catch (IllegalAccessException ex) {
+//      java.util.logging.Logger.getLogger(ProcesarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//      java.util.logging.Logger.getLogger(ProcesarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//    }
+//    //</editor-fold>
+//    //</editor-fold>
+//    //</editor-fold>
+//    //</editor-fold>
+//
+//    /* Create and display the form */
+//    java.awt.EventQueue.invokeLater(new Runnable() {
+//      public void run() {
+//        new ProcesarVenta().setVisible(true);
+//      }
+//    });
+//  }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.ButtonGroup btgForma;
@@ -284,10 +335,10 @@ public class ProcesarVenta extends javax.swing.JFrame {
   private javax.swing.JButton btnMenu;
   private javax.swing.JButton btnProcesar;
   private javax.swing.JButton btnTaquilla;
-  private javax.swing.JPanel jPanel1;
   private javax.swing.JTextField lblCambio;
   private javax.swing.JTextField lblRecibo;
   private javax.swing.JTextField lblTotal;
+  private javax.swing.JPanel pnlDescripcionVenta;
   private javax.swing.JLabel txtCambio;
   private javax.swing.JLabel txtEfectivo;
   private javax.swing.JLabel txtForma;

@@ -13,6 +13,7 @@ public class Venta {
   private int idVenta;
   private List<LineaVenta> lineas;
   private BigDecimal total;
+  private String metodoPago;
 
   public Venta() {
     this.lineas = new ArrayList<>();
@@ -41,6 +42,14 @@ public class Venta {
 
   public List<LineaVenta> getLineas() {
     return lineas;
+  }
+
+  public String getMetodoPago() {
+    return metodoPago;
+  }
+
+  public void setMetodoPago(String metodoPago) {
+    this.metodoPago = metodoPago;
   }
 
   public LineaVenta findLineaVenta(int productId) {
