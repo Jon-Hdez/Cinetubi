@@ -7,9 +7,10 @@ package uam.azc.adsi.cinetubi.model;
 /**
  *
  * @author Jony
+ * @author José Vicente López López 2212002118
  */
 public class Pelicula {
-    private int id;
+    private int idPelicula;
     private String titulo;
     private int duracion;
     private String distribuidor;
@@ -17,15 +18,12 @@ public class Pelicula {
     private String director;
     private String pais;
     private String descripcion;
-    private String genero;
-
-    // Constructor, getters y setters
 
     public Pelicula() {
     }
-
-    public Pelicula(int id, String titulo, int duracion, String distribuidor, String clasificacion, String director, String pais, String descripcion) {
-        this.id = id;
+    
+    public Pelicula(int idPelicula, String titulo, int duracion, String distribuidor, String clasificacion, String director, String pais, String descripcion) {
+        this.idPelicula = idPelicula;
         this.titulo = titulo;
         this.duracion = duracion;
         this.distribuidor = distribuidor;
@@ -33,15 +31,14 @@ public class Pelicula {
         this.director = director;
         this.pais = pais;
         this.descripcion = descripcion;
-        this.genero = genero;
     }
 
-    public int getId() {
-        return id;
+    public int getIdPelicula() {
+        return idPelicula;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPelicula(int idPelicula) {
+        this.idPelicula = idPelicula;
     }
 
     public String getTitulo() {
@@ -100,19 +97,9 @@ public class Pelicula {
         this.descripcion = descripcion;
     }
 
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
     @Override
     public String toString() {
-        return "Pelicula{" + "id=" + id + ", titulo=" + titulo + ", duracion=" + duracion + ", distribuidor=" + distribuidor + ", clasificacion=" + clasificacion + ", director=" + director + ", pais=" + pais + ", descripcion=" + descripcion + ", genero=" + genero + '}';
+        return "Pelicula{" + "idPelicula=" + idPelicula + ", titulo=" + titulo + ", duracion=" + duracion + ", distribuidor=" + distribuidor + ", clasificacion=" + clasificacion + ", director=" + director + ", pais=" + pais + ", descripcion=" + descripcion + '}';
     }
-    
-    
-    
+
 }

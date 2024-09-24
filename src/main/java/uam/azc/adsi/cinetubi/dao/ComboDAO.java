@@ -39,7 +39,7 @@ public class ComboDAO {
 //    return combos;
 //  }
 //
-//  public List<Snack> getComboSnacksFromCatalog(int comboId, ProductCatalog sc) throws SQLException, SnackNotFoundException {
+//  public List<Snack> getComboSnacksFromCatalog(int comboId, SnackCatalog sc) throws SQLException {
 //    List<Snack> comboSnacks = new ArrayList<>();
 //    String sql = "SELECT s.id FROM snack s "
 //            + "INNER JOIN combo_snack cs ON s.id = cs.id_snack "

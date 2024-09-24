@@ -1,9 +1,11 @@
 package uam.azc.adsi.cinetubi.model;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import uam.azc.adsi.cinetubi.dao.ComboDAO;
 import uam.azc.adsi.cinetubi.dao.SnackDAO;
 import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
 
@@ -13,37 +15,37 @@ import uam.azc.adsi.cinetubi.exceptions.ProductNotFoundException;
  */
 public class ProductCatalog {
 
-  private List<Product> catalog;
-  private SnackDAO sDAO; 
+  private HashMap<Integer, Product> catalog;
+  private SnackDAO sDAO;
+  private ComboDAO cDAO;
 
-  public ProductCatalog(SnackDAO sDAO) {
+  public ProductCatalog(SnackDAO sDAO, ComboDAO cDAO) {
     this.sDAO = sDAO;
+    this.cDAO = cDAO;
     this.catalog = createCatalog();
   }
 
-  private List<Product> createCatalog() {
+  private HashMap<Integer, Product> createCatalog() {
     try {
+      HashMap<Integer, Product> snacksCatalog = sDAO.getAllSnacks();
+//      List<Product> comboCatalog = cDAO.getAllCombos();
       catalog = sDAO.getAllSnacks();
+
     } catch (SQLException ex) {
       Logger.getLogger(ProductCatalog.class.getName()).log(Level.SEVERE, null, ex);
     }
     return catalog;
   }
-  
-  public Product findProduct(int productId) throws ProductNotFoundException{
-    for(Product s: catalog){
-      if(s.getId() == productId){
-        return s;
-      }
-    }
-    throw new ProductNotFoundException("Snack con id: " + productId + " no encontrado");
+
+  public Product findProduct(int productId) throws ProductNotFoundException {
+    return catalog.get(productId);
   }
 
-  public List<Product> getCatalog() {
+  public HashMap<Integer, Product> getCatalog() {
     return catalog;
   }
 
-  public void setCatalog(List<Product> catalog) {
+  public void setCatalog(HashMap<Integer, Product> catalog) {
     this.catalog = catalog;
   }
 
