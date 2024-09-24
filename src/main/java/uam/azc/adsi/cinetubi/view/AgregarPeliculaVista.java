@@ -6,7 +6,7 @@ package uam.azc.adsi.cinetubi.view;
 
 import javax.swing.JOptionPane;
 import uam.azc.adsi.cinetubi.controller.PeliculaController;
-import uam.azc.adsi.cinetubi.model.PeliculaJony;
+import uam.azc.adsi.cinetubi.model.Pelicula;
 
 /**
  *
@@ -276,7 +276,7 @@ public class AgregarPeliculaVista extends javax.swing.JFrame {
                 String director = jTdirector.getText();
 
                 // Crear objeto Pelicula
-                PeliculaJony nuevaPelicula = new PeliculaJony();
+                Pelicula nuevaPelicula = new Pelicula();
                 nuevaPelicula.setTitulo(titulo);
                 nuevaPelicula.setDuracion(duracion);
                 nuevaPelicula.setDistribuidor(distribuidora);

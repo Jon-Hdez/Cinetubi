@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import uam.azc.adsi.cinetubi.controller.PeliculaController;
-import uam.azc.adsi.cinetubi.dao.PeliculaDAOJony;
-import uam.azc.adsi.cinetubi.model.PeliculaJony;
+import uam.azc.adsi.cinetubi.dao.PeliculaDAO;
+import uam.azc.adsi.cinetubi.model.Pelicula;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 
 /**
@@ -44,11 +44,11 @@ public class EditarPelicula extends javax.swing.JFrame {
       DatabaseConnection dbConnection = DatabaseConnection.getInstance();
       // Obtener la conexión desde DataBaseConnection
       connection = dbConnection.getConnection();
-      PeliculaDAOJony peliculaDAO = new PeliculaDAOJony(connection);
+      PeliculaDAO peliculaDAO = new PeliculaDAO(connection);
       PeliculaController pelisControl = new PeliculaController(peliculaDAO);
 
-      List<PeliculaJony> listaPelicula = pelisControl.obtenerPeliculas();
-      for (PeliculaJony peli : listaPelicula) {
+      List<Pelicula> listaPelicula = pelisControl.obtenerPeliculas();
+      for (Pelicula peli : listaPelicula) {
         Object[] data = new Object[columnNames.length];
         data[0] = peli.getIdPelicula();
         data[1] = peli.getTitulo();
@@ -180,7 +180,7 @@ public class EditarPelicula extends javax.swing.JFrame {
 
       try {
         Connection connection = DatabaseConnection.getInstance().getConnection();
-        PeliculaDAOJony peliculaDAO = new PeliculaDAOJony(connection);
+        PeliculaDAO peliculaDAO = new PeliculaDAO(connection);
 
         peliculaDAO.eliminarPelicula(peliculaId);
         actualizarVentana();
@@ -202,8 +202,8 @@ public class EditarPelicula extends javax.swing.JFrame {
 
       try {
         Connection connection = DatabaseConnection.getInstance().getConnection();
-        PeliculaDAOJony peliculaDAO = new PeliculaDAOJony(connection);
-        PeliculaJony pelicula = new PeliculaJony();
+        PeliculaDAO peliculaDAO = new PeliculaDAO(connection);
+        Pelicula pelicula = new Pelicula();
         // Obtener los datos de la fila seleccionada
         pelicula.setIdPelicula((Integer) jTpelis.getValueAt(selectedRow, 0));
         pelicula.setTitulo((String) jTpelis.getValueAt(selectedRow, 1));

@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import uam.azc.adsi.cinetubi.controller.PeliculaController;
 import uam.azc.adsi.cinetubi.dao.FuncionesDAOJony;
-import uam.azc.adsi.cinetubi.dao.PeliculaDAOJony;
+import uam.azc.adsi.cinetubi.dao.PeliculaDAO;
 import uam.azc.adsi.cinetubi.model.FuncionJony;
-import uam.azc.adsi.cinetubi.model.PeliculaJony;
+import uam.azc.adsi.cinetubi.model.Pelicula;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 
 /**
@@ -58,11 +58,11 @@ public class AgregarFuncionJony extends javax.swing.JFrame {
             DatabaseConnection dbConnection = DatabaseConnection.getInstance();
             // Obtener la conexión desde DataBaseConnection
             connection = dbConnection.getConnection();
-            PeliculaDAOJony peliculaDAO = new PeliculaDAOJony(connection);
+            PeliculaDAO peliculaDAO = new PeliculaDAO(connection);
             PeliculaController pelisControl = new PeliculaController(peliculaDAO);
             
-            List<PeliculaJony> listaPelicula = pelisControl.obtenerPeliculas();
-            for ( PeliculaJony peli: listaPelicula){
+            List<Pelicula> listaPelicula = pelisControl.obtenerPeliculas();
+            for ( Pelicula peli: listaPelicula){
                 Object[] data = new Object[columnNames.length];
                 data[0] = peli.getIdPelicula();
                 data[1] = peli.getTitulo();

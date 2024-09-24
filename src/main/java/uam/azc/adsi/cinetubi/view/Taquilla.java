@@ -4,10 +4,14 @@
  */
 package uam.azc.adsi.cinetubi.view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
 import uam.azc.adsi.cinetubi.controller.TaquillaController;
 import uam.azc.adsi.cinetubi.dao.PeliculaDAO;
 import uam.azc.adsi.cinetubi.model.*;
+import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
 
 /**
@@ -18,9 +22,10 @@ public class Taquilla extends javax.swing.JFrame {
 
   private DulceriaController dulceriaController;
 
-  PeliculaDAO peli = new PeliculaDAO();
+  PeliculaDAO peli;
   Funcion funcion;
-  Pelicula pelicula = new Pelicula();
+  Pelicula pelicula;
+  DatabaseConnection dbConnection;
 
   /**
    * Creates new form Taquilla
@@ -28,6 +33,13 @@ public class Taquilla extends javax.swing.JFrame {
   public Taquilla() {
     initComponents();
     TaquillaController taquilla = new TaquillaController();
+    try {
+      dbConnection = DatabaseConnection.getInstance();
+    } catch (SQLException ex) {
+      Logger.getLogger(Taquilla.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    peli = new PeliculaDAO(dbConnection.getConnection());
+    pelicula = new Pelicula();
     funcion = taquilla.funciones(pnlFunciones, pnlDescripcion, pnlAsientos, pnlResumen);
     pelicula = peli.searchMovie(funcion.getId_pelicula());
   }

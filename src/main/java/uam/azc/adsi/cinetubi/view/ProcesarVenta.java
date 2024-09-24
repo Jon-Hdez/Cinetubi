@@ -39,7 +39,7 @@ public class ProcesarVenta extends javax.swing.JFrame {
     if (origen == VistaDeOrigen.DULCERIA) {
       return dulceriaController.getVentaActual();
     } else {
-      // Vicente aqui regresarias tu instancia de venta actual, tendria que estar guardada en TquillaController
+      // Vicente aqui regresarias tu instancia de venta actual, tendria que estar guardada en TaquillaController
       // return taquillaController.getVentaActual();
       return dulceriaController.getVentaActual();
     }
@@ -187,14 +187,14 @@ public class ProcesarVenta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCredito)
                 .addGap(31, 31, 31)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnProcesar)
-            .addGap(18, 18, 18))
+            .addComponent(btnProcesar))
           .addGroup(layout.createSequentialGroup()
             .addComponent(btnCancelar)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGap(0, 0, Short.MAX_VALUE)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(pnlDescripcionVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(57, 57, 57))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()

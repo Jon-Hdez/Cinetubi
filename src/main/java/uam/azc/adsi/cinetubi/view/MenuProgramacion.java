@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.controller.PeliculaController;
-import uam.azc.adsi.cinetubi.dao.PeliculaDAOJony;
+import uam.azc.adsi.cinetubi.dao.PeliculaDAO;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 
 /**
@@ -123,7 +123,7 @@ public class MenuProgramacion extends javax.swing.JFrame {
             // Obtener la conexión desde DataBaseConnection
             connection = dbConnection.getConnection();
             // Instanciar el DAO y el controlador
-            PeliculaDAOJony peliculaDAO = new PeliculaDAOJony(connection);
+            PeliculaDAO peliculaDAO = new PeliculaDAO(connection);
             PeliculaController peliculaController = new PeliculaController(peliculaDAO);
             AgregarPeliculaVista view = new AgregarPeliculaVista(peliculaController);
             view.setVisible(true);
