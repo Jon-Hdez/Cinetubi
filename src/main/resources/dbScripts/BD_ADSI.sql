@@ -185,15 +185,15 @@ INSERT INTO socio (nombre, paterno, materno, fecha_inicio, puntos, passwd) VALUE
 -- Insert sample data into categoria_empleado
 INSERT INTO categoria_empleado (categoria, sueldo, area) VALUES
 ('Cajero', 1500.00, 'dulceria'),
-('Encargado', 2500.00, 'dulceria'),
-('Gerente', 3500.00, 'dulceria'),
+('Encargado', 2500.00, 'cartelera'),
+('Gerente', 3500.00, 'cartelera'),
 ('Supervisor', 3000.00, 'dulceria'),
 ('Auxiliar', 1200.00, 'taquilla');
 
 -- Insert sample data into empleado
 INSERT INTO empleado (nombre, paterno, materno, id_categoria, psw) VALUES
 ('droot', 'droot', 'droot', 1, 'droot'),
-('Carlos', 'Fernández', 'Hernández', 1, 'psw789'),
+('admin', 'admin', 'admin', 2, 'admin'),
 ('María', 'Rodríguez', 'Sánchez', 2, 'psw101112'),
 ('Ana', 'Martínez', 'Gómez', 3, 'psw131415'),
 ('Pedro', 'González', 'Ríos', 4, 'psw161718'),
@@ -377,3 +377,4 @@ INSERT INTO combo_snack (id_combo, id_snack) VALUES
 (8, 5),(8, 6),
 (9, 7),(9, 8),
 (10, 9);
+

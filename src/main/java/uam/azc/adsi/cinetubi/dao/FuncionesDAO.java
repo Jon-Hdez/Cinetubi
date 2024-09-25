@@ -19,7 +19,7 @@ public class FuncionesDAO {
 
   // Crear función
   public boolean agregarFuncion(Funcion funcion) throws SQLException {
-    String query = "INSERT INTO funcion (id_pelicula, horario, sala, idioma, fecha) VALUES (?, ?, ?, ?, ?)";
+    String query = "INSERT INTO funcion (id_pelicula, horario, id_sala, idioma, fecha) VALUES (?, ?, ?, ?, ?)";
     try (PreparedStatement stmt = connection.prepareStatement(query)) {
       stmt.setInt(1, funcion.getId_pelicula());
       stmt.setString(2, funcion.getHorario());
@@ -40,7 +40,7 @@ public class FuncionesDAO {
         funcion.setId(rs.getInt("id"));
         funcion.setId_pelicula(rs.getInt("id_pelicula"));
         funcion.setHorario(rs.getString("horario"));
-        funcion.setSala(rs.getInt("sala"));
+        funcion.setSala(rs.getInt("id_sala"));
         funcion.setIdioma(rs.getString("idioma"));
         funciones.add(funcion);
       }
@@ -50,7 +50,7 @@ public class FuncionesDAO {
 
   // Actualizar función
   public boolean actualizarFuncion(Funcion funcion) throws SQLException {
-    String query = "UPDATE funcion SET id_pelicula = ?, horario = ?, sala = ?, idioma = ? WHERE id = ?";
+    String query = "UPDATE funcion SET id_pelicula = ?, horario = ?, id_sala = ?, idioma = ? WHERE id = ?";
     try (PreparedStatement stmt = connection.prepareStatement(query)) {
       stmt.setInt(1, funcion.getId_pelicula());
       stmt.setString(2, funcion.getHorario());
