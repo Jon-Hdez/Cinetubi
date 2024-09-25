@@ -21,8 +21,22 @@ public class Pelicula {
   private String descripcion;
   private String genero;
 
-  public Pelicula() {
-  }
+    public Pelicula(int idPelicula, String titulo, int duracion, String distribuidor, String clasificacion, String director, String pais, String descripcion) {
+        this.idPelicula = idPelicula;
+        this.titulo = titulo;
+        this.duracion = duracion;
+        this.distribuidor = distribuidor;
+        this.clasificacion = clasificacion;
+        this.director = director;
+        this.pais = pais;
+        this.descripcion = descripcion;
+    }
+
+    public Pelicula() {
+    }
+    
+    
+   
 
   public Pelicula(int idPelicula, String titulo, int duracion, String distribuidor, String clasificacion, String director, String pais, String descripcion, String genero) {
     this.idPelicula = idPelicula;

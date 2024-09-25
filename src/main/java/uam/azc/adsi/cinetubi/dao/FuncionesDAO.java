@@ -71,13 +71,14 @@ public class FuncionesDAO {
   }
 
   public List<Funcion> getAllFuncion() {
+      
+      List<Funcion> funciones = new ArrayList<>();
     try {
       String sql = "SELECT * FROM funcion ORDER BY id_pelicula AND horario;";
       PreparedStatement ps;
       ps = connection.prepareStatement(sql);
 
       ResultSet rs = ps.executeQuery();
-      List<Funcion> funciones = new ArrayList<>();
       while (rs.next()) {
         int id = rs.getInt(1);
         int id_pelicula = rs.getInt(2);
@@ -86,6 +87,7 @@ public class FuncionesDAO {
         String idioma = rs.getString(5);
         Date fecha = rs.getDate(6);
         Funcion funcion = new Funcion(id, id_pelicula, hora, sala, idioma, fecha);
+        //Se ha verrificado la impresion de resultados
         System.out.println(funcion.toString() + "\n");
         funciones.add(funcion);
       }
@@ -93,6 +95,6 @@ public class FuncionesDAO {
     } catch (SQLException ex) {
       System.err.println("Error tipo: " + ex);
     }
-    return null;
+    return funciones;
   }
 }

@@ -202,7 +202,8 @@ INSERT INTO empleado (nombre, paterno, materno, id_categoria, psw) VALUES
 ('Laura', 'Ramírez', 'Hernández', 2, 'psw252627'),
 ('Miguel', 'Jiménez', 'Rodríguez', 3, 'psw282930'),
 ('Isabel', 'Álvarez', 'García', 4, 'psw313233'),
-('Andrés', 'Cano', 'Martínez', 5, 'psw343536');
+('Andrés', 'Cano', 'Martínez', 5, 'psw343536'),
+('ramita','tacos', 'pastor', 5, 'psw');
 
 -- Insert sample data into pelicula
 INSERT INTO Pelicula (titulo, distribuidor, duracion, clasificacion, director, pais) VALUES 
@@ -380,5 +381,6 @@ INSERT INTO combo_snack (id_combo, id_snack) VALUES
 
 -- Vista utilizada para ver los asientos
 CREATE VIEW boleto_asiento AS SELECT f.id AS idFuncion, a.numero AS numAsiento
-FROM funcion AS f INNER JOIN sala AS s ON f.sala=s.id
+FROM funcion AS f INNER JOIN sala AS s ON f.id_sala=s.id
 INNER JOIN asiento AS a ON s.id=a.id_sala;
+

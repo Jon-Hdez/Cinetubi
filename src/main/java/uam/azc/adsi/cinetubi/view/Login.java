@@ -251,6 +251,14 @@ public class Login extends javax.swing.JFrame {
     menu.setDulceriaController(dulceriaController);
     menu.setVisible(true);
         }
+        if (empleado.getArea().equals("taquilla")) {
+            DulceriaController dulceriaController = new DulceriaController();
+            dispose();
+            Taquilla menu = new Taquilla();
+            menu.setEmpleado(empleado);
+            menu.setDulceriaController(dulceriaController);
+            menu.setVisible(true);
+        }
       }
 
 

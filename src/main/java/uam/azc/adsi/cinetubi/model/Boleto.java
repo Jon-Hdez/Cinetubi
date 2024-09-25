@@ -9,7 +9,7 @@ package uam.azc.adsi.cinetubi.model;
  * @author Jony
  * @author José Vicente López López 2212002118
  */
-class Boleto {
+public class Boleto {
     private int id;
     private int idFuncion;
     private int idVenta;
@@ -17,11 +17,14 @@ class Boleto {
     private int numeroAsiento;
 
     public Boleto(int id, int idFuncion, int idVenta, int idSala, int numeroAsiento) {
+        this(id, idFuncion, idVenta, idSala);
+    }
+
+    public Boleto(int id, int idFuncion, int idVenta, int idSala) {
         this.id = id;
         this.idFuncion = idFuncion;
         this.idVenta = idVenta;
         this.idSala = idSala;
-        this.numeroAsiento = numeroAsiento;
     }
 
     public int getId() {

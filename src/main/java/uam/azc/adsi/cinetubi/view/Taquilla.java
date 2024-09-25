@@ -21,27 +21,26 @@ import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
 public class Taquilla extends javax.swing.JFrame {
 
   private DulceriaController dulceriaController;
-
-  PeliculaDAO peli;
-  Funcion funcion;
-  Pelicula pelicula;
-  DatabaseConnection dbConnection;
+  private PeliculaDAO peli;
+  private Funcion funcion;
+  private Pelicula pelicula;
+  private DatabaseConnection dbConnection;
+  private TaquillaController taquilla = new TaquillaController();
 
   /**
    * Creates new form Taquilla
    */
   public Taquilla() {
     initComponents();
-    TaquillaController taquilla = new TaquillaController();
     try {
-      dbConnection = DatabaseConnection.getInstance();
+        dbConnection = DatabaseConnection.getInstance();
+        peli = new PeliculaDAO(dbConnection.getConnection());
+        funcion = taquilla.funciones(pnlFunciones, pnlDescripcion, pnlAsientos, pnlResumen);
+        pelicula = taquilla.getSeleccion();
     } catch (SQLException ex) {
-      Logger.getLogger(Taquilla.class.getName()).log(Level.SEVERE, null, ex);
+        System.err.println("Error conexion iniciando taquilla: "+ex);
     }
-    peli = new PeliculaDAO(dbConnection.getConnection());
-    pelicula = new Pelicula();
-    funcion = taquilla.funciones(pnlFunciones, pnlDescripcion, pnlAsientos, pnlResumen);
-    pelicula = peli.searchMovie(funcion.getId_pelicula());
+    
   }
 
   /**
@@ -361,25 +360,24 @@ public class Taquilla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-//      ProcesarVenta venta = new ProcesarVenta(VistaDeOrigen.TAQUILLA, dulceriaController);
-//      venta.setDulceriaController(dulceriaController);
-//      venta.setVisible(true);
+      VentaTaquilla venta = new VentaTaquilla(VistaDeOrigen.TAQUILLA, taquilla);
+      venta.setVisible(true);
       this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
       // TODO add your handling code here:
-      Taquilla taquilla = new Taquilla();
-      taquilla.setDulceriaController(dulceriaController);
-      taquilla.setVisible(true);
+      Taquilla taq = new Taquilla();
+      taq.setDulceriaController(dulceriaController);
+      taq.setVisible(true);
       this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void lblTaqullaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTaqullaMousePressed
       // TODO add your handling code here:
-      Taquilla taquilla = new Taquilla();
-      taquilla.setDulceriaController(dulceriaController);
-      taquilla.setVisible(true);
+      Taquilla taq = new Taquilla();
+      taq.setDulceriaController(dulceriaController);
+      taq.setVisible(true);
       this.dispose();
     }//GEN-LAST:event_lblTaqullaMousePressed
 
@@ -422,16 +420,22 @@ public class Taquilla extends javax.swing.JFrame {
     //</editor-fold>
 
     /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        new Taquilla().setVisible(true);
-      }
+    java.awt.EventQueue.invokeLater(() -> {
+        //new Taquilla().setVisible(true);
     });
   }
 
   void setDulceriaController(DulceriaController dulceriaController) {
     this.dulceriaController = dulceriaController;
   }
+
+
+
+    public void setEmpleado(Empleado empleado) {
+        taquilla.setEmpleado(empleado);
+    }
+  
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
