@@ -28,7 +28,7 @@ public class MenuProgramacion extends javax.swing.JFrame {
   /**
    * Creates new form MenuProgramacion
    */
-    public MenuProgramacion() {
+  public MenuProgramacion() {
     initComponents();
   }
 
