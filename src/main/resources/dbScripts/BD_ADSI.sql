@@ -121,7 +121,7 @@ CREATE TABLE boleto (
     id_sala INT NOT NULL,
     numero_asiento INT NOT NULL,
     CONSTRAINT fk_b_funcion FOREIGN KEY (id_funcion) REFERENCES funcion(id),
-    CONSTRAINT fk_b_venta FOREIGN KEY (id_venta) REFERENCES venta(id),
+    CONSTRAINT fk_b_venta FOREIGN KEY (id_venta) REFERENCES venta(id)-- ,
     -- CONSTRAINT fk_b_asiento FOREIGN KEY (id_sala, numero_asiento) REFERENCES asiento(id_sala, numero)
 );
 
