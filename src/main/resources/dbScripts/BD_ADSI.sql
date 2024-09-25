@@ -122,7 +122,7 @@ CREATE TABLE boleto (
     numero_asiento INT NOT NULL,
     CONSTRAINT fk_b_funcion FOREIGN KEY (id_funcion) REFERENCES funcion(id),
     CONSTRAINT fk_b_venta FOREIGN KEY (id_venta) REFERENCES venta(id),
-    CONSTRAINT fk_b_asiento FOREIGN KEY (id_sala, numero_asiento) REFERENCES asiento(id_sala, numero)
+    -- CONSTRAINT fk_b_asiento FOREIGN KEY (id_sala, numero_asiento) REFERENCES asiento(id_sala, numero)
 );
 
 /*
@@ -378,3 +378,7 @@ INSERT INTO combo_snack (id_combo, id_snack) VALUES
 (9, 7),(9, 8),
 (10, 9);
 
+-- Vista utilizada para ver los asientos
+CREATE VIEW boleto_asiento AS SELECT f.id AS idFuncion, a.numero AS numAsiento
+FROM funcion AS f INNER JOIN sala AS s ON f.sala=s.id
+INNER JOIN asiento AS a ON s.id=a.id_sala;
