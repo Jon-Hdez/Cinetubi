@@ -20,11 +20,11 @@ public class Boleto {
         this(id, idFuncion, idVenta, idSala);
     }
 
-    public Boleto(int id, int idFuncion, int idVenta, int idSala) {
-        this.id = id;
+    public Boleto(int idFuncion, int idVenta, int idSala, int numeroAsiento) {
         this.idFuncion = idFuncion;
         this.idVenta = idVenta;
         this.idSala = idSala;
+        this.numeroAsiento = numeroAsiento;
     }
 
     public int getId() {

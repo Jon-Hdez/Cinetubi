@@ -9,8 +9,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.model.Boleto;
 
 /**
@@ -33,21 +31,34 @@ public class BoletoDAO {
     }
     
     public void agregarBoletos(List<Boleto> boletos, int venta) {
-    String query = "INSERT INTO boleto (id_funcion, id_venta, id_sala, numero_asiento) VALUES (?, ?, ?, ?)";
-    try (PreparedStatement stmt = connection.prepareStatement(query)) {
-        for (Boleto boleto : boletos) {
-            stmt.setInt(1, boleto.getIdFuncion());
-            stmt.setInt(2, venta);
-            stmt.setInt(3, boleto.getIdSala());
-            stmt.setInt(4, boleto.getNumeroAsiento());
-            
-            // Ejecutar la inserción para cada boleto
-            stmt.executeUpdate();
+        // Prepara la inserción en la base de datos
+        String sql = "INSERT INTO boleto (id_funcion, id_venta, id_sala, numero_asiento) VALUES (?, ?, ?, ?)";
+
+        try {
+            // Iniciar transacción
+            connection.setAutoCommit(false);
+            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                for (Boleto bol : boletos) {
+                    stmt.setInt(1, bol.getIdFuncion());       // Asegúrate de que id_funcion es válido
+                    stmt.setInt(2, venta);                     // Usar el valor de venta pasado como parámetro
+                    stmt.setInt(3, bol.getIdSala());          // Asegúrate de que id_sala es válido
+                    stmt.setInt(4, bol.getNumeroAsiento());   // Asegúrate de que numero_asiento es válido
+
+                    stmt.addBatch();  // Agrega la inserción al batch
+                    System.out.println(bol.toString());
+                }
+                stmt.executeBatch();  // Ejecuta todas las inserciones en el batch
+                connection.commit();  // Confirma la transacción
+            } catch (SQLException e) {
+                connection.rollback();  // Deshacer cambios en caso de error
+                System.err.println("Error en agregar asientos: " + e.toString());
+            } finally {
+                connection.setAutoCommit(true);  // Restablecer el auto commit
+            }
+        } catch (SQLException e) {
+            System.err.println("Error en la conexión: " + e.toString());
         }
-        System.out.println("Se han agregado los boletos correctamente.");
-    } catch (SQLException ex) {
-        Logger.getLogger(VentaDAO.class.getName()).log(Level.SEVERE, "Error al agregar boletos", ex);
     }
-}
+
 
 }

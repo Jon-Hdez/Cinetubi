@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.TitledBorder;
 import uam.azc.adsi.cinetubi.dao.*;
 import uam.azc.adsi.cinetubi.model.*;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
@@ -53,72 +54,80 @@ public class TaquillaController extends JPanel {
     peli = new PeliculaDAO(this.dbConnection.getConnection());
   }
 
-  public Funcion funciones(JPanel panelRecibido, JPanel panelDescripcion, JPanel panelAseintos, JPanel resumen) {
+public Funcion funciones(JPanel panelRecibido, JPanel panelDescripcion, JPanel panelAseintos, JPanel resumen) {
     FuncionesDAO f = new FuncionesDAO(dbConnection.getConnection());
     AsientosDAO asientos = new AsientosDAO();
     List<Funcion> funciones = f.getAllFuncion();
     JPanel panelPrincipal = new JPanel();
     panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS)); // Panel principal en columna
+    panelPrincipal.setBackground(Color.WHITE); // Fondo blanco
 
     funcionesMap = new HashMap<>();
 
     // Agrupar funciones por nombre de la película
     for (Funcion funcion : funciones) {
-      String nombrePelicula = peli.searchMovie(funcion.getId_pelicula()).getTitulo();
-      funcionesMap.computeIfAbsent(nombrePelicula, k -> new ArrayList<>()).add(funcion);
+        String nombrePelicula = peli.searchMovie(funcion.getId_pelicula()).getTitulo();
+        funcionesMap.computeIfAbsent(nombrePelicula, k -> new ArrayList<>()).add(funcion);
     }
 
     // Crear un panel por cada grupo de funciones con el mismo nombre de película
     for (Map.Entry<String, List<Funcion>> entry : funcionesMap.entrySet()) {
-      String nombrePelicula = entry.getKey();
-      List<Funcion> funcionesPorNombre = entry.getValue();
+        String nombrePelicula = entry.getKey();
+        List<Funcion> funcionesPorNombre = entry.getValue();
 
-      // Crear un panel para la película
-      JPanel panelPelicula = new JPanel();
-      panelPelicula.setLayout(new BoxLayout(panelPelicula, BoxLayout.Y_AXIS));
-      panelPelicula.setBorder(BorderFactory.createTitledBorder("Película: " + nombrePelicula));
+        // Crear un panel para la película
+        JPanel panelPelicula = new JPanel();
+        panelPelicula.setLayout(new BoxLayout(panelPelicula, BoxLayout.Y_AXIS));
+        panelPelicula.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), 
+            "<html><font color='rgb(0,102,102)'><b>Pelicula: " + nombrePelicula + "</b></font></html>", 
+            TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12), Color.WHITE)); // Título en negritas y color (0,102,102)
+        panelPelicula.setBackground(Color.WHITE); // Fondo blanco
 
-      // Panel de horarios (español e inglés)
-      JPanel panelHorarios = new JPanel(new GridLayout(0, 2)); // Dos columnas para los horarios
+        // Panel de horarios (español e inglés)
+        JPanel panelHorarios = new JPanel(new GridLayout(0, 2)); // Dos columnas para los horarios
+        panelHorarios.setBackground(Color.WHITE); // Fondo blanco
 
-      // Separar funciones en Español e Inglés
-      JPanel panelEspanol = new JPanel();
-      panelEspanol.setLayout(new BoxLayout(panelEspanol, BoxLayout.Y_AXIS));
-      panelEspanol.setBorder(BorderFactory.createTitledBorder("Español"));
+        // Separar funciones en Español e Inglés
+        JPanel panelEspanol = new JPanel();
+        panelEspanol.setLayout(new BoxLayout(panelEspanol, BoxLayout.Y_AXIS));
+        panelEspanol.setBorder(BorderFactory.createTitledBorder("Español"));
+        panelEspanol.setBackground(Color.WHITE); // Fondo blanco
 
-      JPanel panelIngles = new JPanel();
-      panelIngles.setLayout(new BoxLayout(panelIngles, BoxLayout.Y_AXIS));
-      panelIngles.setBorder(BorderFactory.createTitledBorder("Inglés"));
+        JPanel panelIngles = new JPanel();
+        panelIngles.setLayout(new BoxLayout(panelIngles, BoxLayout.Y_AXIS));
+        panelIngles.setBorder(BorderFactory.createTitledBorder("Inglés"));
+        panelIngles.setBackground(Color.WHITE); // Fondo blanco
 
-      // Añadir los horarios a los paneles correspondientes
-      for (Funcion funcion : funcionesPorNombre) {
-        JButton botonHorario = new JButton(funcion.getHorario());
-        botonHorario.addActionListener((ActionEvent e) -> {
-          // Acción al presionar el botón
-          System.out.println("Función seleccionada: " + funcion+
-                  "\nPelicula seleccionada: "+peli.searchMovie(funcion.getId_pelicula()));
-          res = funcion;
-          seleccion=peli.searchMovie(funcion.getId_pelicula());
-          mostrarPelicula(peli.searchMovie(funcion.getId_pelicula()), panelDescripcion);
-          aux = mostrarAsientos(panelAseintos, asientos.asientosFuncion(funcion), resumen);
-          
-        });
+        // Añadir los horarios a los paneles correspondientes
+        for (Funcion funcion : funcionesPorNombre) {
+            JButton botonHorario = new JButton(funcion.getHorario());
+            botonHorario.setBackground(new Color(0, 102, 102)); // Color del botón
+            botonHorario.setForeground(Color.WHITE); // Texto del botón en blanco
+            botonHorario.addActionListener((ActionEvent e) -> {
+                // Acción al presionar el botón
+                System.out.println("Función seleccionada: " + funcion +
+                        "\nPelícula seleccionada: " + peli.searchMovie(funcion.getId_pelicula()));
+                res = funcion;
+                seleccion = peli.searchMovie(funcion.getId_pelicula());
+                mostrarPelicula(seleccion, panelDescripcion);
+                aux = mostrarAsientos(panelAseintos, asientos.asientosFuncion(funcion), resumen);
+            });
 
-        // Clasificar por idioma
-        if (funcion.getIdioma().equalsIgnoreCase("Español")) {
-          panelEspanol.add(botonHorario);
-        } else if (funcion.getIdioma().equalsIgnoreCase("Inglés")) {
-          panelIngles.add(botonHorario);
+            // Clasificar por idioma
+            if (funcion.getIdioma().equalsIgnoreCase("Español")) {
+                panelEspanol.add(botonHorario);
+            } else if (funcion.getIdioma().equalsIgnoreCase("Inglés")) {
+                panelIngles.add(botonHorario);
+            }
         }
-      }
 
-      // Añadir los paneles de horarios al panel de película
-      panelHorarios.add(panelEspanol);
-      panelHorarios.add(panelIngles);
-      panelPelicula.add(panelHorarios);
+        // Añadir los paneles de horarios al panel de película
+        panelHorarios.add(panelEspanol);
+        panelHorarios.add(panelIngles);
+        panelPelicula.add(panelHorarios);
 
-      // Añadir el panel de la película al panel principal
-      panelPrincipal.add(panelPelicula);
+        // Añadir el panel de la película al panel principal
+        panelPrincipal.add(panelPelicula);
     }
 
     // Envolver el panel principal en un JScrollPane
@@ -133,7 +142,9 @@ public class TaquillaController extends JPanel {
     panelRecibido.repaint(); // Redibujar el panel
 
     return res;
-  }
+}
+
+
 
     public void mostrarPelicula(Pelicula pelicula, JPanel panelRecibido) {
         // Limpiar el contenido del panel recibido

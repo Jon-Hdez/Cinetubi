@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
+import uam.azc.adsi.cinetubi.controller.LoginController;
 import uam.azc.adsi.cinetubi.controller.PeliculaController;
 import uam.azc.adsi.cinetubi.dao.PeliculaDAO;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
@@ -140,9 +141,10 @@ public class MenuProgramacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jBagregarPActionPerformed
 
     private void jBvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvolverActionPerformed
-      Menu menu = new Menu();
-      menu.setDulceriaController(dulceriaController);
-      menu.setVisible(true);
+      LoginController loginController = new LoginController();
+      Login login = new Login();
+      login.setLoginController(loginController);
+      login.setVisible(true);
       this.dispose();
 
     }//GEN-LAST:event_jBvolverActionPerformed

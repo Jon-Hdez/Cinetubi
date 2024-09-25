@@ -72,7 +72,7 @@ CREATE TABLE snack (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     precio DECIMAL(10, 2) NOT NULL CHECK (precio > 0),
-    tamanio VARCHAR(15) NULL CHECK (tamanio IN ('chico', 'mediano', 'grande'))
+    tamanio VARCHAR(15) NULL CHECK (tamanio IN ('chico', 'mediano', 'grande', null))
 );
 
 -- Crear tabla cartelera
@@ -152,6 +152,8 @@ CREATE TABLE venta_snack (
     CONSTRAINT fk_vs_venta FOREIGN KEY (id_venta) REFERENCES venta(id) ON DELETE CASCADE,
     CONSTRAINT fk_vs_snack FOREIGN KEY (id_snack) REFERENCES snack(id) ON DELETE CASCADE
 );
+
+-- Se murio
 /*
 CREATE TABLE venta_combo (	
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -358,41 +360,47 @@ INSERT INTO venta_snack (id_venta, id_snack) VALUES
 (1, 1),(1, 2),
 (2, 3),(2, 4),
 (3, 5),(3, 6),
-(4, 7),(4, 8),
-(5, 9),(5, 9),
+(4, 7),(4, 1),
+(5, 2),(5, 3),
 (6, 1),(6, 3),
 (7, 2),(7, 4),
 (8, 5),(8, 6),
-(9, 7),(9, 8),
-(10, 9);
+(9, 7),(9, 1),
+(10, 2);
 
 -- Insert sample data into combo_snack
 INSERT INTO combo_snack (id_combo, id_snack) VALUES
 (1, 1),(1, 2),
 (2, 3),(2, 4),
 (3, 5),(3, 6),
-(4, 7),(4, 8),
-(5, 9),(5, 9),
+(4, 7),(4, 1),
+(5, 2),(5, 3),
 (6, 1),(6, 3),
 (7, 2),(7, 4),
 (8, 5),(8, 6),
-(9, 7),(9, 8),
-(10, 9);
+(9, 7),(9, 1),
+(10, 2);
 
--- Vista utilizada para ver los asientos
- CREATE VIEW boleto_asiento AS SELECT f.id AS idFuncion, a.numero AS numAsiento
+-- Vista utilizada para ver los asientos, Ya no se utiliza pero se ve bien ;) 
+/*CREATE VIEW boleto_asiento AS SELECT f.id AS idFuncion, a.numero AS numAsiento
 FROM funcion AS f INNER JOIN sala AS s ON f.id_sala=s.id
 INNER JOIN asiento AS a ON s.id=a.id_sala;
 
 
 select *  from boleto_asiento;
 SELECT * FROM boleto;
+select * from funcion;
+
+select b.numero_asiento as numAsiento
+from  boleto as b inner join funcion as f on b.id_funcion=f.id
+where f.id=1;
 
 select * from pelicula where id=5;
 
 SELECT MAX(id) FROM venta;
 
 
-SELECT * FROM venta where id_socio=null;
+SELECT * FROM venta;
 
 SELECT MAX(id) FROM venta;
+*/

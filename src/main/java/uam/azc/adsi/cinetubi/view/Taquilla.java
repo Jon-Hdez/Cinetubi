@@ -5,14 +5,11 @@
 package uam.azc.adsi.cinetubi.view;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.controller.DulceriaController;
 import uam.azc.adsi.cinetubi.controller.TaquillaController;
 import uam.azc.adsi.cinetubi.dao.PeliculaDAO;
 import uam.azc.adsi.cinetubi.model.*;
 import uam.azc.adsi.cinetubi.util.DatabaseConnection;
-import uam.azc.adsi.cinetubi.util.VistaDeOrigen;
 
 /**
  *
@@ -360,7 +357,7 @@ public class Taquilla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-      VentaTaquilla venta = new VentaTaquilla(VistaDeOrigen.TAQUILLA, taquilla);
+      VentaBoletos venta = new VentaBoletos(taquilla);
       venta.setVisible(true);
       this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed

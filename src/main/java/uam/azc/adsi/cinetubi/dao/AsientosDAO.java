@@ -11,10 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import uam.azc.adsi.cinetubi.model.*;
-import uam.azc.adsi.cinetubi.util.DatabaseConnection;
 
 /**
  *
@@ -36,24 +33,32 @@ public class AsientosDAO {
         }
     }
     
-    public List<Integer> asientosFuncion(Funcion funcion){
-        
+    public List<Integer> asientosFuncion(Funcion funcion) {
+        List<Integer> ocupados = new ArrayList<>();
+
         try {
-            String sql = "SELECT numero_asiento FROM boleto WHERE id_funcion="+funcion.getId();
-            PreparedStatement ps;
-            ps = connection.prepareStatement(sql);
-            
+            // Corregir la consulta SQL
+            String sql = "select b.numero_asiento as numAsiento\n" +
+                        "from  boleto as b inner join funcion as f on b.id_funcion=f.id\n" +
+                        "where f.id= ?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, funcion.getId()); // Usa parámetros para evitar inyección SQL
+
             ResultSet rs = ps.executeQuery();
-            List<Integer> ocupados=new ArrayList<>();
-            while(rs.next()){
-                ocupados.add(rs.getInt("numero_asiento"));
+
+            // Recorrer el ResultSet
+            while (rs.next()) {
+                ocupados.add(rs.getInt("numAsiento")); // Agregar el número de asiento a la lista
             }
-            return ocupados;
+
         } catch (SQLException ex) {
-            System.err.println("Error tipo: " +ex);
+            System.err.println("Error tipo: " + ex);
         }
-        return null;
+
+        return ocupados;
     }
+
     
         
 }

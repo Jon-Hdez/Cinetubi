@@ -73,47 +73,52 @@ public class VentaDAO {
     this.venta = venta;
   }
   
-  public int agregarVenta(int empleado, int socio, String metodo, String area, double total) {
-        String query = "INSERT INTO venta (id_empleado, id_socio, metodo_pago, area, total) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement stmt = DatabaseConnection.getInstance().getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setInt(1, empleado);
-            stmt.setInt(2, Integer.parseInt("null"));
-            stmt.setString(3, metodo);
-            stmt.setString(4, area);
-            stmt.setDouble(5, total);
+  public int agregarVenta(int empleado, Integer socio, String metodo, String area, double total) {
+    String query = "INSERT INTO venta (id_empleado, id_socio, metodo_pago, area, total) VALUES (?, ?, ?, ?, ?)";
+    try (PreparedStatement stmt = DatabaseConnection.getInstance().getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+        stmt.setInt(1, empleado);
+        stmt.setNull(2, 1);  // Si socio es null
+        stmt.setString(3, metodo);
+        stmt.setString(4, area);
+        stmt.setDouble(5, total);
 
-            // Ejecutar la inserción
-            int affectedRows = stmt.executeUpdate();
+        // Ejecutar la inserción
+        int affectedRows = stmt.executeUpdate();
 
-            if (affectedRows == 0) {
-                throw new SQLException("La inserción de la venta falló, no se añadió ninguna fila.");
-            }
-
-            // Obtener el ID generado
-            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    int nuevaVentaId = generatedKeys.getInt(1);
-                    System.out.println("Se ha creado con éxito la venta: " + nuevaVentaId + " " + empleado + " " + socio + " " + metodo + " " + area);
-                    return nuevaVentaId-1;
-                } else {
-                    throw new SQLException("La inserción de la venta falló, no se pudo obtener el ID generado.");
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(VentaDAO.class.getName()).log(Level.SEVERE, "Error al agregar venta", ex);
+        if (affectedRows == 0) {
+            throw new SQLException("La inserción de la venta falló, no se añadió ninguna fila.");
         }
-        return -1;
+
+        // Obtener el ID generado
+        try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                int nuevaVentaId = generatedKeys.getInt(1);
+                System.out.println("Se ha creado con éxito la venta: " + nuevaVentaId + " " + empleado + " " + socio + " " + metodo + " " + area);
+                return nuevo();  // No necesitas restar 1
+            } else {
+                throw new SQLException("La inserción de la venta falló, no se pudo obtener el ID generado.");
+            }
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(VentaDAO.class.getName()).log(Level.SEVERE, "Error al agregar venta", ex);
     }
+    return -1;
+}
+
     
-    public int nuevo(){
+    public int nuevo() {
         int max = 0;
-        String query = "SELECT MAX(id_pelicula) FROM venta";
-        try (Statement stmt = dbConnection.getConnection().createStatement(); ResultSet rs = stmt.executeQuery(query)) {
-            max=rs.getInt(1);
+        String query = "SELECT MAX(id) FROM venta;";
+        try (Statement stmt = DatabaseConnection.getInstance().getConnection().createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            if (rs.next()) { // Asegúrate de que hay un resultado
+                max = rs.getInt(1);
+            }
         } catch (SQLException ex) {
-            System.err.println("Error en encontrar MAX ID VENTA");;
+            System.err.println("Error en encontrar MAX ID VENTA: " + ex.getMessage());
         }
         return max;
     }
+
 
 }
