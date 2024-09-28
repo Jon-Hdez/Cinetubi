@@ -72,7 +72,7 @@ CREATE TABLE snack (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     precio DECIMAL(10, 2) NOT NULL CHECK (precio > 0),
-    tamanio VARCHAR(15) NULL CHECK (tamanio IN ('chico', 'mediano', 'grande'))
+    tamanio VARCHAR(15) NULL
 );
 
 -- Crear tabla cartelera
@@ -358,26 +358,15 @@ INSERT INTO venta_snack (id_venta, id_snack) VALUES
 (1, 1),(1, 2),
 (2, 3),(2, 4),
 (3, 5),(3, 6),
-(4, 7),(4, 8),
-(5, 9),(5, 9),
-(6, 1),(6, 3),
-(7, 2),(7, 4),
-(8, 5),(8, 6),
-(9, 7),(9, 8),
-(10, 9);
+(4, 7);
 
 -- Insert sample data into combo_snack
 INSERT INTO combo_snack (id_combo, id_snack) VALUES
 (1, 1),(1, 2),
 (2, 3),(2, 4),
 (3, 5),(3, 6),
-(4, 7),(4, 8),
-(5, 9),(5, 9),
-(6, 1),(6, 3),
-(7, 2),(7, 4),
-(8, 5),(8, 6),
-(9, 7),(9, 8),
-(10, 9);
+(4, 7),(4, 8);
+
 
 -- Vista utilizada para ver los asientos
  CREATE VIEW boleto_asiento AS SELECT f.id AS idFuncion, a.numero AS numAsiento
