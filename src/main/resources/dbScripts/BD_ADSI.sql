@@ -365,7 +365,7 @@ INSERT INTO combo_snack (id_combo, id_snack) VALUES
 (1, 1),(1, 2),
 (2, 3),(2, 4),
 (3, 5),(3, 6),
-(4, 7),(4, 8);
+(4, 7),(4, 7);
 
 
 -- Vista utilizada para ver los asientos
